@@ -1,0 +1,104 @@
+body {
+    background-color: #293236;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn {    
+    border-radius: 1.5rem;
+}
+.btn-gradient {
+    border-radius: 1.5rem;
+    background-image: linear-gradient(to right, #ff31eaff, #5d00a8ff);
+    border: 0px;
+    color: white;
+}
+#topbar {
+    background-color: #1b2124;
+    position: sticky;
+    top: 0px;
+    padding: 2em;
+    z-index: 100;
+}
+#topbar2 {
+    text-align: right;
+    vertical-align: middle;
+    display: inline-block;
+}
+#logo {
+    width: 12em;
+}
+#searchbar {
+    background-color: #ededed;
+    border-radius: 1.5em; 
+    margin-left: 2em; 
+    margin-right: 2em;
+    margin-top: 4em;
+    margin-bottom: 2em;
+    width: 95%;
+    height: 5em;
+} 
+.button-search {
+    background-color: #ededed;
+    height: 4em;
+    width: 100%;
+    margin-left: 2em;
+    margin-top: 0.5em;
+    border-radius: 1.5em;
+    cursor: pointer;
+}
+.button-search:hover {
+    border: 0.1em solid #ff31ea;
+}
+.button-search:focus {
+    border: 0.1em solid #0B171D;
+    background-color: #DAD8D8;
+} 
+#search-button {
+    width: 70%;
+    height: 2.5em;
+    margin-top: 0.4em;
+    margin-left: 3em;
+}
+.input-search {
+    margin-top: 0.2em;
+    margin-left: 1em;
+    border-radius:0.5em;
+    border-width: 0em;
+    background-color: #ededed;
+}
+.secondary-search {
+    margin-left: 1em; 
+    margin-bottom: 0em;
+}
+.secondary-placeholder {
+    margin-left: 1em;
+    margin-bottom: 0em; 
+    margin-top: 0.2em; 
+    color: grey;
+}
+.popup-search {
+    background-color: #ededed;
+    border-radius: 2em;
+    height: 20em;
+    width: 30em;
+    margin-top: 0.8em;
+    margin-left: 1em;
+    display: none;
+}
+#slideshow {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-item img {
+    border-radius: 1.5em;
+    object-fit: cover;
+    width: 1000px;
+    height: 100%;
+}
+.caption {
+    font-size: 32px;
+    background-color: rgba(41, 50, 54, 0.4)
+    color: white;
+    border-radius: 1.5em; 
+}
