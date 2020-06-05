@@ -11,10 +11,10 @@
     <body>
        <div class="container-fluid" id="topbar">
             <div class="row">
-                <div class="col" id="topbar1">
+                <div class="col-sm-4" id="topbar1">
                     <img id="logo" src="/img/logo.png">
                 </div>
-                <div class="col" id="topbar2">
+                <div class="col-sm-8" id="topbar2">
                     <a href="/become_host">
                         <button id="topbar-host" width="25" class="btn btn-secondary">Diventa un host</button>
                         <button id="topbar-profile" class="btn btn-secondary">
@@ -27,7 +27,7 @@
                 </div>
             </div>
        </div>
-       <div class="container-fluid">
+        <div class="container-fluid" id="login">
             <div class="row d-flex justify-content-center" id="login-box">
                 <div class="d-flex justify-content-between" id="login-box-col">
                     <form class="needs-validation" action="" id="login-form" novalidate>
@@ -40,7 +40,7 @@
                             <label for="pwd" style="font-weight: bold">Password</label>
                             <input type="password" class="form-control" id="pwd-form" placeholder="Password" name="pswd" required>
                             <div class="invalid-feedback">Per favore compila il campo</div>
-                        </div>
+                       </div>
                         <div class="text-center">
                             <p style="color: #bdbdbd">Non sei ancora registrato? <a style="color:#ff31ea; font-weight: bold;" href="/register">Registrati!</a></p>
                         </div>
@@ -51,4 +51,11 @@
                 </div>
             </div>
         </div>
+        <div id="footer" class="row">
+            <div class="col">
+                <h4>Informazioni</h4>
+                <p> Chi siamo</p>
+                <p> La nostra piattaforma</p> </p>
+            </div>
+        </div> 
     </body>

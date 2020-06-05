@@ -11,14 +11,14 @@
     <body>
        <div class="container-fluid" id="topbar">
             <div class="row">
-                <div class="col" id="topbar1">
+                <div class="col-sm-4" id="topbar1">
                     <img id="logo" src="/img/logo.png">
                 </div>
-                <div class="col" id="topbar2">
+                <div class="col-sm-8" id="topbar2">
                     <a href="/become_host">
-                        <button id="topbar-host" width="25" class="btn btn-secondary">Diventa un host</button>
+                        <button id="topbar-host" width="20px" class="btn btn-secondary">Diventa un host</button>
                         <button id="topbar-profile" class="btn btn-secondary">
-                            <img width="28em" src="/img/avatar.svg">
+                            <img  width="24px" src="/img/avatar.svg">
                         </button>
                     </a>
                     <a href="/login">
@@ -29,7 +29,7 @@
        </div>
        <div class="container-fluid">
             <div class="row" id="register-box">
-                <div class="col" id="register-box-col">
+                <div class="col-sm-4" id="register-box-col">
                     <form class="needs-validation" action="" id="register-form" novalidate>
                         <div class="form-group">
                             <label for="first-name" style="font-weight: bold">Nome</label>
@@ -62,13 +62,20 @@
                             <div class="invalid-feedback">Per favore compila il campo</div>
                         </div>
                         <div class="text-right">
-                            <button type="submit" class="btn btn-gradient" id="login-form-btn">Registrati</button>
+                            <button class="btn btn-gradient" id="register-form-btn">Registrati</button>
                         </div>
                     </form>
                 </div>
-                <div class="col" id="commercial-ad">
+                <div class="col-sm-4" id="commercial-ad">
                    <img src="/img/txt-register.png">
                 </div>
+            </div>
+        </div>
+        <div id="footer" class="row">
+            <div class="col">
+                <h4>Informazioni</h4>
+                <p> Chi siamo</p>
+                <p> La nostra piattaforma</p> </p>
             </div>
         </div>
     </body>
