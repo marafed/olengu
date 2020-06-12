@@ -1,8 +1,8 @@
 FROM node:current-buster
-RUN npm install express express-generator -g
+RUN npm install express -g
 RUN mkdir -p /app
 WORKDIR /app
 ADD . /app
 RUN npm install
 EXPOSE 80
-CMD node /app/app.js
+CMD node /app/bin/www
