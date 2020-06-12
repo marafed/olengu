@@ -19,7 +19,7 @@ function validateLoginForm() {
         }, false);
       });
     }, false);
-  }
+}
 
 
 
