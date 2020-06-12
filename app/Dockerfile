@@ -5,4 +5,4 @@ WORKDIR /app
 ADD . /app
 RUN npm install
 EXPOSE 80
-CMD node /app/bin/www
+CMD npm install;npm start
