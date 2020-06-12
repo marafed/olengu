@@ -3,12 +3,13 @@ var mysql = require('mysql')
 var fs = require("fs")
 
 db = new mysql.createConnection({
-    host: "localhost",
-    user: "olengu",
-    password: "olengu",
-    database: "olengu"
+    host: "db",
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 })
 
+initdb = function (db)
 dbcon = db.connect(function(err) {
     if (err) throw err
     console.log("database connected")
