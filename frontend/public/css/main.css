@@ -1,0 +1,217 @@
+body {
+  background-color: #293236;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn {    
+  border-radius: 1.5rem;
+}
+.btn-gradient {
+  border-radius: 1.5rem;
+  background-image: linear-gradient(to right, #ff31eaff, #5d00a8ff);
+  border: 0px;
+  color: white;
+}
+#topbar {
+  background-color: #1b2124;
+  position: sticky;
+  top: 0px;
+  padding: 1.2em;
+  z-index: 100;
+}
+#topbar2 {
+  text-align: right;
+  vertical-align: middle;
+  display: inline-block;
+}
+#logo {
+  width: 12em;
+}
+.button-search {
+  background-color: #ededed;
+  width: 100%;
+  height: 90%;
+  margin-top: 1em;
+  border-radius: 2em;
+  cursor: pointer;
+}
+.button-search:hover {
+  border: 0.1em solid #ff31ea;
+}
+.button-search:focus {
+  border: 0.1em solid #0B171D;
+  background-color: #DAD8D8;
+} 
+
+#search-button {
+  width: 100%;
+  height: 90%;
+  margin-top: 0.7em;
+  border-radius: 2em;
+}
+.input-search {
+  margin-top: 0em;
+  margin-left: 1em;
+  border-radius:0.5em;
+  border-width: 0em;
+  background-color: #ededed;
+  max-width: 60%;
+}
+.secondary-search {
+  margin-left: 1em; 
+  margin-bottom: 0em;
+}
+.secondary-placeholder {
+  margin-left: 1em;
+  margin-bottom: 0em; 
+  margin-top: 0.2em; 
+  color: grey;
+}
+.popup-search {
+  background-color: #ededed;
+  border-radius: 2em;
+  height: 20em;
+  width: 30em;
+  margin-top: 0.8em;
+  margin-left: 1em;
+  display: none;
+}
+#text-vacancy {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+
+}
+#text-vacancy img {
+  width: 80%;
+}
+#slideshow {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel-item img {
+  border-radius: 1.5em;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.caption {
+  font-size: 200%;
+  background-color: rgba(41, 50, 54, 0.4);
+  color: white;
+  border-radius: 1.5em; 
+}
+/* diventa un host*/
+#txt1 img {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+}
+#img1 img {
+  width: 100%;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2rem;
+}
+
+#txt2 {
+  color: white;
+  padding-right: 3%;
+  padding-left: 3%;
+  font-weight: bolder;
+  font-size: 150%;
+  margin-top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+}
+#list {
+  font-weight: lighter;
+  margin-top: 1em;
+  font-size: 100%;
+}
+#host_form img {
+  width: 100%;
+  margin-top: 3em;
+  margin-left: 2em;
+  margin-right: 2em;
+  border-radius: 2rem;
+}
+#register_now {
+  font-size: 90%;
+  width: 100%;
+  height: auto;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+/* login */
+
+#login {
+  background-image: url("/img/amalfi1.jpg");
+  background-position: center;
+  background-size:cover;
+  background-repeat: no-repeat;
+  
+}
+#login-box-col {
+  background-color: #293236;
+  background-position: center;
+  background-size: cover;
+  border-radius: 2em;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+  color: white;
+  margin-top: 2em;
+}
+#login-form-btn {
+  height: 20%;
+  width: 50%;
+  font-weight: bold;
+}
+/* registrati */
+#register-box {
+  background-image: url("/img/552459.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+#register-box-col {
+  background-color: #293236;
+  background-position: center;
+  background-size: cover;
+  border-radius: 3em;
+  padding: 5%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  color: white;
+  margin-top: 2em;
+  margin-left: 3em;
+  margin-right: 5em;
+}
+#commercial-ad img {
+  margin-top: 5em;
+  align-content: center;
+  border-radius: 1em;
+  width: 100%;
+  height: auto;
+  padding: 10%;
+  background-color: rgba(233, 233, 233, 0.5);
+}
+#register-form-btn {
+  width: 100%;
+  height: 10%;
+  font-weight: bold;
+}
+#footer {
+  color: white;
+  margin-top: 2em;
+  text-align: center;
+}
