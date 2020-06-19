@@ -1,8 +1,8 @@
-import React, {useState, useEffects} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function Searchbar() {
   useEffect( () => {
-      loadLocations();
+      window.loadLocations();
     }
   );
 
