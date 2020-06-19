@@ -13,6 +13,8 @@ function Nav() {
         <div className="col-sm-8" id="topbar2">
           <Link to="/become_host">
             <button id="topbar-host" width="25" className="btn btn-secondary">Diventa un host</button>
+          </Link>
+          <Link to="/dashboard">
             <button id="topbar-profile" className="btn btn-secondary">
                 <img width="28em" src="/img/avatar.svg" />
             </button>
