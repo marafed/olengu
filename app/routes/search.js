@@ -7,4 +7,9 @@ router.get('/all', function(req, res, next) {
     res.send(countries);
 });
 
+router.get('/:variabile', function(req, res, next) {
+    var countries = req.param;
+    res.send(countries);
+});
+
 module.exports = router;
