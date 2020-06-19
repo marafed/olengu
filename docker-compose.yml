@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./backend:/backend
+      - ./app:/app
     environment:
       - MYSQL_DATABASE
       - MYSQL_USER
