@@ -6,6 +6,7 @@ import Home from './Pages/Home';
 import HomeHost from './Pages/HomeHost';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import Dashboard from './Pages/Dashboard';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/become_host" component={HomeHost} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/dashboard" component={Dashboard} />
           <Footer />
         </div>
       </Switch>
