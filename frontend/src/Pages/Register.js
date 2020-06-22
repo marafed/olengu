@@ -47,15 +47,19 @@ class App extends Component {
         e.preventDefault();
 // submit dei valori in console
         if(formValid(this.state)) {
-            console.log(`
-            --SUBMITTING--
-            First Name: ${this.state.firstname}
-            Last Name: ${this.state.surname}
-            Birthday: ${this.state.birthday}
-            Email: ${this.state.email}
-            Password: ${this.state.password}
-            Conf_pwd: ${this.state.conf_pwd}
-            `)
+            var payload = {
+                "firstname" : this.state.firstname,
+                "surname": this.state.surname,
+                "birthday": this.state.birthday,
+                "email": this.state.email,
+                "password": this.state.password,
+                "conf_pwd": this.state.conf_pwd
+            }
+            var data = new FormData();
+            data.append("json", JSON.stringify(payload));
+            var answer = await fetch(
+                "/api/auth/register", 
+                { method: "POST", body: data })
         } else {
             console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
         }
@@ -109,7 +113,7 @@ class App extends Component {
                                 <label htmlFor="firstname" style={{fontWeight: 'bold'}}>Nome</label>
                                 <input 
                                     type="text" 
-                                    className="form-control" {formErrors.lastName.length > 0 ? "error" : null} // non so se funziona anzi credo di no
+                                    className="form-control" 
                                     id="first-name-form" 
                                     placeholder="Nome" 
                                     name="firstname"
