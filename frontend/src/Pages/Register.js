@@ -12,7 +12,7 @@ const formValid = ({ formErrors, ...rest }) => {
     
     // verifica che il form sia stato compilato altrimenti non è validato
     Object.values(rest).forEach(val => {
-        val === null && (valid = false)
+        val === null && (valid = false);                                
     });
 
     return valid;
@@ -21,7 +21,7 @@ const formValid = ({ formErrors, ...rest }) => {
 
 
 
-class App extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
 // setting iniziale 
@@ -43,9 +43,10 @@ class App extends Component {
         };
     }
 
-    handleSubmit = e => {
+
+     handleSubmit = async e => {
         e.preventDefault();
-// submit dei valori in console
+        // submit dei valori in console
         if(formValid(this.state)) {
             var payload = {
                 "firstname" : this.state.firstname,
@@ -59,11 +60,11 @@ class App extends Component {
             data.append("json", JSON.stringify(payload));
             var answer = await fetch(
                 "/api/auth/register", 
-                { method: "POST", body: data })
+                { method: "POST", body: data });
         } else {
             console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
         }
-    }
+    };   
 
     handleChange = e => {
         e.preventDefault();
@@ -73,16 +74,16 @@ class App extends Component {
         switch (name) {
             case 'firstname':
                 formErrors.firstname = value.length < 2   
-                    ?  "Minimum 1 character required" // tutti da cambiare in italiano
+                    ?  "Minimum 2 character required" // tutti da cambiare in italiano
                     : "";
             break;
             case 'surname':
                 formErrors.surname = value.length < 2   
-                    ?  "Minimum 1 character required"
+                    ?  "Minimum 2 character required"
                     : "";
             break;
             case 'email':
-                formErrors.firstname = emailRegex.test(value)   
+                formErrors.email = emailRegex.test(value)   
                     ? ''
                     : 'Invalid email address';
             break;
@@ -99,7 +100,8 @@ class App extends Component {
         default:
             break;   
         }
-    }
+        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    };
 
     render() { // rendering finale della pagina con handling degli errori
         const{ formErrors } = this.state;
