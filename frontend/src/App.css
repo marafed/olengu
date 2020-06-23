@@ -241,6 +241,14 @@ body {
   height: 10%;
   font-weight: bold;
 }
+/* registra  appartamento */ 
+#insertitem-box {
+  background-image: url("/img/house-beach.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 #footer {
   color: white;
   margin-top: 2em;

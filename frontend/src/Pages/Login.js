@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
@@ -59,9 +60,9 @@ class Login extends Component {
 
         switch (name) {
             case 'email':
-                formErrors.email = value.length < 2
-                ? "Minimo 2 caratteri"
-                : "";
+                formErrors.email = emailRegex.test(value)
+                ? ""
+                : "Indirizzo email non valido";
             break;
             case 'password':
                 formErrors.password = value.length < 2 
@@ -76,7 +77,7 @@ class Login extends Component {
 
 
     render() {
-        const { formErrors }
+        const { formErrors } = this.state;
         return(
             <div className="Login">
                 <div className="container-fluid" id="login">

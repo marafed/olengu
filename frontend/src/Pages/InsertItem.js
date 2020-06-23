@@ -1,129 +1,62 @@
 import React, { Component } from 'react';
 
-const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/); // RegEx per l'email 
-
 const formValid = ({ formErrors, ...rest }) => {
-    let valid = true;
 
-    // se la lunghezza non è maggiore di zero non è validato 
-    Object.values(formErrors).forEach(val => { 
-        val.length > 0 && (valid = false);
-    });
-    
-    // verifica che il form sia stato compilato altrimenti non è validato
-    Object.values(rest).forEach(val => {
-        val === null && (valid = false);                                
-    });
+};
 
-    return valid;
-}; 
-
-
-
-
-class Register extends Component {
+class InsertItem extends Component  {
     constructor(props) {
         super(props);
-        // setting iniziale 
+    
         this.state = {
-            firstname: null, 
-            surname: null, 
-            birthday: null,
-            email: null, 
-            password: null, 
-            conf_pwd: null,
-            formErrors: {
-                firstname: "",
-                surname: "", 
-                birthday: "",
-                email: "", 
-                password: "", 
-                conf_pwd: "",
-            }
-        };
-    }
 
-
-     handleSubmit = async e => {
-        e.preventDefault();
-        // submit dei valori in console
-        if(formValid(this.state)) {
-            var payload = {
-                "firstname" : this.state.firstname,
-                "surname": this.state.surname,
-                "birthday": this.state.birthday,
-                "email": this.state.email,
-                "password": this.state.password,
-                "conf_pwd": this.state.conf_pwd
-            }
-            var data = new FormData();
-            data.append("json", JSON.stringify(payload));
-            var answer = await fetch(
-                "/api/auth/register", 
-                { method: "POST", body: data });
-        } else {
-            console.error('FORM INVALID - ERROR');
         }
-    };   
-
-    handleChange = e => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        let formErrors = this.state.formErrors; 
-        // gestione errori input
-        switch (name) {
-            case 'firstname':
-                formErrors.firstname = value.length < 2   
-                    ?  "Minimum 2 character required" // tutti da cambiare in italiano
-                    : "";
-            break;
-            case 'surname':
-                formErrors.surname = value.length < 2   
-                    ?  "Minimum 2 character required"
-                    : "";
-            break;
-            case 'email':
-                formErrors.email = emailRegex.test(value)   
-                    ? ''
-                    : 'Invalid email address';
-            break;
-            case 'password':
-                formErrors.password = value.length < 6   
-                    ?  "Minimum 6 character required"
-                    : "";
-            break;
-            case 'conf_pwd':
-                formErrors.conf_pwd = value.length < 6   
-                    ?  "Minimum 6 character required"
-                    : "";
-            break;
-        default:
-            break;   
-        }
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
     };
 
-    render() { // rendering finale della pagina con handling degli errori
-        const{ formErrors } = this.state;
+    handleSubmit = async e => {
+        e.preventDefault();
+
+        if(formValid(this.state)) {
+
+        } else {
+
+        }
+    };
+
+    handleChange = async e => {
+        e.preventDefault();
+
+        switch(name) {
+            case '':
+            
+            break;
+        default: 
+            break;
+        }
+    }
+       
+    render() {
+        const { formErrors } = this.state; 
+
         return(
-            <div className="Register">
+            <div className="InsertItem">
                 <div className="container-fluid">
-                    <div className="row" id="register-box">
+                    <div className="row" id="insertitem-box">
                         <div className="col-sm-4" id="register-box-col">
                             <form onSubmit={this.handleSubmit} id="register-form" noValidate>
                                 <div className="form-group">
-                                    <label htmlFor="firstname" style={{fontWeight: 'bold'}}>Nome</label>
+                                    <label htmlFor="name" style={{fontWeight: 'bold'}}>Nome</label>
                                     <input 
                                         type="text" 
                                         className="form-control" 
-                                        id="first-name-form" 
-                                        placeholder="Nome" 
-                                        name="firstname"
+                                        id="title-form" 
+                                        placeholder="Titolo" 
+                                        name="title"
                                         onChange={this.handleChange} 
                                         noValidate 
                                     />
-                                    {formErrors.firstname.length > 0 && (
-                                        <span className="errorMessage">{formErrors.firstname}</span>
+                                    {formErrors.title.length > 0 && (
+                                        <span className="errorMessage">{formErrors.title}</span>
                                     )}
                                 </div>
                                 <div className="form-group">
@@ -212,6 +145,6 @@ class Register extends Component {
             </div>
         );
     }
-}
+}   
 
-export default Register;
+export default InsertItem;

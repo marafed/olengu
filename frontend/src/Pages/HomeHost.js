@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function HomeHost() {
   return(
@@ -19,9 +21,9 @@ function HomeHost() {
               <li>Assicurazione garantita per danni</li>
               <li>Sicurezza assicurata olengu.it</li>
             </ul>
-            <a href="">
+            <Link to="/InsertItem">
               <button className="btn btn-gradient" id="register_now">Registra ora il tuo appartamento</button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
