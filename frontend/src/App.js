@@ -7,6 +7,7 @@ import HomeHost from './Pages/HomeHost';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
+import InsertItem from './Pages/InsertItem';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -17,9 +18,10 @@ function App() {
           <Nav />
           <Route path="/" exact component={Home} />
           <Route path="/become_host" component={HomeHost} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route path="/Login" component={Login} />
+          <Route path="/Register" component={Register} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/InsertItem" component={InsertItem} />
           <Footer />
         </div>
       </Switch>

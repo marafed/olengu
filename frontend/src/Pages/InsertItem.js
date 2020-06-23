@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const formValid = ({ formErrors, ...rest }) => {
+/* const formValid = ({ formErrors, ...rest }) => {
 
 };
 
@@ -34,117 +34,123 @@ class InsertItem extends Component  {
             break;
         }
     }
+    */
        
-    render() {
-        const { formErrors } = this.state; 
-
-        return(
-            <div className="InsertItem">
-                <div className="container-fluid">
-                    <div className="row" id="insertitem-box">
-                        <div className="col-sm-4" id="register-box-col">
-                            <form onSubmit={this.handleSubmit} id="register-form" noValidate>
-                                <div className="form-group">
-                                    <label htmlFor="name" style={{fontWeight: 'bold'}}>Nome</label>
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        id="title-form" 
-                                        placeholder="Titolo" 
-                                        name="title"
-                                        onChange={this.handleChange} 
-                                        noValidate 
-                                    />
-                                    {formErrors.title.length > 0 && (
-                                        <span className="errorMessage">{formErrors.title}</span>
-                                    )}
+    // render() { 
+        function InsertItem() {
+            return(
+                <div className="InsertItem container-fluid">
+                        <form onSubmit="" id="register-form" noValidate>
+                            <div className="row" id="insertitem-box">
+                                <div className="col-sm-4" id="register-box-col">
+                                    <div className="form-group">
+                                        <label htmlFor="name" style={{fontWeight: 'bold'}}>Titolo</label>
+                                        <input type="text" 
+                                            className="form-control" 
+                                            id="title-form" 
+                                            placeholder="Titolo" 
+                                            name="titolo"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="description" style={{fontWeight: 'bold'}}>Descrizione</label>
+                                        <textarea  
+                                            className="form-control" 
+                                            id="description-form" 
+                                            placeholder="Descrizione" 
+                                            name="descrizione"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="paese" style={{fontWeight: 'bold'}}>Paese</label>
+                                        <input type="text"  
+                                            className="form-control" 
+                                            id="paese-form" 
+                                            placeholder="Paese" 
+                                            name="paese"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="regione" style={{fontWeight: 'bold'}}>Regione</label>
+                                        <input type="text"  
+                                            className="form-control" 
+                                            id="regione-form" 
+                                            placeholder="Regione" 
+                                            name="regione"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="provincia" style={{fontWeight: 'bold'}}>Provincia</label>
+                                        <input type="text"  
+                                            className="form-control" 
+                                            id="provincia-form" 
+                                            placeholder="Provincia" 
+                                            name="provincia"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="citta" style={{fontWeight: 'bold'}}>Città</label>
+                                        <input type="text"  
+                                            className="form-control" 
+                                            id="description-form" 
+                                            placeholder="Città" 
+                                            name="città"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="via" style={{fontWeight: 'bold'}}>Via</label>
+                                        <input type="text"  
+                                            className="form-control" 
+                                            id="via-form" 
+                                            placeholder="Via" 
+                                            name="via"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="numero" style={{fontWeight: 'bold'}}>Numero</label>
+                                        <input type="text"  
+                                            className="form-control" 
+                                            id="numero-form" 
+                                            placeholder="Numero" 
+                                            name="numero"
+                                        />
+                                    </div>
+                                    <div className="text-right">
+                                        <button type="submit" className="btn btn-gradient" id="register-form-btn">Registrati</button>
+                                    </div>
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="surname" style={{fontWeight: 'bold'}}>Cognome</label>
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        id="surname-form" 
-                                        placeholder="Cognome" 
-                                        name="surname"
-                                        onChange={this.handleChange}
-                                        noValidate 
-                                    />
-                                    {formErrors.surname.length > 0 && (
-                                        <span className="errorMessage">{formErrors.surname}</span>
-                                    )}
+                                <div className="col-sm-2" id="checklist-box-col">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <input
+                                                type="checkbox"
+                                                name="wifi"
+                                                />
+                                            </td>
+                                            <td>
+                                            <label style={{fontWeight: 'bold'}, {padding: 0.5 + 'em'}}>Wi-Fi</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input
+                                                type="checkbox"
+                                                name="wifi"
+                                                />
+                                            </td>
+                                            <td>
+                                            <label style={{fontWeight: 'bold'}, {padding: 0.5 + 'em'}}>Asciugacapelli</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="birthday" style={{fontWeight: 'bold'}}>Data di nascita</label>
-                                    <input 
-                                        type="date" 
-                                        className="form-control" 
-                                        id="birthday-form" 
-                                        placeholder="Data di nascita" 
-                                        name="birthday" 
-                                        onChange={this.handleChange}
-                                        noValidate 
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email" style={{fontWeight: 'bold'}}>Email</label>
-                                    <input 
-                                        type="email" 
-                                        className="form-control" 
-                                        id="email-form" 
-                                        placeholder="Email" 
-                                        name="email" 
-                                        onChange={this.handleChange}
-                                        noValidate 
-                                    />
-                                    {formErrors.email.length > 0 && (
-                                        <span className="errorMessage">{formErrors.email}</span>
-                                    )}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="pwd" style={{fontWeight: 'bold'}}>Password</label>
-                                    <input 
-                                        type="password" 
-                                        className="form-control" 
-                                        id="pwd-form" 
-                                        placeholder="Password" 
-                                        name="password"
-                                        onChange={this.handleChange} 
-          
-                                        noValidate 
-                                    />
-                                    {formErrors.password.length > 0 && (
-                                        <span className="errorMessage">{formErrors.password}</span>
-                                    )}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="conf_pwd" style={{fontWeight: 'bold'}}>Conferma password</label>
-                                    <input 
-                                        type="password" 
-                                        className="form-control" 
-                                        id="conf-pwd-form" 
-                                        placeholder="Conferma password" 
-                                        name="conf_pwd" 
-                                        onChange={this.handleChange}
-                                        noValidate 
-                                    />
-                                    {formErrors.conf_pwd.length > 0 && (
-                                        <span className="errorMessage">{formErrors.conf_pwd}</span>
-                                    )}
-                                </div>
-                                <div className="text-right">
-                                    <button type="submit" className="btn btn-gradient" id="register-form-btn">Registrati</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="col-sm-4" id="commercial-ad">
-                            <img src="/img/txt-register.png" />
-                        </div>
-                    </div>
+                            </div>
+                        </form>
                 </div>
-            </div>
-        );
-    }
-}   
+            );
+        }
+// }   
 
 export default InsertItem;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
@@ -22,6 +23,7 @@ const formValid = ({ formErrors, ...rest }) => {
 class Login extends Component {
     constructor(props) {
         super(props);
+
         
         this.state = {
             email: null,
@@ -115,7 +117,7 @@ class Login extends Component {
                                 )}
                             </div>
                             <div className="text-center">
-                                <p style={{color: '#bdbdbd'}}>Non sei ancora registrato? <a style={{color: '#ff31ea', fontWeight: 'bold'}} href="/register">Registrati!</a></p>
+                                <p style={{color: '#bdbdbd'}}>Non sei ancora registrato? <Link to="/Register"style={{color: '#ff31ea', fontWeight: 'bold'}}>Registrati!</Link></p>
                             </div>
                             <div className="text-right">
                                 <button type="submit" className="btn btn-gradient" id="login-form-btn">Login</button>

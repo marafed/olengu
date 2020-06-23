@@ -248,9 +248,24 @@ body {
   background-position: center;
   background-size: cover;
 }
+#checklist-box-col {
+  background-color: #293236;
+  background-position: center;
+  background-size: cover;
+  border-radius: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  color: white;
+  margin-top: 2em;
+  margin-left: 3em;
+  margin-right: 5em;
+}
 
 #footer {
   color: white;
-  margin-top: 2em;
+  margin-top: 5em;
   text-align: center;
 }
