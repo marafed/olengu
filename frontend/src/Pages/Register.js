@@ -62,7 +62,7 @@ class Register extends Component {
                 "/api/auth/register", 
                 { method: "POST", body: data });
         } else {
-            console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
+            console.error('FORM INVALID - ERROR');
         }
     };   
 
@@ -107,107 +107,107 @@ class Register extends Component {
         const{ formErrors } = this.state;
         return(
             <div className="Register">
-            <div className="container-fluid">
-                <div className="row" id="register-box">
-                    <div className="col-sm-4" id="register-box-col">
-                        <form onSubmit={this.handleSubmit} id="register-form" noValidate>
-                            <div className="form-group">
-                                <label htmlFor="firstname" style={{fontWeight: 'bold'}}>Nome</label>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="first-name-form" 
-                                    placeholder="Nome" 
-                                    name="firstname"
-                                    onChange={this.handleChange} 
-                                    noValidate 
-                                />
-                                {formErrors.firstname.length > 0 && (
-                                    <span className="errorMessage">{formErrors.firstname}</span>
-                                )}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="surname" style={{fontWeight: 'bold'}}>Cognome</label>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="surname-form" 
-                                    placeholder="Cognome" 
-                                    name="surname"
-                                    onChange={this.handleChange}
-                                    noValidate 
-                                />
-                                {formErrors.surname.length > 0 && (
-                                    <span className="errorMessage">{formErrors.surname}</span>
-                                )}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="birthday" style={{fontWeight: 'bold'}}>Data di nascita</label>
-                                <input 
-                                    type="date" 
-                                    className="form-control" 
-                                    id="birthday-form" 
-                                    placeholder="Data di nascita" 
-                                    name="birthday" 
-                                    onChange={this.handleChange}
-                                    noValidate 
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="email" style={{fontWeight: 'bold'}}>Email</label>
-                                <input 
-                                    type="email" 
-                                    className="form-control" 
-                                    id="email-form" 
-                                    placeholder="Email" 
-                                    name="email" 
-                                    onChange={this.handleChange}
-                                    noValidate 
-                                />
-                                {formErrors.email.length > 0 && (
-                                    <span className="errorMessage">{formErrors.email}</span>
-                                )}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="pwd" style={{fontWeight: 'bold'}}>Password</label>
-                                <input 
-                                    type="password" 
-                                    className="form-control" 
-                                    id="pwd-form" 
-                                    placeholder="Password" 
-                                    name="password"
-                                    onChange={this.handleChange} 
-                                    noValidate 
-                                />
-                                {formErrors.password.length > 0 && (
-                                    <span className="errorMessage">{formErrors.password}</span>
-                                )}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="conf_pwd" style={{fontWeight: 'bold'}}>Conferma password</label>
-                                <input 
-                                    type="password" 
-                                    className="form-control" 
-                                    id="conf-pwd-form" 
-                                    placeholder="Conferma password" 
-                                    name="conf_pwd" 
-                                    onChange={this.handleChange}
-                                    noValidate 
-                                />
-                                {formErrors.conf_pwd.length > 0 && (
-                                    <span className="errorMessage">{formErrors.conf_pwd}</span>
-                                )}
-                            </div>
-                            <div className="text-right">
-                                <button type="submit" className="btn btn-gradient" id="register-form-btn">Registrati</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div className="col-sm-4" id="commercial-ad">
-                    <img src="/img/txt-register.png" />
+                <div className="container-fluid">
+                    <div className="row" id="register-box">
+                        <div className="col-sm-4" id="register-box-col">
+                            <form onSubmit={this.handleSubmit} id="register-form" noValidate>
+                                <div className="form-group">
+                                    <label htmlFor="firstname" style={{fontWeight: 'bold'}}>Nome</label>
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        id="first-name-form" 
+                                        placeholder="Nome" 
+                                        name="firstname"
+                                        onChange={this.handleChange} 
+                                        noValidate 
+                                    />
+                                    {formErrors.firstname.length > 0 && (
+                                        <span className="errorMessage">{formErrors.firstname}</span>
+                                    )}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="surname" style={{fontWeight: 'bold'}}>Cognome</label>
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        id="surname-form" 
+                                        placeholder="Cognome" 
+                                        name="surname"
+                                        onChange={this.handleChange}
+                                        noValidate 
+                                    />
+                                    {formErrors.surname.length > 0 && (
+                                        <span className="errorMessage">{formErrors.surname}</span>
+                                    )}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="birthday" style={{fontWeight: 'bold'}}>Data di nascita</label>
+                                    <input 
+                                        type="date" 
+                                        className="form-control" 
+                                        id="birthday-form" 
+                                        placeholder="Data di nascita" 
+                                        name="birthday" 
+                                        onChange={this.handleChange}
+                                        noValidate 
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email" style={{fontWeight: 'bold'}}>Email</label>
+                                    <input 
+                                        type="email" 
+                                        className="form-control" 
+                                        id="email-form" 
+                                        placeholder="Email" 
+                                        name="email" 
+                                        onChange={this.handleChange}
+                                        noValidate 
+                                    />
+                                    {formErrors.email.length > 0 && (
+                                        <span className="errorMessage">{formErrors.email}</span>
+                                    )}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="pwd" style={{fontWeight: 'bold'}}>Password</label>
+                                    <input 
+                                        type="password" 
+                                        className="form-control" 
+                                        id="pwd-form" 
+                                        placeholder="Password" 
+                                        name="password"
+                                        onChange={this.handleChange} 
+                                        noValidate 
+                                    />
+                                    {formErrors.password.length > 0 && (
+                                        <span className="errorMessage">{formErrors.password}</span>
+                                    )}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="conf_pwd" style={{fontWeight: 'bold'}}>Conferma password</label>
+                                    <input 
+                                        type="password" 
+                                        className="form-control" 
+                                        id="conf-pwd-form" 
+                                        placeholder="Conferma password" 
+                                        name="conf_pwd" 
+                                        onChange={this.handleChange}
+                                        noValidate 
+                                    />
+                                    {formErrors.conf_pwd.length > 0 && (
+                                        <span className="errorMessage">{formErrors.conf_pwd}</span>
+                                    )}
+                                </div>
+                                <div className="text-right">
+                                    <button type="submit" className="btn btn-gradient" id="register-form-btn">Registrati</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="col-sm-4" id="commercial-ad">
+                            <img src="/img/txt-register.png" />
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         );
     }
