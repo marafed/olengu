@@ -46,7 +46,7 @@ class Register extends Component {
 
      handleSubmit = async e => {
         e.preventDefault();
-        // submit dei valori in console
+        // submit dei valori in post
         if(formValid(this.state)) {
             var payload = {
                 "firstname" : this.state.firstname,

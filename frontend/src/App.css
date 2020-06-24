@@ -99,10 +99,9 @@ body {
   border: none;
   margin-left: 4%; 
   margin-right: 4%;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 1em;
-
 }
 
 #text-vacancy {
@@ -255,13 +254,34 @@ body {
   border-radius: 3em;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding-top: 2em;
   padding-bottom: 2em;
   color: white;
   margin-top: 2em;
   margin-left: 3em;
   margin-right: 5em;
+}
+.checklist-typo {
+  margin-left: 1em;
+  padding: 0.3em;
+  align-items: center;
+}
+#prezzo-form {
+  width: 15em;
+}
+#counter-host-prezzo {
+  display: flex;
+  align-items: center;
+  
+}
+.counter-host {
+  padding: 0.4em;
+  text-align: center;
+}
+#register-host-btn {
+  font-weight: bold;
+  text-align: center;
+  width: 300px;
 }
 
 #footer {
