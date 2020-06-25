@@ -1,7 +1,7 @@
 import React, { Component,  useState} from 'react';
 import CountersItem from '../Components/CountersItem'
 
-const formValid = ({ formErrors, ...rest }) => {
+const formValid = ({ formErrors }) => {
     let valid = true;
 
     // se la lunghezza non è maggiore di zero non è validato 
@@ -9,15 +9,10 @@ const formValid = ({ formErrors, ...rest }) => {
         if (val.length > 0) {
             valid = false;
         }
-    });
-    
-    // verifica che il form sia stato compilato altrimenti non è validato
-    Object.values(rest).forEach(val => {
-        if (val === null) {
+        if (val === null ) {
             valid = false;
-        };                                
+        }
     });
-
     return valid;
 };
 
@@ -76,7 +71,7 @@ class InsertItem extends Component  {
 
     handleSubmit = async e => {
         e.preventDefault();
-        if(formValid(this.state)) {
+        if(formValid(this.state) == true) {
             var payload = {
                 "titolo": this.state.titolo, 
                 "descrizione": this.state.descrizione,
