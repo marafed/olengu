@@ -14,10 +14,8 @@ const formValid = ({ formErrors, ...rest }) => {
     Object.values(rest).forEach(val => {
         val === null && (valid = false);                                
     });
-
     return valid;
 }; 
-
 
 
 
@@ -60,7 +58,12 @@ class Register extends Component {
             data.append("json", JSON.stringify(payload));
             var answer = await fetch(
                 "/api/auth/register", 
-                { method: "POST", body: data });
+                { method: "POST", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                    body: data });
         } else {
             console.error('FORM INVALID - ERROR');
         }

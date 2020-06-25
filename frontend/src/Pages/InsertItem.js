@@ -1,4 +1,5 @@
 import React, { Component,  useState} from 'react';
+import CountersItem from '../Components/CountersItem'
 
 const formValid = ({ formErrors, ...rest }) => {
     let valid = true;
@@ -33,26 +34,26 @@ class InsertItem extends Component  {
             via: null,
             numero: null,
             attrazioni: null,
-            /* wifi: false,
-            asciugacapelli: false, 
-            tv: false, 
-            zonalavoro: false,
-            ac: false, 
-            lavatrice: false, 
-            kit: false,
-            fumo: false,
-            animalidomestici: false,
-            baby: false, 
-            colazione: false,
-            piscina: false,
-            idromassaggio: false,
-            sauna: false,
-            spa: false,
-            palestra: false,
-            immerso: false,
-            vista: false,
-            interoappartamento: false,
-            stanzaprivata: false, */
+            wifi: null,
+            asciugacapelli: null, 
+            tv: null, 
+            zonalavoro: null,
+            ac: null, 
+            lavatrice: null, 
+            kit: null,
+            fumo: null,
+            animalidomestici: null,
+            baby: null, 
+            colazione: null,
+            piscina: null,
+            idromassaggio: null,
+            sauna: null,
+            spa: null,
+            palestra: null,
+            immerso: null,
+            vista: null,
+            interoappartamento: null,
+            stanzaprivata: null, 
             prezzo: null, 
             formErrors: {
                 titolo: "",
@@ -66,7 +67,6 @@ class InsertItem extends Component  {
                 attrazioni: "",
                 prezzo:""
             }
-            
         };
     }
 
@@ -103,17 +103,17 @@ class InsertItem extends Component  {
                 "vista": this.state.vista,
                 "interoappartamento": this.state.interoappartamento,
                 "stanzaprivata": this.state.stanzaprivata,
-                "prezzo": this.state.prezzo,
+                "prezzo": this.state.prezzo
             }
             var data = new FormData();
             data.append("json", JSON.stringify(payload));
             var answer = await fetch(
                 "/api/auth/insertitem", 
                 { method: "POST", body: data });
-        } else {
-            console.error('FORM INVALID - ERROR');
-        }
-    };
+            } else {
+                console.error('FORM INVALID - ERROR');
+            }
+        };
 
     handleChange = async e => {
         e.preventDefault();
@@ -130,7 +130,42 @@ class InsertItem extends Component  {
                     ?  "Minimo 15 caratteri" // tutti da cambiare in italiano
                     : "";
             break;
-            
+            case 'paese':
+                formErrors.paese = value.length < 2  
+                    ?  "Minimo 2 caratteri" // tutti da cambiare in italiano
+                    : "";
+            break;
+            case 'regione':
+                formErrors.regione = value.length < 2  
+                    ?  "Minimo 2 caratteri" // tutti da cambiare in italiano
+                    : "";
+            break;
+            case 'provincia':
+                formErrors.provincia = value.length < 2
+                    ?  "Minimo 2 caratteri" // tutti da cambiare in italiano
+                    : "";
+            break;
+            case 'citta':
+                formErrors.citta = value.length < 2 
+                    ?  "Minimo 2 caratteri" // tutti da cambiare in italiano
+                    : "";
+            break;
+            case 'via':
+                formErrors.via = value.length < 5
+                    ?  "Minimo 5 caratteri" // tutti da cambiare in italiano
+                    : "";
+            break;
+            case 'numero':
+                formErrors.numero = value.length < 1  
+                    ?  "Minimo 1 caratteri" // tutti da cambiare in italiano
+                    : "";
+            break;
+            case 'attrazioni':
+                formErrors.attrazioni = value.length < 10 
+                    ?  "Minimo 10 caratteri" // tutti da cambiare in italiano
+                    : "";
+                    
+            break;
         default: 
             break;
         }
@@ -138,15 +173,14 @@ class InsertItem extends Component  {
     };
 
     render() {
-            // let { count } = this.state;
-            const{ formErrors } = this.state;
+        // let { count } = this.state;
+        const{ formErrors } = this.state;
             return(
-
                 <div className="InsertItem container-fluid">
-                    <form onSubmit={this.handleSubmit} id="register-form" noValidate>
-                        <div className="row" id="insertitem-box">
+                    <div className="row" id="insertitem-box">
+                        <form onSubmit={this.handleSubmit} id="register-form" noValidate>
                             <div className="col-sm-3" id="register-box-col">
-                            <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}> Info generali </h2>
+                                <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}> Info generali </h2>
                                 <div className="form-group">
                                     <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label>
                                     <input type="text" 
@@ -167,8 +201,12 @@ class InsertItem extends Component  {
                                         id="description-form" 
                                         placeholder="Descrizione" 
                                         name="descrizione"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.descrizione.length > 0 && (
+                                        <span className="errorMessage">{formErrors.descrizione}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="paese" style={{fontWeight: 'bold'}}>Paese</label>
                                     <input type="text"  
@@ -176,8 +214,12 @@ class InsertItem extends Component  {
                                         id="paese-form" 
                                         placeholder="Paese" 
                                         name="paese"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.paese.length > 0 && (
+                                        <span className="errorMessage">{formErrors.paese}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="regione" style={{fontWeight: 'bold'}}>Regione</label>
                                     <input type="text"  
@@ -185,8 +227,12 @@ class InsertItem extends Component  {
                                         id="regione-form" 
                                         placeholder="Regione" 
                                         name="regione"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.regione.length > 0 && (
+                                        <span className="errorMessage">{formErrors.regione}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="provincia" style={{fontWeight: 'bold'}}>Provincia</label>
                                     <input type="text" 
@@ -194,17 +240,25 @@ class InsertItem extends Component  {
                                         id="provincia-form" 
                                         placeholder="Provincia" 
                                         name="provincia"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.provincia.length > 0 && (
+                                        <span className="errorMessage">{formErrors.provincia}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="citta" style={{fontWeight: 'bold'}}>Città</label>
                                     <input type="text"  
                                         className="form-control" 
                                         id="description-form" 
                                         placeholder="Città" 
-                                        name="città"
+                                        name="citta"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.citta.length > 0 && (
+                                        <span className="errorMessage">{formErrors.citta}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="via" style={{fontWeight: 'bold'}}>Via</label>
                                     <input type="text"  
@@ -212,8 +266,12 @@ class InsertItem extends Component  {
                                         id="via-form" 
                                         placeholder="Via" 
                                         name="via"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.via.length > 0 && (
+                                        <span className="errorMessage">{formErrors.via}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="numero" style={{fontWeight: 'bold'}}>Numero</label>
                                     <input type="text"  
@@ -221,8 +279,12 @@ class InsertItem extends Component  {
                                         id="numero-form" 
                                         placeholder="Numero" 
                                         name="numero"
+                                        onChange={this.handleChange}
                                     />
                                 </div>
+                                {formErrors.numero.length > 0 && (
+                                        <span className="errorMessage">{formErrors.numero}</span>
+                                    )}
                                 <div className="form-group">
                                     <label htmlFor="numero" style={{fontWeight: 'bold'}}>Attrazioni nei paraggi</label>
                                     <textarea  
@@ -230,8 +292,12 @@ class InsertItem extends Component  {
                                             id="attrazioni-form" 
                                             placeholder="Attrazioni" 
                                             name="attrazioni"
+                                            onChange={this.handleChange}
                                         />
                                 </div>
+                                {formErrors.attrazioni.length > 0 && (
+                                        <span className="errorMessage">{formErrors.attrazioni}</span>
+                                    )}
                             </div>
                             <div className="col-sm-3" id="checklist-box-col">
                                 <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Servizi</h2>
@@ -319,7 +385,7 @@ class InsertItem extends Component  {
                                     <input style={{marginRight: 1 + 'em'}} type="checkbox" name="stanzaprivata"/> 
                                     <label style={{fontWeight: 'bold'}}>Stanza privata</label>
                                 </div>                                
-                                
+                                <CountersItem />
                                 <h3 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Prezzo a notte</h3>
                                 <div className="counter-host" id="counter-host-prezzo">  
                                     <input type="text"  
@@ -334,10 +400,9 @@ class InsertItem extends Component  {
                                     <button type="submit" className="btn btn-gradient" id="register-host-btn">Registra appartamento</button>
                                 </div>
                             </div>
-                        </div>      
-                    </form>
+                        </form>     
+                     </div>
                 </div>
-                
             );
         }
     }
