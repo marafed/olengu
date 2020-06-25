@@ -10,7 +10,7 @@ const formValid = ({ formErrors, ...rest }) => {
     
     // verifica che il form sia stato compilato altrimenti non è validato
     Object.values(rest).forEach(val => {
-        val === "" && (valid = false);                                
+        val === null && (valid = false);                                
     });
 
     return valid;
@@ -23,17 +23,17 @@ class InsertItem extends Component  {
         super(props);
     
         this.state = {
-            count: 1,
-            titolo: "",
-            descrizione: "", 
-            paese: "", 
-            regione: "",
-            provincia: "",
-            citta: "",
-            via: "",
-            numero: "",
-            attrazioni: "",
-            wifi: false,
+            // count: 1,
+            titolo: null,
+            descrizione: null, 
+            paese: null, 
+            regione: null,
+            provincia: null,
+            citta: null,
+            via: null,
+            numero: null,
+            attrazioni: null,
+            /* wifi: false,
             asciugacapelli: false, 
             tv: false, 
             zonalavoro: false,
@@ -52,8 +52,8 @@ class InsertItem extends Component  {
             immerso: false,
             vista: false,
             interoappartamento: false,
-            stanzaprivata: false,
-            prezzo: null,
+            stanzaprivata: false, */
+            prezzo: null, 
             formErrors: {
                 titolo: "",
                 descrizione: "", 
@@ -69,19 +69,6 @@ class InsertItem extends Component  {
             
         };
     }
-        addCount = () => {
-            this.setState({
-                count: this.state.count + 1
-            });
-        };
- 
-        subCount = () => {
-            if (this.state.count > 1) {
-                this.setState({ count: this.state.count - 1 });
-            } else {
-                this.setState({count: 1});
-            }
-        };
 
     handleSubmit = async e => {
         e.preventDefault();
@@ -121,7 +108,7 @@ class InsertItem extends Component  {
             var data = new FormData();
             data.append("json", JSON.stringify(payload));
             var answer = await fetch(
-                "/api/auth/register", 
+                "/api/auth/insertitem", 
                 { method: "POST", body: data });
         } else {
             console.error('FORM INVALID - ERROR');
@@ -151,12 +138,12 @@ class InsertItem extends Component  {
     };
 
     render() {
-            let { count } = this.state;
+            // let { count } = this.state;
             const{ formErrors } = this.state;
             return(
 
                 <div className="InsertItem container-fluid">
-                    <form onSubmit="" id="register-form" noValidate>
+                    <form onSubmit={this.handleSubmit} id="register-form" noValidate>
                         <div className="row" id="insertitem-box">
                             <div className="col-sm-3" id="register-box-col">
                             <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}> Info generali </h2>
@@ -167,6 +154,7 @@ class InsertItem extends Component  {
                                         id="title-form" 
                                         placeholder="Titolo" 
                                         name="titolo"
+                                        onChange={this.handleChange}
                                     />
                                 </div> 
                                 {formErrors.titolo.length > 0 && (
@@ -330,43 +318,8 @@ class InsertItem extends Component  {
                                 <div className="checklist-typo">
                                     <input style={{marginRight: 1 + 'em'}} type="checkbox" name="stanzaprivata"/> 
                                     <label style={{fontWeight: 'bold'}}>Stanza privata</label>
-                                </div>
-                                <h4 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Ospiti</h4>
-                                <div className="counter-host">
-                                    <img src="/img/minus.svg" className="guests-button" onClick={this.subCount} />
-                                        {count}
-                                    <img src="/img/plus.svg" className="guests-button" onClick={this.addCount} />
-                                </div>
-                                <h4 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Stanze</h4>
-                                <div className="counter-host">
-                                    <img src="/img/minus.svg" className="guests-button" onClick={this.subCount} />
-                                        {count}
-                                    <img src="/img/plus.svg" className="guests-button" onClick={this.addCount} />
-                                </div>
-                                <h4 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Bagni</h4>
-                                <div className="counter-host">
-                                    <img src="/img/minus.svg" className="guests-button" onClick={this.subCount} />
-                                        {count}
-                                    <img src="/img/plus.svg" className="guests-button" onClick={this.addCount} />
-                                </div>
-                                <h4 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Letti singoli</h4>
-                                <div className="counter-host">
-                                    <img src="/img/minus.svg" className="guests-button" onClick={this.subCount} />
-                                        {count}
-                                    <img src="/img/plus.svg" className="guests-button" onClick={this.addCount} />
-                                </div>
-                                <h4 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Letti matrimoniali</h4>
-                                <div className="counter-host">
-                                    <img src="/img/minus.svg" className="guests-button" onClick={this.subCount} />
-                                        {count}
-                                    <img src="/img/plus.svg" className="guests-button" onClick={this.addCount} />
-                                </div>
-                                <h4 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Divani letto</h4>
-                                <div className="counter-host">
-                                    <img src="/img/minus.svg" className="guests-button" onClick={this.subCount} />
-                                        {count}
-                                    <img src="/img/plus.svg" className="guests-button" onClick={this.addCount} />
-                                </div>
+                                </div>                                
+                                
                                 <h3 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Prezzo a notte</h3>
                                 <div className="counter-host" id="counter-host-prezzo">  
                                     <input type="text"  
