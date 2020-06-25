@@ -6,12 +6,16 @@ const formValid = ({ formErrors, ...rest }) => {
 
     // se la lunghezza non è maggiore di zero non è validato 
     Object.values(formErrors).forEach(val => { 
-        val.length > 0 && (valid = false);
+        if (val.length > 0) {
+            valid = false;
+        }
     });
     
     // verifica che il form sia stato compilato altrimenti non è validato
     Object.values(rest).forEach(val => {
-        val === null && (valid = false);                                
+        if (val === null) {
+            valid = false;
+        };                                
     });
 
     return valid;
@@ -180,7 +184,7 @@ class InsertItem extends Component  {
                     <div className="row" id="insertitem-box">
                         <form onSubmit={this.handleSubmit} id="register-form" noValidate>
                             <div className="col-sm-3" id="register-box-col">
-                                <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}> Info generali </h2>
+                                <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}> Info generali </h2>
                                 <div className="form-group">
                                     <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label>
                                     <input type="text" 
@@ -300,7 +304,7 @@ class InsertItem extends Component  {
                                     )}
                             </div>
                             <div className="col-sm-3" id="checklist-box-col">
-                                <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Servizi</h2>
+                                <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi</h2>
                                 <div className="checklist-typo">
                                     <input style={{marginRight: 1 + 'em'}} type="checkbox" name="wifi"/> 
                                     <label style={{fontWeight: 'bold'}}>Wi-Fi</label>
@@ -345,7 +349,7 @@ class InsertItem extends Component  {
                                     <input style={{marginRight: 1 + 'em'}} type="checkbox" name="colazione"/> 
                                     <label style={{fontWeight: 'bold'}}>Colazione inclusa</label>
                                 </div>
-                                <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Struttura</h2>
+                                <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Struttura</h2>
                                 <div className="checklist-typo">
                                     <input style={{marginRight: 1 + 'em'}} type="checkbox" name="piscina"/> 
                                     <label style={{fontWeight: 'bold'}}>Piscina</label>
@@ -376,7 +380,7 @@ class InsertItem extends Component  {
                                 </div>
                             </div>
                             <div className="col-sm-3" id="checklist-box-col">
-                                <h2 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Specifiche</h2>
+                                <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Specifiche</h2>
                                 <div className="checklist-typo">
                                     <input style={{marginRight: 1 + 'em'}} type="checkbox" name="interoappartamento"/> 
                                     <label style={{fontWeight: 'bold'}}>Intera casa</label>
@@ -386,7 +390,7 @@ class InsertItem extends Component  {
                                     <label style={{fontWeight: 'bold'}}>Stanza privata</label>
                                 </div>                                
                                 <CountersItem />
-                                <h3 style={{marginTop: 0.01 + 'em'}, {textAlign: "center"}}>Prezzo a notte</h3>
+                                <h3 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Prezzo a notte</h3>
                                 <div className="counter-host" id="counter-host-prezzo">  
                                     <input type="text"  
                                         className="form-control" 
