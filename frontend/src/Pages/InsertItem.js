@@ -1,5 +1,6 @@
 import React, { Component,  useState} from 'react';
 import CountersItem from '../Components/CountersItem'
+import InsertItemChecklist from '../Components/InsertItemChecklist'
 
 const formValid = ({ formErrors }) => {
     let valid = true;
@@ -33,27 +34,27 @@ class InsertItem extends Component  {
             via: null,
             numero: null,
             attrazioni: null,
-            wifi: null,
-            asciugacapelli: null, 
-            tv: null, 
-            zonalavoro: null,
-            ac: null, 
-            lavatrice: null, 
-            kit: null,
-            fumo: null,
-            animalidomestici: null,
-            baby: null, 
-            colazione: null,
-            piscina: null,
-            idromassaggio: null,
-            sauna: null,
-            spa: null,
-            palestra: null,
-            immerso: null,
-            vista: null,
-            interoappartamento: null,
-            stanzaprivata: null, 
-            prezzo: null, 
+            wifi: false,
+            asciugacapelli: false, 
+            tv: false, 
+            zonalavoro: false,
+            ac: false, 
+            lavatrice: false, 
+            kit: false,
+            fumo: false,
+            animalidomestici: false,
+            baby: false, 
+            colazione: false,
+            piscina: false,
+            idromassaggio: false,
+            sauna: false,
+            spa: false,
+            palestra: false,
+            immerso: false,
+            vista: false,
+            interoappartamento: false,
+            stanzaprivata: false, 
+            prezzo: false, 
             formErrors: {
                 titolo: "",
                 descrizione: "", 
@@ -71,6 +72,7 @@ class InsertItem extends Component  {
 
     handleSubmit = async e => {
         e.preventDefault();
+        const { name, value } = e.target;
         if(formValid(this.state) == true) {
             var payload = {
                 "titolo": this.state.titolo, 
@@ -117,7 +119,8 @@ class InsertItem extends Component  {
     handleChange = async e => {
         e.preventDefault();
         const { name, value } = e.target;
-        let formErrors = this.state.formErrors;
+        let state = this.state;
+        let { formErrors } = this.state;
         switch (name) {
             case 'titolo':
                 formErrors.titolo = value.length < 5   
@@ -163,22 +166,22 @@ class InsertItem extends Component  {
                 formErrors.attrazioni = value.length < 10 
                     ?  "Minimo 10 caratteri" // tutti da cambiare in italiano
                     : "";
-                    
             break;
         default: 
             break;
         }
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+        this.setState({ formErrors, [name]: value }, null);
+        console.log(this.state);
+        console.log(state);
     };
 
     render() {
         // let { count } = this.state;
-        const{ formErrors } = this.state;
             return(
                 <div className="InsertItem container-fluid">
                     <div className="row" id="insertitem-box">
                         <form onSubmit={this.handleSubmit} id="register-form" noValidate>
-                            <div className="col-sm-3" id="register-box-col">
+                            <div className="col-sm-4 checklist-box-col">
                                 <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}> Info generali </h2>
                                 <div className="form-group">
                                     <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label>
@@ -190,8 +193,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div> 
-                                {formErrors.titolo.length > 0 && (
-                                        <span className="errorMessage">{formErrors.titolo}</span>
+                                {this.state.formErrors.titolo.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.titolo}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="description" style={{fontWeight: 'bold'}}>Descrizione</label>
@@ -203,8 +206,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.descrizione.length > 0 && (
-                                        <span className="errorMessage">{formErrors.descrizione}</span>
+                                {this.state.formErrors.descrizione.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.descrizione}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="paese" style={{fontWeight: 'bold'}}>Paese</label>
@@ -216,8 +219,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.paese.length > 0 && (
-                                        <span className="errorMessage">{formErrors.paese}</span>
+                                {this.state.formErrors.paese.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.paese}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="regione" style={{fontWeight: 'bold'}}>Regione</label>
@@ -229,8 +232,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.regione.length > 0 && (
-                                        <span className="errorMessage">{formErrors.regione}</span>
+                                {this.state.formErrors.regione.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.regione}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="provincia" style={{fontWeight: 'bold'}}>Provincia</label>
@@ -242,8 +245,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.provincia.length > 0 && (
-                                        <span className="errorMessage">{formErrors.provincia}</span>
+                                {this.state.formErrors.provincia.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.provincia}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="citta" style={{fontWeight: 'bold'}}>Città</label>
@@ -255,8 +258,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.citta.length > 0 && (
-                                        <span className="errorMessage">{formErrors.citta}</span>
+                                {this.state.formErrors.citta.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.citta}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="via" style={{fontWeight: 'bold'}}>Via</label>
@@ -268,8 +271,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.via.length > 0 && (
-                                        <span className="errorMessage">{formErrors.via}</span>
+                                {this.state.formErrors.via.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.via}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="numero" style={{fontWeight: 'bold'}}>Numero</label>
@@ -281,8 +284,8 @@ class InsertItem extends Component  {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                {formErrors.numero.length > 0 && (
-                                        <span className="errorMessage">{formErrors.numero}</span>
+                                {this.state.formErrors.numero.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.numero}</span>
                                     )}
                                 <div className="form-group">
                                     <label htmlFor="numero" style={{fontWeight: 'bold'}}>Attrazioni nei paraggi</label>
@@ -294,94 +297,21 @@ class InsertItem extends Component  {
                                             onChange={this.handleChange}
                                         />
                                 </div>
-                                {formErrors.attrazioni.length > 0 && (
-                                        <span className="errorMessage">{formErrors.attrazioni}</span>
+                                {this.state.formErrors.attrazioni.length > 0 && (
+                                        <span className="errorMessage">{this.state.formErrors.attrazioni}</span>
                                     )}
                             </div>
-                            <div className="col-sm-3" id="checklist-box-col">
-                                <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi</h2>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="wifi"/> 
-                                    <label style={{fontWeight: 'bold'}}>Wi-Fi</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="asciugacapelli"/> 
-                                    <label style={{fontWeight: 'bold'}}>Asciugacapelli</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="tv"/> 
-                                    <label style={{fontWeight: 'bold'}}>Tv</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="zonalavoro"/> 
-                                    <label style={{fontWeight: 'bold'}}>Zona lavoro</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="ac"/> 
-                                    <label style={{fontWeight: 'bold'}}>Aria condizionata</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="lavatrice"/> 
-                                    <label style={{fontWeight: 'bold'}}>Lavatrice</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="kit"/> 
-                                    <label style={{fontWeight: 'bold'}}>Kit cortesia</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="fumo"/> 
-                                    <label style={{fontWeight: 'bold'}}>E' permesso fumare</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="animalidomestici"/> 
-                                    <label style={{fontWeight: 'bold'}}>Animali domestici ammessi</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="baby"/> 
-                                    <label style={{fontWeight: 'bold'}}>Baby friendly</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="colazione"/> 
-                                    <label style={{fontWeight: 'bold'}}>Colazione inclusa</label>
-                                </div>
-                                <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Struttura</h2>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="piscina"/> 
-                                    <label style={{fontWeight: 'bold'}}>Piscina</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="idromassaggio"/> 
-                                    <label style={{fontWeight: 'bold'}}>Idromassaggio</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="sauna"/> 
-                                    <label style={{fontWeight: 'bold'}}>Sauna</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="spa"/> 
-                                    <label style={{fontWeight: 'bold'}}>Spa</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="palestra"/> 
-                                    <label style={{fontWeight: 'bold'}}>Palestra</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="immerso"/> 
-                                    <label style={{fontWeight: 'bold'}}>Immerso nella natura</label>
-                                </div>
-                                <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="vista"/> 
-                                    <label style={{fontWeight: 'bold'}}>Vista mozzafiato</label>
-                                </div>
+                            <div className="col-sm-4 checklist-box-col">
+                                <InsertItemChecklist />
                             </div>
-                            <div className="col-sm-3" id="checklist-box-col">
+                            <div className="col-sm-4 checklist-box-col">
                                 <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Specifiche</h2>
                                 <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="interoappartamento"/> 
+                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" defaultChecked={this.state.interoappartamento} onChange={this.handleChange} name="interoappartamento"/> 
                                     <label style={{fontWeight: 'bold'}}>Intera casa</label>
                                 </div>
                                 <div className="checklist-typo">
-                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" name="stanzaprivata"/> 
+                                    <input style={{marginRight: 1 + 'em'}} type="checkbox" defaultChecked={this.state.stanzaprivata} onChange={this.handleChange} name="stanzaprivata"/> 
                                     <label style={{fontWeight: 'bold'}}>Stanza privata</label>
                                 </div>                                
                                 <CountersItem />

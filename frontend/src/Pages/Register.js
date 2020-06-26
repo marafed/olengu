@@ -17,8 +17,6 @@ const formValid = ({ formErrors, ...rest }) => {
     return valid;
 }; 
 
-
-
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +40,7 @@ class Register extends Component {
     }
 
 
-     handleSubmit = async e => {
+    handleSubmit = async e => {
         e.preventDefault();
         // submit dei valori in post
         if(formValid(this.state)) {
@@ -112,7 +110,7 @@ class Register extends Component {
             <div className="Register">
                 <div className="container-fluid">
                     <div className="row" id="register-box">
-                        <div className="col-sm-4" id="register-box-col">
+                        <div className="col-sm-4 register-box-col">
                             <form onSubmit={this.handleSubmit} id="register-form" noValidate>
                                 <div className="form-group">
                                     <label htmlFor="firstname" style={{fontWeight: 'bold'}}>Nome</label>
