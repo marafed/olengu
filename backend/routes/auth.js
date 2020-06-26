@@ -3,13 +3,16 @@ var router = express.Router();
 
 /* GET users listing. */
 router.post('/register', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
   res.send('auth');
 });
 
 router.post('/login', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
   res.send('auth');
+});
+
+router.post('/insertitem', function(req, res, next) {
+  console.log(req.body);
+  res.send('done');
 });
 
 module.exports = router;

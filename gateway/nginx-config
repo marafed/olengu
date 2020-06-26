@@ -10,7 +10,7 @@ server {
         try_files $uri $uri/ =404;
     }
     location /api {
-        proxy_pass https://olengu_backend;
+        proxy_pass http://olengu_backend:80;
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
