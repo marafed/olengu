@@ -14,7 +14,7 @@ function InsertItem() {
         <div className="InsertItem container-fluid">
             <div className="row" id="insertitem-box">
                 <form onSubmit={submit} id="register-form" noValidate>
-                    <div className="col-sm-4 checklist-box-col">
+                    <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}> Info generali </h2>
                         <div className="form-group">
                             <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label>
@@ -107,7 +107,7 @@ function InsertItem() {
                                 />
                         </div>
                     </div>
-                    <div className="col-sm-4 checklist-box-col">
+                    <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi</h2>
                         <div className="checklist-typo">
                             <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="wifi"/> 
@@ -183,7 +183,7 @@ function InsertItem() {
                             <label style={{fontWeight: 'bold'}}>Vista mozzafiato</label>
                         </div>
                     </div>
-                    <div className="col-sm-4 checklist-box-col">
+                    <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Specifiche</h2>
                         <div className="checklist-typo">
                             <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="interoappartamento"/> 

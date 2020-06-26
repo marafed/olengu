@@ -241,7 +241,7 @@ body {
   font-weight: bold;
 }
 /* registra  appartamento */ 
-#InsertItem {
+.InsertItem {
   background-image: url("/img/house-beach.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -255,8 +255,8 @@ body {
   border-radius: 3em;
   display: flex;
   flex-direction: column;
-  margin: 4em;
-  padding: 4em;
+  margin: 3em;
+  padding: 5em;
 }
 .checklist-typo {
   margin-left: 1em;
