@@ -241,25 +241,22 @@ body {
   font-weight: bold;
 }
 /* registra  appartamento */ 
-#insertitem-box {
+#InsertItem {
   background-image: url("/img/house-beach.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
-#checklist-box-col {
+#insertitem-box {
+  color: white;
   background-color: #293236;
   background-position: center;
   background-size: cover;
   border-radius: 3em;
   display: flex;
   flex-direction: column;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  color: white;
-  margin-top: 2em;
-  margin-left: 3em;
-  margin-right: 5em;
+  margin: 4em;
+  padding: 4em;
 }
 .checklist-typo {
   margin-left: 1em;
