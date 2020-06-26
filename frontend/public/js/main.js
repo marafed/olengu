@@ -1,6 +1,11 @@
+var data;
+
 async function loadLocations() {
-  const data = await fetch("http://localhost:8080/api/search/all");
-  var result = await data.json();
+  if (data === null) {
+    const data = await fetch("/api/search/all");
+    var result = await data.json();
+    document.data = result;
+  }
   autocomplete(document.getElementById("text-places"), result.countries);
 }
 
