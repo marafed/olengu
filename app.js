@@ -10,7 +10,7 @@ db = new mysql.createConnection({
 })
 
 initdb = function (db)
-dbcon = db.connect(function(err) {
+dbcon = db.connect(function(err)
     if (err) throw err
     console.log("database connected")
     let initdb = "create table if not exists "
@@ -24,7 +24,7 @@ dbcon = db.connect(function(err) {
                 +");"
     db.query(initdb)
     console.log("database initialized")
-})
+});
 
 var app = express()
 
