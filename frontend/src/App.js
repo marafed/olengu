@@ -8,7 +8,8 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
 import InsertItem from './Pages/InsertItem';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ItemDetails from './Pages/ItemDetails';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
   return(
@@ -20,7 +21,8 @@ function App() {
           <Route path="/become_host" component={HomeHost} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard/:id" component={ItemDetails}/>
+          <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/InsertItem" component={InsertItem} />
           <Footer />
         </div>
