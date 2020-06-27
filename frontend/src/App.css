@@ -1,4 +1,4 @@
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import url('/css/bootstrap.min.css');
 
 body {
   background-color: #293236;
@@ -213,7 +213,7 @@ body {
   background-position: center;
   background-size: cover;
 }
-#register-box-col {
+.register-box-col {
   background-color: #293236;
   background-position: center;
   background-size: cover;
@@ -269,8 +269,9 @@ body {
       border-radius: 0px;
     }
 }
-.checklist-typo {
+.form-check-insertitem {
   margin-left: 1em;
+  margin-right: 1em;
   padding: 0.3em;
   align-items: center;
 }
