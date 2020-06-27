@@ -250,13 +250,24 @@ body {
 #insertitem-box {
   color: white;
   background-color: #293236;
-  background-position: center;
   background-size: cover;
   border-radius: 3em;
   display: flex;
   flex-direction: column;
   margin: 3em;
   padding: 5em;
+  min-width: 450px;
+}
+@media only screen 
+  and (max-device-width : 580px) {
+    #insertitem-box {
+      margin: 0px;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 3em;
+      min-width: 220px;
+      border-radius: 0px;
+    }
 }
 .checklist-typo {
   margin-left: 1em;
