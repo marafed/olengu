@@ -1,217 +1,145 @@
 import React, { Component,  useState} from 'react';
-import CountersItem from '../Components/CountersItem'
-import InsertItemChecklist from '../Components/InsertItemChecklist'
-
-function submit() {
-
-}
-
-function update() {
-
-}
+import { useForm } from 'react-hook-form';
+// import CountersItem from './Components/CountersItem';
 
 function InsertItem() {
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = async data => {
+        var answer = await fetch(
+            "/api/auth/insertitem",{
+                method: "POST", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }
+        );
+        console.log(data);   
+    };
+   
     return(
         <div className="InsertItem container-fluid">
-            <div className="row" id="insertitem-box">
-                <form onSubmit={submit} id="register-form" noValidate>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <div className="row" id="insertitem-box">
                     <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
-                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}> Info generali </h2>
-                        <div className="form-group">
-                            <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label>
-                            <input type="text" 
-                                className="form-control" 
-                                id="title-form" 
-                                placeholder="Titolo" 
-                                name="titolo"
-                                onChange={update}
-                            />
-                        </div> 
-                        <div className="form-group">
-                            <label htmlFor="description" style={{fontWeight: 'bold'}}>Descrizione</label>
-                            <textarea  
-                                className="form-control" 
-                                id="description-form" 
-                                placeholder="Descrizione" 
-                                name="descrizione"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="paese" style={{fontWeight: 'bold'}}>Paese</label>
-                            <input type="text"  
-                                className="form-control" 
-                                id="paese-form" 
-                                placeholder="Paese" 
-                                name="paese"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="regione" style={{fontWeight: 'bold'}}>Regione</label>
-                            <input type="text"  
-                                className="form-control" 
-                                id="regione-form" 
-                                placeholder="Regione" 
-                                name="regione"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="provincia" style={{fontWeight: 'bold'}}>Provincia</label>
-                            <input type="text" 
-                                className="form-control" 
-                                id="provincia-form" 
-                                placeholder="Provincia" 
-                                name="provincia"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="citta" style={{fontWeight: 'bold'}}>Città</label>
-                            <input type="text"  
-                                className="form-control" 
-                                id="description-form" 
-                                placeholder="Città" 
-                                name="citta"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="via" style={{fontWeight: 'bold'}}>Via</label>
-                            <input type="text"  
-                                className="form-control" 
-                                id="via-form" 
-                                placeholder="Via" 
-                                name="via"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="numero" style={{fontWeight: 'bold'}}>Numero</label>
-                            <input type="text"  
-                                className="form-control" 
-                                id="numero-form" 
-                                placeholder="Numero" 
-                                name="numero"
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="numero" style={{fontWeight: 'bold'}}>Attrazioni nei paraggi</label>
-                            <textarea  
-                                    className="form-control" 
-                                    id="attrazioni-form" 
-                                    placeholder="Attrazioni" 
-                                    name="attrazioni"
-                                    onChange={update}
-                                />
-                        </div>
+                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Info generali</h2>
+                        <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label><br />
+                        <input type="text" 
+                            placeholder="Titolo" 
+                            name="titolo"
+                            ref={register({max: 20,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="description" style={{fontWeight: 'bold'}}>Descrizione</label><br />
+                        <textarea
+                            placeholder="Descrizione" 
+                            name="descrizione"
+                            ref={register({max: 100,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="paese" style={{fontWeight: 'bold'}}>Paese</label><br />
+                        <input type="text"
+                            placeholder="Paese" 
+                            name="paese"
+                            ref={register({max: 20,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="regione" style={{fontWeight: 'bold'}}>Regione</label><br />
+                        <input type="text" 
+                            placeholder="Regione" 
+                            name="regione"
+                            ref={register({max: 20,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="provincia" style={{fontWeight: 'bold'}}>Provincia</label><br />
+                        <input type="text"
+                            placeholder="Provincia" 
+                            name="provincia"
+                            ref={register({max: 20,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="citta" style={{fontWeight: 'bold'}}>Città</label><br />
+                        <input type="text" 
+                            placeholder="Città" 
+                            name="citta"
+                            ref={register({max: 20,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="via" style={{fontWeight: 'bold'}}>Via</label><br />
+                        <input type="text"
+                            placeholder="Via" 
+                            name="via"
+                            ref={register({max: 30,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="numero" style={{fontWeight: 'bold'}}>Numero</label><br />
+                        <input type="text"  
+                            placeholder="Numero" 
+                            name="numero"
+                            ref={register({max: 20,  min: 1, required: true})}
+                        /><br />
+                        <label htmlFor="numero" style={{fontWeight: 'bold'}}>Attrazioni nei paraggi</label><br />
+                        <textarea 
+                            placeholder="Attrazioni" 
+                            name="attrazioni"
+                            ref={register({max: 100,  min: 1, required: true})}
+                        /><br />
                     </div>
                     <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
-                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi</h2>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="wifi"/> 
-                            <label style={{fontWeight: 'bold'}}>Wi-Fi</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="asciugacapelli"/> 
-                            <label style={{fontWeight: 'bold'}}>Asciugacapelli</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="tv"/> 
-                            <label style={{fontWeight: 'bold'}}>Tv</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="zonalavoro"/> 
-                            <label style={{fontWeight: 'bold'}}>Zona lavoro</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="ac"/> 
-                            <label style={{fontWeight: 'bold'}}>Aria condizionata</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="lavatrice"/> 
-                            <label style={{fontWeight: 'bold'}}>Lavatrice</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="kit"/> 
-                            <label style={{fontWeight: 'bold'}}>Kit cortesia</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="fumo"/> 
-                            <label style={{fontWeight: 'bold'}}>E' permesso fumare</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="animalidomestici"/> 
-                            <label style={{fontWeight: 'bold'}}>Animali domestici ammessi</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="baby"/> 
-                            <label style={{fontWeight: 'bold'}}>Baby friendly</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="colazione"/> 
-                            <label style={{fontWeight: 'bold'}}>Colazione inclusa</label>
-                        </div>
-                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Struttura</h2>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="piscina"/> 
-                            <label style={{fontWeight: 'bold'}}>Piscina</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="idromassaggio"/> 
-                            <label style={{fontWeight: 'bold'}}>Idromassaggio</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="sauna"/> 
-                            <label style={{fontWeight: 'bold'}}>Sauna</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="spa"/> 
-                            <label style={{fontWeight: 'bold'}}>Spa</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="palestra"/> 
-                            <label style={{fontWeight: 'bold'}}>Palestra</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="immerso"/> 
-                            <label style={{fontWeight: 'bold'}}>Immerso nella natura</label>
-                        </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="vista"/> 
-                            <label style={{fontWeight: 'bold'}}>Vista mozzafiato</label>
-                        </div>
+                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi e struttura</h2>
+                        <input type="checkbox" placeholder="Wifi" name="wifi" ref={register} />
+                        <label htmlFor="wifi" style={{fontWeight: 'bold'}}>Wi-fi</label><br/>
+                        <input type="checkbox" placeholder="Aria condizionata" name="ariacondizionata" ref={register} />
+                        <label htmlFor="Aria condizionata" style={{fontWeight: 'bold'}}>Aria condizionata</label><br/>
+                        <input type="checkbox" placeholder="Lavatrice" name="lavatrice" ref={register} />
+                        <label htmlFor="Lavatrice" style={{fontWeight: 'bold'}}>Lavatrice</label><br/>
+                        <input type="checkbox" placeholder="Baby friendly" name="babyfriendly" ref={register} />
+                        <label htmlFor="Baby friendly" style={{fontWeight: 'bold'}}>Baby friendly</label><br/>
+                        <input type="checkbox" placeholder="Tv" name="Tv" ref={register} />
+                        <label htmlFor="Tv" style={{fontWeight: 'bold'}}>Tv</label><br/>
+                        <input type="checkbox" placeholder="Asciugacapelli" name="asciugacapelli" ref={register} />
+                        <label htmlFor="Asciugacapelli" style={{fontWeight: 'bold'}}>Asciugacapelli</label><br/>
+                        <input type="checkbox" placeholder="Zona lavoro" name="zonalavoro" ref={register} />
+                        <label htmlFor="Zona lavoro" style={{fontWeight: 'bold'}}>Zona lavoro</label><br/>
+                        <input type="checkbox" placeholder="Animali domestici ammessi" name="animalidomestici" ref={register} />
+                        <label htmlFor="Animali domestici ammessi" style={{fontWeight: 'bold'}}>Animali domestici ammessi</label><br/>
+                        <input type="checkbox" placeholder="E' consentito fumare" name="fumo" ref={register} />
+                        <label htmlFor="E' consentito fumare" style={{fontWeight: 'bold'}}>E' consentito fumare</label><br/>
+                        <input type="checkbox" placeholder="Colazione inclusa" name="colazioneinclusa" ref={register} />
+                        <label htmlFor="Colazione inclusa" style={{fontWeight: 'bold'}}>Colazione inclusa</label><br/>
+                        <input type="checkbox" placeholder="Piscina" name="piscina" ref={register} />
+                        <label htmlFor="Piscina" style={{fontWeight: 'bold'}}>Piscina</label><br/>
+                        <input type="checkbox" placeholder="Sauna" name="sauna" ref={register} />
+                        <label htmlFor="Sauna" style={{fontWeight: 'bold'}}>Sauna</label><br/>
+                        <input type="checkbox" placeholder="Idromassaggio" name="idromassaggio" ref={register} />
+                        <label htmlFor="Idromassaggio" style={{fontWeight: 'bold'}}>Idromassaggio</label><br/>
+                        <input type="checkbox" placeholder="Spa" name="spa" ref={register} />
+                        <label htmlFor="Spa" style={{fontWeight: 'bold'}}>Spa</label><br/>
+                        <input type="checkbox" placeholder="" name="palestra" ref={register} />
+                        <label htmlFor="Palestra" style={{fontWeight: 'bold'}}>Palestra</label><br/>
+                        <input type="checkbox" placeholder="Immerso nella natura" name="immerso" ref={register} />
+                        <label htmlFor="Immerso nella natura" style={{fontWeight: 'bold'}}>Immerso nella natura</label><br/>
+                        <input type="checkbox" placeholder="Vista mozzafiato" name="vista" ref={register} />
+                        <label htmlFor="Vista mozzafiato" style={{fontWeight: 'bold'}}>Vista mozzafiato</label><br/>
+                        
                     </div>
                     <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
-                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Specifiche</h2>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="interoappartamento"/> 
-                            <label style={{fontWeight: 'bold'}}>Intera casa</label>
+                    <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Dettagli</h2>
+                        <input type="number" placeholder="Prezzo" name="prezzo" ref={register({max: 20, min: 0})} />
+                        <label htmlFor="Prezzo" style={{fontWeight: 'bold'}}>€
+                            A notte
+                        </label><br/>
+                        <input style={{marginTop: 1 + 'em'}} name="tipostruttura" type="radio" value="Intero appartamento" ref={register({ required: true })}/>
+                        <label htmlFor="Intero appartamento" style={{fontWeight: 'bold'}}>Intero appartamento</label><br />
+                        <input name="tipostruttura" type="radio" value="Stanza privata in B&B" ref={register({ required: true })}/>
+                        <label htmlFor="Stanza privata in B&B" style={{fontWeight: 'bold'}}>Stanza privata in B&B</label>
+                        <div style={{padding: 2 + 'em'}}>
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Ospiti" name="nospiti" ref={register({required: true})} />
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Letti singoli" name="nlettisingoli" ref={register} />
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Letti matrimoniali" name="Nnlettimatrimoniali" ref={register} />
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Divano letto" name="ndivanoletto" ref={register} />
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Camere" name="ncamere" ref={register} />
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Bagni" name="nbagni" ref={register} />
                         </div>
-                        <div className="checklist-typo">
-                            <input style={{marginRight: 1 + 'em'}} type="checkbox" onChange={update} name="stanzaprivata"/> 
-                            <label style={{fontWeight: 'bold'}}>Stanza privata</label>
-                        </div>                                
-                        <CountersItem />
-                        <h3 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Prezzo a notte</h3>
-                        <div className="counter-host" id="counter-host-prezzo">  
-                            <input type="text"  
-                                className="form-control" 
-                                id="prezzo-form" 
-                                placeholder="€ ..." 
-                                name="prezzo"
-                                onChange={update}
-                            /> 
-                            <h2 style={{marginLeft: 1 + 'em'}}>€</h2>
-                        </div>
-                        <div className="text-right">
-                            <button type="submit" className="btn btn-gradient" id="register-host-btn">Registra appartamento</button>
-                        </div>
+                        <button type="submit" className="btn btn-gradient" id="register-host-btn">Registra appartamento</button>
+
                     </div>
-                </form>     
-            </div>
+                </div>
+            </form>  
         </div>
     );
 }

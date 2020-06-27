@@ -252,10 +252,8 @@ body {
   background-color: #293236;
   background-size: cover;
   border-radius: 3em;
-  display: flex;
-  flex-direction: column;
   margin: 3em;
-  padding: 5em;
+  padding: 3em;
   min-width: 450px;
 }
 @media only screen 
