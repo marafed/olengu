@@ -10,10 +10,6 @@ const formValid = ({ formErrors, ...rest }) => {
     // se la lunghezza non è maggiore di zero non è validato 
     Object.values(formErrors).forEach(val => { 
         val.length > 0 && (valid = false);
-    });
-    
-    // verifica che il form sia stato compilato altrimenti non è validato
-    Object.values(rest).forEach(val => {
         val === null && (valid = false);                                
     });
 
