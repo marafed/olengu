@@ -5,7 +5,7 @@ services:
     container_name: olengu_backend
     build: ./backend
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
     volumes:
       - ./backend:/backend
     environment:
@@ -17,8 +17,6 @@ services:
   frontend:
     container_name: olengu_frontend
     build: ./frontend
-    ports:
-      - "8081:5000"
     volumes:
       - ./frontend:/frontend
     environment:
@@ -38,6 +36,8 @@ services:
     image: mariadb
     volumes:
       - ./data/db:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE
