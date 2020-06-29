@@ -5,30 +5,33 @@ var hash = crypto.createHash('sha512');
 var db = require('../db');
 const { check } = require('express-validator');
 
+
+router.use(express.json());
+router.use(express.urlencoded({extended: true}));
+
 /* GET users listing. */
 router.post('/register', function(req, res) {
-  res.send(req.body);
+  res.send(req.params);
 });
 
 router.get('/register', function(req, res) {
-  res.send(req.body);
+  res.send(req.params);
 });
 
-router.post('/login', [
-    check('email').isEmail().normalizeEmail().trim().escape().stripLow(),
-    check('password').isLength({min: 5}).trim().escape().stripLow(),
+router.post('/login',
     function(req, res) {
-      var email = req.body["email"];
-      var pass = req.body["password"];
+      var email = ""+req.body.email;
+      var pass = ""+req.body.password;
+      console.log(""+email+" - "+pass);
+      console.log(req.body);
 
-      var hashedpass = hash.update(pass, 'utf-8').digest('hex');
+      //var hashedpass = hash.update(pass, 'utf-8').digest('hex');
 
-      queryres = db.query("select id from user where email = '" + email + "' and password = '" + hashedpass + "';");
-      
-      console.log(queryres);
-      res.send(queryres);
+      db.query("select * from user;", (err, res) => {
+        console.log(res);
+      });
+      res.send("oof");
     }
-  ]
 );
 
 router.post('/insertitem', function(req, res, next) {

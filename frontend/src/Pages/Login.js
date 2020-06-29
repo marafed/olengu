@@ -42,7 +42,17 @@ class Login extends Component {
             }
             var answer = await fetch(
                 "/api/auth/login",
-                { method: "POST", body: JSON.stringify(payload)});
+                {
+                    method: "POST",
+                    body: JSON.stringify(payload),
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                      }
+                }
+            );
 
         } else {
             console.error("FORM INVALID - ERROR")

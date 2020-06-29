@@ -49,13 +49,18 @@ class Register extends Component {
                 "conf_pwd": this.state.conf_pwd
             }
             var answer = await fetch(
-                "/api/auth/register", 
-                { method: "POST", 
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                    body: JSON.stringify(payload) });
+                "/api/auth/login",
+                {
+                    method: "POST",
+                    body: JSON.stringify(payload),
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                      }
+                }
+            );
         } else {
             console.error('FORM INVALID - ERROR');
         }
