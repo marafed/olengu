@@ -52,8 +52,6 @@ class Register extends Component {
                 "password": this.state.password,
                 "conf_pwd": this.state.conf_pwd
             }
-            var data = new FormData();
-            data.append("json", JSON.stringify(payload));
             var answer = await fetch(
                 "/api/auth/register", 
                 { method: "POST", 
@@ -61,7 +59,7 @@ class Register extends Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                   },
-                    body: data });
+                    body: JSON.stringify(payload) });
         } else {
             console.error('FORM INVALID - ERROR');
         }

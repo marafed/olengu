@@ -3,14 +3,15 @@ var router = express.Router();
 var crypto = require('crypto');
 var hash = crypto.createHash('sha512');
 var db = require('../db');
-const { check, validationResult } = require('express-validator');
-
-
-router.use(express.json())
+const { check } = require('express-validator');
 
 /* GET users listing. */
 router.post('/register', function(req, res) {
-  res.send('auth');
+  res.send(req.body);
+});
+
+router.get('/register', function(req, res) {
+  res.send(req.body);
 });
 
 router.post('/login', [

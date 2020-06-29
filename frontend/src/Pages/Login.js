@@ -44,11 +44,9 @@ class Login extends Component {
                 "email": this.state.email,
                 "password": this.state.password
             }
-            var data = new FormData();
-            data.append("json", JSON.stringify(payload));
             var answer = await fetch(
                 "/api/auth/login",
-                { method: "POST", body: data });
+                { method: "POST", body: JSON.stringify(payload)});
 
         } else {
             console.error("FORM INVALID - ERROR")
