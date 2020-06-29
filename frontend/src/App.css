@@ -68,6 +68,9 @@ body {
   margin-top: 0.2em; 
   color: grey;
 }
+.date-input {
+  max-width: 8em;
+}
 
 .autocomplete {
   position: relative;
@@ -290,7 +293,24 @@ body {
   text-align: center;
   width: 300px;
 }
-
+#present-item-box {
+  background-color: grey;
+  margin-top: 1em;
+  padding: 1em;
+  height: 200px;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding: 1em;
+}
+.present-item-col{
+  display: inline-block;
+}
+.present-item-img {
+  display: block;
+  margin: auto;
+  max-height: 150px;
+  align-items: center;
+}
 #footer {
   color: white;
   margin-top: 5em;

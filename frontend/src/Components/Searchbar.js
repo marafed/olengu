@@ -1,124 +1,80 @@
-import React, { Component } from 'react';
-import CounterSearchbar from './CounterSearchbar'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import SearchResults from '../Pages/SearchResults'
 
-const formValid = ({ formErrors, ...rest }) => {
-    let valid = true;
-
-    // se la lunghezza non è maggiore di zero non è validato 
-    Object.values(formErrors).forEach(val => { 
-        val.length > 0 && (valid = false);
-    });
-    
-    // verifica che il form sia stato compilato altrimenti non è validato
-    Object.values(rest).forEach(val => {
-        val === null && (valid = false);                                
-    });
-    return valid;
-}; 
-
-class Searchbar extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            location: null,
-            data1: null,
-            data2: null,
-            ospiti: null,
-            formErrors: {
-                location: "",
-                data1: "",
-                data2: "",
-                ospiti: "",
-            }
-        };
-    }
-
-    handleSubmit = async e => {
-        e.preventDefault();
-        // submit dei valori in post
-        if(formValid(this.state)) {
-            var payload = {
-                "location" : this.state.location,
-                "data1": this.state.data1,
-                "data2": this.state.data2,
-                "ospiti": this.state.ospiti
-            }
-            var data = new FormData();
-            data.append("json", JSON.stringify(payload));
-            var answer = await fetch(
-                "/api/auth/search", 
-                { method: "POST", 
+function Searchbar() {
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = async data => {
+        var answer = await fetch(
+            "/api/auth/searchbar",{
+                method: "POST", 
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                  },
-                    body: data });
-        } else {
-            console.error('FORM INVALID - ERROR');
-        }
+                },
+                body: JSON.stringify(data)
+            }
+        );
+        console.log(data);   
     };
-    
-    handleChange = e => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        let formErrors = this.state.formErrors; 
-
-        switch (name) {
-            case 'location':
-                formErrors.firstname = value.length < 1   
-                    ?  "Minimo 1 carattere" // tutti da cambiare in italiano
-                    : "";
-            break;
-        default:
-            break;   
-        }
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-    };
-
-    render() {
-        const{ formErrors } = this.state;
-        return(
-            <form onSubmit={this.handleSubmit} noValidate>
-                <div className="row" id="searchbar">
-                    <div className="col-sm-3" id="searchbar-place">
-                        <div className="form-group">
-                            <div id="button-place" className="button-search">
-                                <p className="secondary-search">Dove andiamo?</p>
-                                <input 
-                                    type="text" 
-                                    className="input-search" 
-                                    id="text-places" 
-                                    placeholder="Inserisci destinazione"
-                                    name="location" 
-                                    onLoad={`loadLocations()`} 
-                                    onChange={this.handleChange}
-                                    />
-                                    {formErrors.location.length > 0 && (
-                                        <span className="errorMessage">{formErrors.location}</span>
-                                    )}
-                            </div>
+    return(
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <div className="row" id="searchbar">
+                <div className="col-lg-3 col-md-6 col-sm-12" id="searchbar-place">
+                    <div id="button-place" className="button-search">
+                        <p className="secondary-search">Dove andiamo?</p>
+                        <input 
+                            type="text" 
+                            className="secondary-placeholder"
+                            placeholder="Inserisci destinazione"
+                            name="location" 
+                            onLoad={`loadLocations()`} 
+                            ref={register({max: 100, min: 1, required: true})}
+                            /> 
                         </div>
                     </div>
-                    <div className="col-sm-3" id="searchbar-date">
+                <div className="col-lg-3 col-md-6 col-sm-12" id="searchbar-date">
                     <div id="button-date" className="button-search">
                         <p className="secondary-search">Quando partiamo?</p>
-                        <input className="secondary-placeholder" type="date" name="data1"></input><input type="date" className="secondary-placeholder" name="data2"></input>
-                    </div>
-                    </div>
-                    <div className="col-sm-3" id="searchbar-guests">
-                        <CounterSearchbar />
-                    </div>
-                    <div className="col-sm-3" id="cerca">
-                    <button id="search-button" type="submit" className="btn btn-gradient" style={{fontSize: 1.5 + 'em'}}>
-                        Cerca
-                        <img width="25em" src="img/shapes-and-symbols.svg" style={{marginLeft: 1 + 'em'}} />
-                    </button>
+                        <input 
+                            type="date"
+                            className="secondary-placeholder date-input" 
+                            name="data1"
+                            ref={register({required: true})}
+                        />
+                        <input 
+                            type="date" 
+                            className="secondary-placeholder date-input" 
+                            name="data2"
+                            ref={register({required: true})}
+                        />
                     </div>
                 </div>
-            </form>
-            );
-        }
+                <div className="col-lg-3 col-md-6 col-sm-12" id="searchbar-guests">
+                    <div id="button-date" className="button-search">
+                        <p className="secondary-search">Chi viene con noi?</p>   
+                        <input
+                            type="number"
+                            className="secondary-placeholder"
+                            placeholder="Inserisci numero di ospiti"
+                            name="guests"
+                            ref={register({max: 15, min: 1, required: true})}
+                        />
+                    </div>
+                </div>
+                <div className="col-lg-3 col-md-6 col-sm-12" id="cerca">
+                    <Link to="/SearchResults/">
+                        <button id="search-button" className="btn btn-gradient" style={{fontSize: 1.5 + 'em'}}>
+                            Cerca
+                            <img width="25em" src="img/shapes-and-symbols.svg" style={{marginLeft: 1 + 'em'}} />
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        </form>
+        );
     }
+
 
 export default Searchbar;
