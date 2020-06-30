@@ -296,10 +296,11 @@ body {
 #present-item-box {
   background-color: grey;
   margin-top: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
+  border-radius: 2em;
   padding: 1em;
-  height: 200px;
-  margin-left: 2em;
-  margin-right: 2em;
+  height: fit-content;
   padding: 1em;
 }
 .present-item-col{
