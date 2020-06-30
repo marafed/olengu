@@ -10,6 +10,7 @@ import Dashboard from './Pages/Dashboard';
 import InsertItem from './Pages/InsertItem';
 import SearchResults from './Pages/SearchResults';
 import SearchItemDetails from './Pages/SearchItemDetails';
+import ShowBooks from './Components/ShowBooks';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />
           <Route path="/SearchResults/:id" component={SearchItemDetails} />
+          <Route path="/ShowBooks" component={ShowBooks} />
           <Footer />
         </div>
       </Switch>

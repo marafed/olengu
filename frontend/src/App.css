@@ -312,6 +312,20 @@ body {
   max-height: 150px;
   align-items: center;
 }
+.btn-dashboard {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 1em;
+  height: 50px;
+  width: 400px;;
+  text-align: center;
+  font-weight: bold;
+}
+.user-card {
+  background-color: grey;
+  border-radius: 1.5em;
+  padding: 3em;
+}
 #footer {
   color: white;
   margin-top: 5em;
