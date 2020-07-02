@@ -11,6 +11,7 @@ import InsertItem from './Pages/InsertItem';
 import SearchResults from './Pages/SearchResults';
 import SearchItemDetails from './Pages/SearchItemDetails';
 import ShowBooks from './Components/ShowBooks';
+import WithAuth from './Utils/WithAuth';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
           {/* <Route path="/dashboard/:id" component={ItemDetails}/> */}
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/dashboard" exact component={WithAuth(Dashboard)} />
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />
           <Route path="/SearchResults/:id" component={SearchItemDetails} />

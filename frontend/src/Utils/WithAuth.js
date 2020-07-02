@@ -4,9 +4,10 @@ import { Redirect } from 'react-router-dom';
 function WithAuth(ComponentToProtect) {
     return class extends Component { 
         constructor() {
-        this.state = { 
-            loading: true,
-            redirect: false
+            super();
+            this.state = { 
+                loading: true,
+                redirect: false
         };
     }
         
@@ -32,9 +33,11 @@ function WithAuth(ComponentToProtect) {
                 return null;
             }
             if(redirect) {
-                return <Redirect to="/login" />;
+                return <Redirect to="./login" />;
             }
             return <ComponentToProtect {...this.props} />;
         }
     }
 }
+
+export default WithAuth;

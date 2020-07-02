@@ -20,6 +20,12 @@ function Dashboard() {
         setItems(items.results);
     };
 
+    /* componentDidMount() {
+        fetch('/api/secret')
+          .then(res => res.text())
+          .then(res => this.setState({message: res}));
+      } */
+
     return(
         <div className="containerFluid">
             <div className="row" id="insertitem-box">
