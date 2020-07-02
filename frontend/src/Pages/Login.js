@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
-const formValid = ({ formErrors, ...rest }) => {
+const formValid = ({ formErrors }) => {
     let valid = true;
 
     // se la lunghezza non è maggiore di zero non è validato 
@@ -19,8 +19,7 @@ const formValid = ({ formErrors, ...rest }) => {
 class Login extends Component {
     constructor(props) {
         super(props);
-
-        
+ 
         this.state = {
             email: null,
             password: null,
@@ -51,11 +50,21 @@ class Login extends Component {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                       }
-                }
-            );
-
+                }).then(res => {
+                    if (res.status === 200) {
+                        this.props.history.push('/');
+                    } else {
+                        const error = new Error(res.error);
+                        throw error;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Errore: per favore riprova');
+                });
         } else {
-            console.error("FORM INVALID - ERROR")
+            console.error("FORM INVALID - ERROR");
+            alert("Form non valido");
         }
     }
 

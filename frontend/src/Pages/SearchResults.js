@@ -25,7 +25,7 @@ function SearchResults() {
                 <div className="col">
                     {items.map(item => (
                         <h5 key={item.id}>
-                            <Link to={`/SearchResults/${item.id}`}>
+                            <Link to={`/SearchResults/${item.id}`} >
                                 <SearchItemBox item={item} /> 
                             </Link>
                         </h5>

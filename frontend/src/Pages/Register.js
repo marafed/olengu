@@ -49,7 +49,7 @@ class Register extends Component {
                 "conf_pwd": this.state.conf_pwd
             }
             var answer = await fetch(
-                "/api/auth/login",
+                "/api/auth/register",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),
