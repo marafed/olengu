@@ -13,6 +13,9 @@ services:
       - MYSQL_USER
       - MYSQL_PASSWORD
       - PORT=80
+    networks:
+      main:
+        ipv4_address: 172.16.42.3
 
   frontend:
     container_name: olengu_frontend
@@ -21,6 +24,9 @@ services:
       - ./frontend:/frontend
     environment:
       - CHOKIDAR_USEPOLLING=true
+    networks:
+      main:
+        ipv4_address: 172.16.42.4
   
   gateway:
     container_name: olengu_gateway
@@ -31,6 +37,9 @@ services:
     volumes:
       - ./frontend/build:/var/www/html
       - ./gateway/nginx-config:/etc/nginx/sites-enabled/default
+    networks:
+      main:
+        ipv4_address: 172.16.42.2
 
   db:
     image: mariadb
@@ -43,3 +52,14 @@ services:
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
+    networks:
+      main:
+        ipv4_address: 172.16.42.5
+
+
+networks:
+  main:
+    driver: bridge
+    ipam:
+      config:
+        -  subnet: 172.16.42.0/28
