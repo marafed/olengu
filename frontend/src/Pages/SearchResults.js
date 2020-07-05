@@ -14,15 +14,12 @@ function SearchResults() {
         const data = await fetch(
             "/api/auth/results",
             {
-                method: "POST",
-                body: JSON.stringify(payload),
+                method: "GET",
                 mode: 'cors',
                 cache: 'no-cache',
                 headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json, text/plain, */*'
                 }
-            }
         );
         const items = await data.json();
         console.log(items.results);
