@@ -7,7 +7,7 @@ function Searchbar() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            "http://localhost:8080",{
+            "http://localhost:8080",{ //questo è sbaliato
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

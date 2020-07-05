@@ -32,7 +32,9 @@ function SearchResults() {
     return(
         <div className="containerFluid">
             <div className="row">
-                <button className="btn-gradient">Filtri</button>
+                <div className="col">
+                    <button className="btn-gradient">Filtri</button>
+                </div>
             </div>
             <div className="row">
                 <div className="col">
