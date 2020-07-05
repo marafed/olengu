@@ -16,10 +16,8 @@ function SearchResults() {
             {
                 method: "GET",
                 mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*'
-                }
+                cache: 'no-cache'
+            }
         );
         const items = await data.json();
         console.log(items.results);
