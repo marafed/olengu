@@ -334,8 +334,24 @@ a:hover {
   border-radius: 1.5em;
   padding: 3em;
 }
+.searchresults-filter {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em;
+  width: 500px;
+  margin:2em;
+
+}
+
 #footer {
   color: white;
   margin-top: 5em;
   text-align: center;
+}
+
+#popup-filter {
+  color: white;
+  padding: 1em;
+  /*display: none;*/
+
 }

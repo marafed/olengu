@@ -1,8 +1,7 @@
-import React, { Component,  useState} from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-// import CountersItem from './Components/CountersItem';
 
-function InsertItem() {
+function SearchResultsPopup() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
@@ -19,10 +18,10 @@ function InsertItem() {
     };
    
     return(
-        <div className="InsertItem">
+        <div id="popup-filter" className="insertitem-box">
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                <div className="row" id="insertitem-box">
-                    <div className="col-lg-4 col-md-6 col-sm-12 checklist-box-col">
+                <div className="row">
+                    <div className="checklist-box-col">                            
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Info generali</h2>
                         <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label><br />
                         <input type="text" 
@@ -136,12 +135,12 @@ function InsertItem() {
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Bagni" name="nbagni" ref={register} />
                         </div>
                         <button type="submit" className="btn btn-gradient" id="register-host-btn">Registra appartamento</button>
-
                     </div>
                 </div>
-            </form>  
-        </div>
+            </form> 
+        </div>   
     );
 }
 
-export default InsertItem;
+
+export default SearchResultsPopup;

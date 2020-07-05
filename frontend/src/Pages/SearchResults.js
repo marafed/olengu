@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import SearchItemBox from '../Components/SearchItemBox'
+import SearchItemBox from '../Components/SearchItemBox';
+import SearchResultsPopup from '../Components/SearchResultsPopup';
 
 function SearchResults() {
     useEffect(() => {
@@ -10,27 +11,34 @@ function SearchResults() {
     const [items, setItems] = useState([]);
 
 
+    
     const fetchItems = async() => {
         const data = await fetch(
-            "/api/auth/results",
-            {
-                method: "GET",
-                mode: 'cors',
-                cache: 'no-cache'
-            }
+            'https://www.superheroapi.com/api.php/3043826855693933/search/bat'
         );
         const items = await data.json();
         console.log(items.results);
         setItems(items.results);
     };
     
+    const filter_popup = () => {
+        let popup = document.getElementById("popup-filter");
+
+        if (popup.style.display == "none") {
+            popup.style.display = "block";
+        } else {
+            popup.style.display ="none";
+        }
+    }
+    
     return(
         <div className="containerFluid">
             <div className="row">
-                <button className="btn-gradient">Filtri</button>
+                <button onClick={filter_popup} className="btn-gradient searchresults-filter">Filtri</button>} position="bottom center">
             </div>
             <div className="row">
                 <div className="col">
+                    <SearchResultsPopup />
                     {items.map(item => (
                         <h5 key={item.id}>
                             <Link to={`/SearchResults/${item.id}`} >
