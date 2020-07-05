@@ -22,6 +22,9 @@ function SearchResults() {
     return(
         <div className="containerFluid">
             <div className="row">
+                <button className="btn-gradient">Filtri</button>
+            </div>
+            <div className="row">
                 <div className="col">
                     {items.map(item => (
                         <h5 key={item.id}>

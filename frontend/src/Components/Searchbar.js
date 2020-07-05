@@ -7,7 +7,7 @@ function Searchbar() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            "/api/auth/searchbar",{
+            "http://localhost:8080",{
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Alba Militello",
+  "author": "Antonino Trifirò",
   "license": "ISC",
   "dependencies": {
     "-": "0.0.1",
