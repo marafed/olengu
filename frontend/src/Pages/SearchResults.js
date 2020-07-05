@@ -12,7 +12,17 @@ function SearchResults() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/bat'
+            "/api/auth/results",
+            {
+                method: "POST",
+                body: JSON.stringify(payload),
+                mode: 'cors',
+                cache: 'no-cache',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                }
+            }
         );
         const items = await data.json();
         console.log(items.results);
