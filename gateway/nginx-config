@@ -1,6 +1,11 @@
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    
+    ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
+	ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
 
     root /var/www/html;
 
