@@ -33,16 +33,17 @@ router.post('/login', function(request, response, next) {
 	} else {
 		console.log("Doesn't match")
 		}
-	   
-
   var sql = "SELECT * FROM user WHERE email = \""+email+"\" and password = \""+hash+"\" ;";
-
-	db.query(sql, function(error, results, fields){
-		if(error){
-			throw error;
+  
+	db.query('SELECT * FROM user WHERE email= ? AND password = ?', [email,hash], function(error, results, fields){
+		console.log(JSON.stringify(results));
+		if(JSON.stringify(results).length>0) {
+			console.log("presente")
+			request.session.email= email;
+			response.redirect('/');
 			}
 		else {
-			response.send(JSON.stringify(results)); 
+			response.send('Incorrect Us');
 		}
 	  });
 	  
@@ -54,7 +55,7 @@ router.post('/register',function(req,res,next){
 	var bithday = req.body.birthday;
 	var email = req.body.email;
 	var password = req.body.password;
-	
+
 	console.log(nome +"-"+  cognome +"-"+  bithday +"-"+  email  +"-"+ password);
 	//cripto la password //
 	let hash = bcrypt.hashSync(password, 10);
