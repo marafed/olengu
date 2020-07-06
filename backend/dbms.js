@@ -1,5 +1,5 @@
 'use strict';
-var sql = require('./db.js');
+var sql = require('./db');
 
 var Dbms = function(dbms){
     this.status = task.status;
@@ -25,8 +25,8 @@ Dbms.get_annunci_by_user_id = function (user_id, result) {
 Dbms.insert_annuncio = function (json, result) {
 
         var obj = JSON.parse(json);
-        let statement = `INSERT INTO annunci(ref_id_usr,nome_annuncio,luogo,indirizzo,ref_id_filtri,descrizione,attrazioni)VALUES(?,?,?,?,?,?,?)`;
-        let values = [obj.ref_id_usr,obj.nome_annuncio,obj.luogo,obj.indirizzo,obj.ref_id_filtri,obj.descrizione,obj.attrazioni];
+        let statement = `INSERT INTO annunci(ref_id_usr,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,lavatrice,baby_friendly)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+        let values = [obj.ref_id_usr,obj.nome_annuncio,obj.luogo,obj.indirizzo,obj.descrizione,obj.attrazioni,obj.is_bnb,obj.n_ospiti,obj.prezzo_notte,obj.n_letti_singoli,obj.n_letti_matr,obj.n_divano_letto,obj.n_camere,obj.n_bagni,obj.colazione,obj.AC,obj.parcheggio,obj.wifi,obj.lavatrice,obj.baby_friendly];
 
         sql.query(statement, values, function (err, res) {
                 if(err) {
@@ -46,8 +46,8 @@ Dbms.update_annuncio = function (json, result) {
 
     var obj = JSON.parse(json);
 
-    let statement = 'UPDATE annunci SET nome_annuncio=?, luogo=?, descrizione=?, attrazioni=?, indirizzo=? WHERE id_ann = ?'
-    let values = [obj.nome_annuncio, obj.luogo, obj.descrizione, obj.attrazioni, obj.indirizzo, obj.id_ann];
+    let statement = 'UPDATE annunci SET nome_annuncio = ?,luogo = ?,indirizzo = ?,descrizione = ?,attrazioni = ?,is_bnb = ?,n_ospiti = ?,prezzo_notte = ?,n_letti_singoli = ?,n_letti_matr = ?,n_divano_letto = ?,n_camere = ?,n_bagni = ?,colazione = ?,AC = ?,parcheggio = ?,wifi = ?,lavatrice = ?,baby_friendly =? where ref_id_usr = ?'
+    let values = [obj.nome_annuncio,obj.luogo,obj.indirizzo,obj.descrizione,obj.attrazioni,obj.is_bnb,obj.n_ospiti,obj.prezzo_notte,obj.n_letti_singoli,obj.n_letti_matr,obj.n_divano_letto,obj.n_camere,obj.n_bagni,obj.colazione,obj.AC,obj.parcheggio,obj.wifi,obj.lavatrice,obj.baby_friendly,obj.ref_id_usr];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -78,8 +78,8 @@ Dbms.get_annunci_by_luogo = function (luogo, result) {
 Dbms.insert_prenotazione = function (json, result) {
 
     var obj = JSON.parse(json);
-    let statement = `INSERT INTO prenotazioni(ref_id_usr,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno)VALUES(?,?,?,?,?,?,?,?)`;
-    let values = [obj.ref_id_usr,obj.ref_id_ann,obj.check_in_giorno,obj.check_in_mese,obj.check_in_anno,obj.check_out_giorno,obj.check_out_mese,obj.check_out_anno];
+    let statement = `INSERT INTO prenotazioni(ref_id_usr,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno,stato,tot_pagato)VALUES(?,?,?,?,?,?,?,?,?,?)`;
+    let values = [obj.ref_id_usr,obj.ref_id_ann,obj.check_in_giorno,obj.check_in_mese,obj.check_in_anno,obj.check_out_giorno,obj.check_out_mese,obj.check_out_anno,obj.stato,obj.tot_pagato];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -89,6 +89,74 @@ Dbms.insert_prenotazione = function (json, result) {
                 result(null, res);
             }
         });
+};
+/*
+Dbms.insert_filtri = function (json, result) {
+    console.log(json)
+    var obj = JSON.parse(json);
+    let statement = `INSERT INTO filtri(is_bnb,n_ospiti,prezzo_notte,n_camere,n_letti_singoli,n_letti_matr,n_divano_letto,n_bagni,colazione,AC,parcheggio,wifi,lavatrice,baby_friendly,kit_cortesia,tv,asciugacapelli,zona_lavoro,animali_domestici_ammessi,fumo,piscina,idromassaggio,sauna,spa,palestra,immerso_natura,vista_mare)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+    let values = [obj.is_bnb,obj.n_ospiti,obj.prezzo_notte,obj.n_camere,obj.n_letti_singoli,obj.n_letti_matr,obj.n_divano_letto,obj.n_bagni,obj.colazione,obj.AC,obj.parcheggio,obj.wifi,obj.lavatrice,obj.baby_friendly,obj.kit_cortesia,obj.tv,obj.asciugacapelli,obj.zona_lavoro,obj.animali_domestici_ammessi,obj.fumo,obj.piscina,obj.idromassaggio,obj.sauna,obj.spa,obj.palestra,obj.immerso_natura,obj.vista_mare];
+
+    sql.query(statement, values, function (err, res) {
+            if(err) {
+                result(err, null);
+              }
+            else{
+                result(null, res);
+            }
+        });
+};
+*/
+Dbms.get_annuncio = function (obj,result) {
+    var obj = JSON.parse(JSON)
+    let statement = 'SELECT * FROM annunci WHERE id_ann = ?';
+    let values = [obj.id_ann]
+    sql.query(statement, luogo, function (err, res) {
+              if(err) {
+                console.log("error: ", err);
+                result(null, err);
+              }
+          else{
+        result(null, res[0]);
+    }
+});
+};
+
+
+Dbms.update_prenotazione = function (json, result) {
+
+
+    var obj = JSON.parse(json);
+
+    console.log(obj);
+
+    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?'
+    let values = [obj.stato, obj.id_prenotazione];
+
+    sql.query(statement, values, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res);
+         }
+  });
+};
+
+Dbms.delete_prenotazione = function (id, result) {
+
+    let statement = 'DELETE FROM prenotazioni where id_prenotazione = ?'
+
+    sql.query(statement,id, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res);
+         }
+  });
 };
 
 //sovrascrive il dato, fare il get prima, e sommare
