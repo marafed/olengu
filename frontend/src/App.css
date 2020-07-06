@@ -260,11 +260,12 @@ a:hover {
 }
 #insertitem-box {
   color: white;
+  position: relative;
   background-color: #293236;
   background-size: cover;
   border-radius: 3em;
-  margin: 3em;
-  padding: 3em;
+  margin: 5em;
+  padding: 2em;
   min-width: 450px;
 }
 @media only screen 

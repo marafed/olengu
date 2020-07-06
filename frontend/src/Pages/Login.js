@@ -33,7 +33,6 @@ class Login extends Component {
     
     handleLogin = async e => {
         e.preventDefault();
-
         if(formValid(this.state)) {
             var payload = {
                 "email": this.state.email,
