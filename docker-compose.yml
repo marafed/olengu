@@ -4,6 +4,8 @@ services:
   backend:
     container_name: olengu_backend
     build: ./backend
+    depends_on:
+      - db
     ports:
       - "127.0.0.1:8080:80"
     volumes:
@@ -31,6 +33,9 @@ services:
   gateway:
     container_name: olengu_gateway
     build: ./gateway
+    depends_on:
+      - frontend
+      - backend
     ports:
       - "80:80"
       - "443:443"
