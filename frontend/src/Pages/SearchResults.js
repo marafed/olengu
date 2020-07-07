@@ -44,7 +44,7 @@ function SearchResults() {
     return(
         <div className="containerFluid">
             <div className="row">
-                <button onClick={filter_popup} className="btn-gradient searchresults-filter">Filtri</button>}>
+                <button onClick={filter_popup} className="btn-gradient searchresults-filter">Filtri</button>
             </div>
             <div className="row">
                 <div className="col">
