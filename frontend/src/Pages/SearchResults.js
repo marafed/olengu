@@ -23,15 +23,18 @@ function SearchResults() {
 
     const [items, setItems] = useState([]);
 
-
-    
     const fetchItems = async() => {
+        var citta = localStorage.getItem("citta")
+        console.log(citta)
+        
+        var request = "/api/getAnnunciByLuogo/" + citta
+        console.log(request)
         const data = await fetch(
-            '/api/getAnnunciByLuogo/:nomeluogo'
+            request
         );
         const items = await data.json();
-        console.log(items.results);
-        setItems(items.results);
+        console.log(items);
+        setItems(items);
     };
     
     const filter_popup = () => {

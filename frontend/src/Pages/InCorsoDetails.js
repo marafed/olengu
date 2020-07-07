@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
  
 
 function InCorsoDetails({ match }) {
@@ -96,10 +96,10 @@ function InCorsoDetails({ match }) {
                             
                         </div>
                     </div>
-                    
-                    <button className="btn-gradient btn-dashboard">Check-Out</button>    
+                    <Link to="/CheckOut">
+                         <button className="btn-gradient btn-dashboard">Check-Out</button>    
+                    </Link>
                 </div>
-
             </div>
         </div>
     );

@@ -26,6 +26,7 @@ import BooksInSospeso from './Components/BooksInSospeso';
 import InSospesoDetails from "./Pages/InSospesoDetails";
 import BooksConcluse from './Components/BooksConcluse';
 import Payment from './Pages/Payment';
+import CheckOut from './Pages/CheckOut';
 
 function App() {
   return(
@@ -56,6 +57,7 @@ function App() {
           <Route path="/BooksConcluse" exact component={BooksConcluse} />
           <Route path="/BooksConcluse/:id" component={ShowBooksHostDetails} />
           <Route path="/Payment" component={Payment} />
+          <Route path="/CheckOut" component={CheckOut} />
           <Footer /> 
         </div>
       </Switch>

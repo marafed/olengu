@@ -54,16 +54,16 @@ function SearchItemDetails({ match }) {
                     <p>{item.via}</p>
                     <div>
                         <h2>Servizi e Specifiche</h2>
-                        <p>{item.prezzo_notte} prezzo notte</p>
+                        
                         <p>{item.n_letti_matr} Letti matrimoniali</p>
                         <p>{item.n_divano_letto} Divani letto</p>
                         <p>{item.n_bagni} Bagni</p> 
-                        <p>{item.colazione}colazione</p> 
+                        <p>{item.colazione}Colazione</p> 
                         <p>{item.AC}Aria Condizionata</p> 
-                        <p>{item.parcheggio}parcheggio</p> 
-                        <p>{item.wifi}wifi</p> 
-                        <p>{item.animali_domestici_ammessi}animali_domestici_ammessi</p> 
-                        <p>{item.baby_friendly}baby_friendly</p> 
+                        <p>{item.parcheggio}Parcheggio</p> 
+                        <p>{item.wifi}Wifi</p> 
+                        <p>{item.animali_domestici_ammessi}Animali domestici ammessi</p> 
+                        <p>{item.baby_friendly}Baby-friendly</p> 
                     </div>
                 </div>
                 <div className="col-md-4 searchitem-card">
