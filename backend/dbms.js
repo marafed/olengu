@@ -60,9 +60,10 @@ Dbms.get_annunci_by_user_id = function (user_id, result) {
 };
 
 Dbms.insert_annuncio = function (json, result) {
-json
+   
         let statement = `INSERT INTO annunci(ref_id_usr,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,lavatrice,baby_friendly)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
         let values = [json.ref_id_usr,json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.lavatrice,json.baby_friendly];
+
         sql.query(statement, values, function (err, res) {
                 if(err) {
                     result(err, res)
@@ -110,9 +111,8 @@ Dbms.get_annunci_by_luogo = function (luogo, result) {
 
 Dbms.insert_prenotazione = function (json, result) {
 
-
-    let statement = `INSERT INTO prenotazioni(ref_id_usr,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno,stato,tot_pagato)VALUES(?,?,?,?,?,?,?,?,?,?)`;
-    let values = [json.ref_id_usr,json.ref_id_ann,json.check_in_giorno,json.check_in_mese,json.check_in_anno,json.check_out_giorno,json.check_out_mese,json.check_out_anno,json.stato,json.tot_pagato];
+    var statement = `INSERT INTO prenotazioni(ref_id_usr,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno,stato,tot_pagato)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    var values = [json.ref_id_usr,json.ref_id_ann,json.check_in_giorno,json.check_in_mese,json.check_in_anno,json.check_out_giorno,json.check_out_mese,json.check_out_anno,json.stato,json.tot_pagato];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -139,16 +139,31 @@ Dbms.get_annuncio = function (json,result) {
 });
 };
 
+Dbms.get_prenotazioni_by_user_id = function (id,result) {
+    
+    let statement = 'SELECT * FROM prenotazioni WHERE ref_id_usr = ?';
+  
+    sql.query(statement, id, function (err, res) {
+              if(err) {
+                console.log("error: ", err);
+                result(null, err);
+              }
+          else{
+        result(null, res);
+    }
+});
+};
+
 
 Dbms.update_prenotazione = function (json, result) {
-
-
-    var json = JSON.parse(json);
+    
 
     console.log(json);
+    var obj = JSON.parse(json);
+  
 
     let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?'
-    let values = [json.stato, json.id_prenotazione];
+    let values = [obj.stato, obj.id_prenotazione];
 
     sql.query(statement, values, function (err, res) {
             if(err) {

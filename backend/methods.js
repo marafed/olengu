@@ -9,6 +9,8 @@ exports.welcome = function(req, res) {
 };
 
 exports.insertAnnuncio = function(req, res) {
+  console.log("SIAMO QUI")
+  console.log(req.body)
   Dbms.insert_annuncio(req.body,function(err, result) {
     if (err)
       res.send(err);
@@ -41,7 +43,15 @@ exports.updateAnnuncio = function(req, res) {
 };
 
 exports.insertPrenotazione = function(req,res) {
-  Dbms.insert_prenotazione(req.params.prenotazionejson,function(err, result){
+  Dbms.insert_prenotazione(req.body,function(err, result){
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.getPrenotazioniUserId= function(req, res) {
+  Dbms.get_prenotazioni_by_user_id(req.params.id,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -49,7 +59,7 @@ exports.insertPrenotazione = function(req,res) {
 };
 
 exports.updatePrenotazione = function(req, res) {
-  Dbms.update_prenotazione(req.params.updatejson,function(err, result) {
+  Dbms.update_prenotazione(req.body,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
