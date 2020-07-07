@@ -49,12 +49,21 @@ class Login extends Component {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                       }
-                }).then(res => {
-                    if (res.status === 200) {
-                        this.props.history.push('/');
-                    } else {
+                })
+                .then(res => {
+                    if (!res.ok) {
                         const error = new Error(res.error);
                         throw error;
+                    }
+                    return res.json()
+                })
+                .then(json => {
+                    if(json.status === false) {
+                        alert("credenziali non valide");
+                    }
+                    if(json.status === true) {
+                        localStorage.setItem('session',JSON.stringify(json.token));
+                        this.props.history.push('/dashboard');
                     }
                 })
                 .catch(err => {
