@@ -1,19 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Payment from './Payment';
  
 
-function SearchItemDetails({ item }) {
+function SearchItemDetails({ match }) {
+    useEffect(() => {
+        console.log(item);
+        fetchItem();
+    }, []);
+
+    const [item, setItem] = useState({
+        luogo: "loading",
+        n_letti_matr: "loading",
+        n_divano_letto: "loadnig",
+        n_bagni: "loading",
+        colazione : "loading",
+        AC : "loading",
+        parcheggio: "loading",
+        wifi : "loading",
+        animali_domestici_ammessi: "loading", 
+        baby_friendly: "loading"
+    });
+
+    const fetchItem = async() => {
+        const result = await fetch(`/api/getannunciobyid/${match.params.id}`);
+        setItem(await result.json());
+        console.log(item);
+    }
 
     return(
         <div className="containerFluid">
             <div className="row">
                 <div className="col-md-3" style={{margin: 1 + 'em'}}>                  
-                    <img style={{maxWidth: 300 + 'px'}} src={item.image.url} />
+                    <img style={{maxWidth: 300 + 'px'}} src="" />
                 </div>
                 <div className="col-md-3" style={{margin: 2 + 'em', color: "white"}}>
                     <h1 style={{fontWeight: "bold"}}>{item.nome_annuncio}</h1>
-                    <h3>{item.luogo["full-name"]}</h3>
+                    <h3>{item.luogo}</h3>
                     <p>{item.descrizione}</p>
                     <p>{item.via}</p>
                     <div>

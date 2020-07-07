@@ -25,6 +25,14 @@ exports.getAnnunciByUserId = function(req, res) {
   });
 };
 
+exports.getAnnunciById = function(req, res) {
+  Dbms.get_annunci_by_id(req.params.id, function(err, result) {
+    if (err)
+      res.send(err);
+    res.json(result[0]);
+  });
+};
+
 exports.getAnnunciByLuogo = function(req, res) {
   Dbms.get_annunci_by_luogo(req.params.nomeluogo, function(err, result) {
     if (err)

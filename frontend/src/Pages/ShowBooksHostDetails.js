@@ -6,7 +6,6 @@ function ShowBooksHostDetails({ match }) {
 
     useEffect(() => {
         fetchItem();
-        console.log(match);
     }, []);
 
     const [item, setItem] = useState({
@@ -33,8 +32,6 @@ function ShowBooksHostDetails({ match }) {
         );
         const item = await fetchItem.json();
         setItem(item);
-        console.log(item);
-        console.log(item.image.url);
     }
 
     return(

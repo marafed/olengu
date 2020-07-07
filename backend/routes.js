@@ -6,6 +6,8 @@ module.exports = function(app) {
 
   app.route('/api/getAnnunciByUserId/:id').get(methods.getAnnunciByUserId) // i miei annunci si 
 
+  app.route('/api/getannunciobyid/:id').get(methods.getAnnunciById) //annuncio click
+
   app.route('/api/insertannuncio').post(methods.insertAnnuncio) // inserisci annuncio si
 
   app.route('/api/updateannuncio').post(methods.updateAnnuncio) //modifica annuncio  si
