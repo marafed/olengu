@@ -1,36 +1,9 @@
-import React, {useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Payment from './Payment';
  
 
 function SearchItemDetails({ item }) {
-    
-    useEffect(() => {
-        fetchItem();
-        console.log(item);
-    }, []);
-
-    const [item, setItem] = useState({
-        nome_annuncio: "",
-        luogo: "",
-        via: "",
-        descrizione:"", 
-        n_ospiti: "",
-        prezzo_notte: "",
-        n_letti_singoli: "",
-        n_letti_matr: "",
-        n_divano_letto: "",
-        n_camere : "",
-        n_bagni: "",
-        colazione: "",
-        AC: "",
-        parcheggio: "",
-        wifi: "",
-        animali_domestici_ammessi: "",
-        baby_friendly: ""     
-    });
-
-    
 
     return(
         <div className="containerFluid">
