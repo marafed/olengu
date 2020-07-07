@@ -28,7 +28,7 @@ function SearchItemDetails({ match }) {
         AC: "",
         parcheggio: "",
         wifi: "",
-        lavatrice: "",
+        animali_domestici_ammessi: "",
         baby_friendly: ""     
     });
 
@@ -112,7 +112,7 @@ function SearchItemDetails({ match }) {
                     <Link to="/Payment"> 
                         <button className="btn-gradient btn-dashboard">Prenota ora</button>    
                     </Link> 
-                    }
+                    
                     
                 </div>
             </div>
