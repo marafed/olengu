@@ -9,8 +9,7 @@ exports.welcome = function(req, res) {
 };
 
 exports.insertAnnuncio = function(req, res) {
-  console.log("SIAMO QUI")
-  console.log(req.body)
+  console.log(req.body);
   Dbms.insert_annuncio(req.body,function(err, result) {
     if (err)
       res.send(err);
@@ -75,12 +74,8 @@ exports.deletePrenotazione = function(req, res) {
 };
 
 exports.login = function(req, res) {
-  Dbms.loginX(req.body, (err, res_db) => {
-    if(err) 
-      res.send(err);
-    res.send(res_db);
-   });
-};
+  Dbms.loginX(req.body, res);
+}
 
 exports.register = function(req, res) {
   console.log("siamo qui")

@@ -1,26 +1,54 @@
 'use strict';
 var sql = require('./db');
+var uuid = require("uuid/v4");
 
 var Dbms = function(dbms){
     this.status = task.status;
     this.created_at = new Date();
 };
 
-Dbms.loginX = function (loginjson, result) {
+Dbms.loginX = function (loginjson, apires) {
 
     let statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
     let values = [loginjson.email, loginjson.password];
 
-      sql.query(statement, values, function (err, res) {
-              if(err) {
-                  console.log("error: ", err);
-                  result(null, err);
-              }
-              else{
-                  result(null, res);
-              }
+    var dbres = sql.query(statement, values, (err, res) => {
+        if(err) {
+            return [false, err];
+        }
+        if (res[0].id) {
+            return [true, res[0].id];
+        }
+        return [false, null];
     });
+    if (dbres[0] == false) {
+        apires.send(JSON.stringify({"status":false,"token":""}));
+    }
+    if (dbres[0] == true) {
+        var token = Dbms.newToken(dbres[1]);
+        if (token[0] == false) {
+            apires.send(JSON.stringify({"status":false,"token":""}));
+        }
+        if (token[0] == true) {
+            apires.send(JSON.stringify({"status": true, "token": token[1]}));
+        }
+    }
 };
+
+Dbms.newToken = function (id) {
+    let statement = "insert into session(ref_id_usr, token) values(?, ?);"
+    let token = uuid() + uuid();
+    return sql.query(statement, [id, token], (err, res) => {
+        if (err) {
+            console.log("unable to generate token for uid: ", id);
+            console.log(err);
+            return [false, null];
+        }
+        else {
+            return [true, token];
+        }
+    });
+}
 
 Dbms.register_user = function (registrationjson, result) {
     console.log("siamo nel dbms")
@@ -59,8 +87,7 @@ Dbms.get_annunci_by_user_id = function (user_id, result) {
 });
 };
 
-Dbms.insert_annuncio = function (json, result) {
-   
+Dbms.insert_annuncio = function (json, result) {   
         let statement = `INSERT INTO annunci(ref_id_usr,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,lavatrice,baby_friendly)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
         let values = [json.ref_id_usr,json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.lavatrice,json.baby_friendly];
 
