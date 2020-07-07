@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Payment from './Payment';
  
 
 function SearchItemDetails({ match }) {
@@ -54,8 +55,13 @@ function SearchItemDetails({ match }) {
                     <p>{item.work.occupation}</p>
                     <div>
                         <h2>Servizi e Specifiche</h2>
-                        <p>Numero letti e bagni</p>
-                        <p>Lista filtri</p>
+                        <p>{item.powerstats.speed} Letti singoli</p>
+                        <p>{item.powerstats.speed} Letti matrimoniali</p>
+                        <p>{item.powerstats.speed} Divani letto</p>
+                        <p>{item.powerstats.speed}Camere</p> 
+                        <p>{item.powerstats.speed}Bagni</p> 
+
+                        <p>Lista filtri!!!!</p>
                     </div>
                 </div>
                 <div className="col-md-4 searchitem-card">
@@ -102,10 +108,13 @@ function SearchItemDetails({ match }) {
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
-                    <button className="btn-gradient btn-dashboard">Prenota ora</button>    
+                    <Link to="/Payment"> 
+                        <button className="btn-gradient btn-dashboard">Prenota ora</button>    
+                    </Link> 
+                    }
+                    
                 </div>
             </div>
         </div>
