@@ -108,7 +108,7 @@ function SearchItemDetails({ match }) {
                     <Link to="/Payment"> 
                         <button className="btn-gradient btn-dashboard">Prenota ora</button>    
                     </Link> 
-                    }
+                    
                     
                 </div>
             </div>

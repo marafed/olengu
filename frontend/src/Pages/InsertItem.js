@@ -1,8 +1,10 @@
 import React, { Component,  useState} from 'react';
 import { useForm } from 'react-hook-form';
+
 // import CountersItem from './Components/CountersItem';
 
 function InsertItem() {
+    
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
@@ -41,7 +43,9 @@ function InsertItem() {
                             placeholder="Città" 
                             name="citta"
                             ref={register({max: 20,  min: 1, required: true})}
-                        />                        
+                        />  
+                        <label htmlFor="file" style={{fontWeight: 'bold'}}>Carica foto</label><br />
+                        <input type="file" id="myFile" name="filename"></input>        
                     </div> 
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">  
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi e struttura</h2>
@@ -52,12 +56,16 @@ function InsertItem() {
                         <input type="checkbox" placeholder="Baby friendly" name="babyfriendly" ref={register} />
                         <label htmlFor="Baby friendly" style={{fontWeight: 'bold'}}>Baby friendly</label><br/>
                         <input type="checkbox" placeholder="Animali domestici ammessi" name="animalidomestici" ref={register} />
-                        <label htmlFor="Animali domestici ammessi" style={{fontWeight: 'bold'}}>Animali domestici ammessi</label><br/> 
+                        <label htmlFor="Animali domestici ammessi" style={{fontWeight: 'bold'}}>Animali ammessi</label><br/> 
                     </div>
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Dettagli</h2>
-                            <input type="number" placeholder="Prezzo" name="prezzo" ref={register({max: 20, min: 0})} />
+                            <input type="number" placeholder="Prezzo" name="prezzo" ref={register({max: 1000, min: 0})} />
                             <label htmlFor="Prezzo" style={{fontWeight: 'bold'}}>€
+                                A notte
+                            </label><br/>
+                            <input type="number" placeholder="Tasse di soggiorno" name="tasse" ref={register({max:1000, min: 0})} />
+                            <label htmlFor="Tasse" style={{fontWeight: 'bold'}}>€
                                 A notte
                             </label><br/>
                             <input style={{marginTop: 1 + 'em'}} name="tipostruttura" type="radio" value="Intero appartamento" ref={register({ required: true })}/>

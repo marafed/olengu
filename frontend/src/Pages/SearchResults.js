@@ -3,7 +3,20 @@ import { Link } from 'react-router-dom';
 import SearchItemBox from '../Components/SearchItemBox';
 import SearchResultsPopup from '../Components/SearchResultsPopup';
 
+
+
+
 function SearchResults() {
+
+    const [alert, setAlertVisibility] = useState(false);
+    const onClosingAlert = () => {
+        setAlertVisibility(false);
+    } 
+
+    var filter
+    if (alert) { 
+        filter = <SearchResultsPopup onClosing={onClosingAlert}/>
+    }
     useEffect(() => {
         fetchItems();
     }, []);
@@ -22,13 +35,7 @@ function SearchResults() {
     };
     
     const filter_popup = () => {
-        let popup = document.getElementById("popup-filter");
-
-        if (popup.style.display == "none") {
-            popup.style.display = "block";
-        } else {
-            popup.style.display ="none";
-        }
+        setAlertVisibility(true);
     }
     
     return(
@@ -38,7 +45,7 @@ function SearchResults() {
             </div>
             <div className="row">
                 <div className="col">
-                    <SearchResultsPopup />
+                    {filter}
                     {items.map(item => (
                         <h5 key={item.id}>
                             <Link to={`/SearchResults/${item.id}`} >
