@@ -19,6 +19,9 @@ function Nav() {
                 <img width="28em" src="/img/avatar.svg" />
             </button>
           </Link>
+          <Link to="/PortaleHost">
+            <button id="topbar-host" width="25" className="btn btn-secondary">Portale host</button>
+          </Link>
           <Link to="/login">
             <button className="btn btn-gradient">Login</button>
           </Link>

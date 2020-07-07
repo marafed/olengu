@@ -9,9 +9,12 @@ import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
 import DashboardHost from './Pages/DashboardHost';
 import InsertItem from './Pages/InsertItem';
+import PortaleHost from './Pages/PortaleHost';
 import SearchResults from './Pages/SearchResults';
 import SearchItemDetails from './Pages/SearchItemDetails';
 import ShowBooks from './Components/ShowBooks';
+import ShowBooksHost from './Components/ShowBooksHost';
+import MyAnnunci from './Pages/MyAnnunci';
 import WithAuth from './Utils/WithAuth';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
@@ -31,6 +34,9 @@ function App() {
           <Route path="/SearchResults" exact component={SearchResults} />
           <Route path="/SearchResults/:id" component={SearchItemDetails} />
           <Route path="/ShowBooks" component={ShowBooks} />
+          <Route path="/ShowBooksHost" component={ShowBooksHost} />
+          <Route path="/PortaleHost" component={PortaleHost} /> 
+          <Route path="/MyAnnunci" component={MyAnnunci} />
           <Footer />
         </div>
       </Switch>

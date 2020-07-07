@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import { Link } from 'react-router-dom';
-import FetchUtente from '../Components/FetchUtente';
+import FetchUtente from '../Utils/FetchUtente';
 import ShowBooks from '../Components/ShowBooks';
 
 function Dashboard() {

@@ -7,7 +7,7 @@ function Searchbar() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            "http://localhost:8080",{ //questo è sbaliato
+            "/api/auth/search",{ //questo è
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -16,8 +16,9 @@ function Searchbar() {
                 body: JSON.stringify(data)
             }
         );
-        console.log(data);   
+        console.log(data);
     };
+    
     return(
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="row" id="searchbar">
