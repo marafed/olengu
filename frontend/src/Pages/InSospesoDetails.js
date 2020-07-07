@@ -12,18 +12,10 @@ function InSospesoDetails({ match }) {
         image: {
             url: ""
         },
-        name: "",
-        biography: {
-            "full-name": ""
-        },
-        work: {
-            occupation: ""
-        },
-        powerstats: {
-            intelligence:"",
-            strength: "",
-            speed:""
-        }
+        nome_annuncio: "",
+        luogo: "",
+        via: "",
+        descrizione: ""
     });
 
     const fetchItem = async() => {
