@@ -84,20 +84,20 @@ function SearchItemDetails({ item }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.powerstats.speed}</h6>
+                                    <h6>{item.descrizione}</h6>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col" style={{marginTop: 1 + 'em'}}>
                                 <ul>
-                                    <li>Prezzo a notte: {item.powerstats.strength} €</li>
-                                    <li>Tassa di soggiorno: {item.powerstats.intelligence} €</li>
-                                    <li>Prezzo totale per 7 notti:</li>
+                                    <li>Prezzo a notte: {item.prezzo_notte} €</li>
+                                    <li>Tassa di soggiorno: {item.tassa_soggiorno} €</li>
+                                    <li>Prezzo totale per 7 notti :</li>
                                 </ul>
                                 <div className="row">
                                     <div className="col  text-center">
-                                        <h3>{item.powerstats.strength * 7 + item.powerstats.intelligence} €</h3>
+                                        <h3>{item.prezzo_notte* 7 + item.tassa_soggiorno*7} €</h3>
                                     </div>
                                 </div>
                             </div>
