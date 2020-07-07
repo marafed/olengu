@@ -1,6 +1,6 @@
 'use strict';
 var sql = require('./db');
-var uuid = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 
 var Dbms = function(dbms){
     this.status = task.status;
@@ -8,49 +8,35 @@ var Dbms = function(dbms){
 };
 
 Dbms.loginX = function (loginjson, apires) {
-
     var statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
     var values = [loginjson.email, loginjson.password];
-    var response = [false, null];
 
-    sql.query(statement, values, (err, res) => {
-        console.log(res); // debug
+    sql.query(statement, values, function(err, res) {
         if(err) {
-            response = [false, err];
-        }
-        if (res.length) {
-            response = [true, res[0].id];
-        }
-        return [false, null];
-    });
-    if (response[0] == false) {
-        apires.send(JSON.stringify({"status":false,"token":""}));
-    }
-    if (response[0] == true) {
-        var token = Dbms.newToken(response[1]);
-        if (response[0] == false) {
             apires.send(JSON.stringify({"status":false,"token":""}));
         }
-        if (token[0] == true) {
-            apires.send(JSON.stringify({"status": true, "token": token[1]}));
-        }
-    }
-};
-
-Dbms.newToken = function (id) {
-    let statement = "insert into session(ref_id_usr, token) values(?, ?);"
-    let token = uuid() + uuid();
-    return sql.query(statement, [id, token], (err, res) => {
-        if (err) {
-            console.log("unable to generate token for uid: ", id);
-            console.log(err);
-            return [false, null];
+        else if (res.length) {
+            if (res[0].id_usr) {
+                console.log("res[0].id_usr: "+res[0].id_usr);
+                let token = uuidv4();
+                return sql.query("insert into session(ref_id_usr, token) values(?, ?);", [res[0].id_usr, token], (err, res) => {
+                    if (err) {
+                        console.log("unable to generate token for uid: ", id);
+                        console.log(err);
+                        apires.send(JSON.stringify({"status":false,"token":""}));
+                    }
+                    else {
+                        apires.send(JSON.stringify({"status": true, "token": token}));
+                    }
+                });
+            }
         }
         else {
-            return [true, token];
+            apires.send(JSON.stringify({"status":false,"token":""}));
         }
     });
-}
+};
+
 
 Dbms.register_user = function (registrationjson, result) {
     console.log("siamo nel dbms")
@@ -60,7 +46,7 @@ Dbms.register_user = function (registrationjson, result) {
     
  
 
-      sql.query(statement, values, function (err, res) {
+sql.query(statement, values, function (err, res) {
               if(err) {
                   console.log("error: ", err);
                   result(null, err);
