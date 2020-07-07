@@ -8,6 +8,12 @@ function Searchbar() {
     const onSubmit = async data => {
         var citta = document.getElementById("lochescion").value
         localStorage.setItem("citta", citta)
+        var data1 = document.getElementById("data1").value
+        localStorage.setItem("data1", data1)
+        var data2 = document.getElementById("data2").value
+        localStorage.setItem("data2", data2)
+        var nospiti = document.getElementById("nospiti").value
+        localStorage.setItem("nospiti", nospiti)
     };
     
     return(
@@ -34,11 +40,13 @@ function Searchbar() {
                             type="date"
                             className="secondary-placeholder date-input" 
                             name="data1"
+                            id="data1"
                         />
                         <input 
                             type="date" 
                             className="secondary-placeholder date-input" 
                             name="data2"
+                            id="data2"
                         />
                     </div>
                 </div>
@@ -50,6 +58,7 @@ function Searchbar() {
                             className="secondary-placeholder"
                             placeholder="Inserisci numero di ospiti"
                             name="guests"
+                            id="nospiti"
                         />
                     </div>
                 </div>

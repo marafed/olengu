@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import SearchItemBox from '../Components/SearchItemBox';
 import SearchResultsPopup from '../Components/SearchResultsPopup';
 
-
-
-
 function SearchResults() {
 
     const [alert, setAlertVisibility] = useState(false);
@@ -25,6 +22,7 @@ function SearchResults() {
 
     const fetchItems = async() => {
         var citta = localStorage.getItem("citta")
+        
         console.log(citta)
         
         var request = "/api/getAnnunciByLuogo/" + citta

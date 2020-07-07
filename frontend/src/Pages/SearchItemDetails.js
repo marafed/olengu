@@ -3,17 +3,16 @@ import { Link } from 'react-router-dom';
 import Payment from './Payment';
  
 
-function SearchItemDetails({ match }) {
-
+function SearchItemDetails({ item }) {
+    
     useEffect(() => {
         fetchItem();
-        console.log(match);
+        console.log(item);
     }, []);
 
     const [item, setItem] = useState({
-        
         nome_annuncio: "",
-        luogo: "",  
+        luogo: "",
         via: "",
         descrizione:"", 
         n_ospiti: "",
@@ -31,15 +30,7 @@ function SearchItemDetails({ match }) {
         baby_friendly: ""     
     });
 
-    const fetchItem = async() => {
-        const fetchItem = await fetch(
-            `/api/updateannuncio/${match.params.id}`
-        );
-        const item = await fetchItem.json();
-        setItem(item);
-        console.log(item);
-        console.log(item.image.url);
-    }
+    
 
     return(
         <div className="containerFluid">
@@ -115,8 +106,6 @@ function SearchItemDetails({ match }) {
                     <Link to="/Payment"> 
                         <button className="btn-gradient btn-dashboard">Prenota ora</button>    
                     </Link> 
-                    
-                    
                 </div>
             </div>
         </div>
