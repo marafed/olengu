@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
  
 
 function InCorsoDetails({ match }) {
@@ -13,20 +13,11 @@ function InCorsoDetails({ match }) {
         image: {
             url: ""
         },
-        name: "",
-        biography: {
-            "full-name": ""
-        },
-        work: {
-            occupation: ""
-        },
-        powerstats: {
-            intelligence:"",
-            strength: "",
-            speed:""
-        }
+        nome_annuncio: "",
+        luogo: "",
+        via: "",
+        descrizione: ""
     });
-
     const fetchItem = async() => {
         const fetchItem = await fetch(
             `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
@@ -44,9 +35,9 @@ function InCorsoDetails({ match }) {
                     <img style={{maxWidth: 300 + 'px'}} src={item.image.url} />
                 </div>
                 <div className="col-md-3" style={{margin: 2 + 'em', color: "white"}}>
-                    <h1 style={{fontWeight: "bold"}}>{item.name}</h1>
-                    <h3>{item.biography["full-name"]}</h3>
-                    <p>{item.work.occupation}</p>
+                    <h1 style={{fontWeight: "bold"}}>{item.nome_annuncio}</h1>
+                    <h3>{item.descrizione["full-name"]}</h3>
+                    <p>{item.luogo}</p>
                     
                 </div>
                 <div className="col-md-4 searchitem-card">
@@ -64,7 +55,7 @@ function InCorsoDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.powerstats.speed}</h6>
+                                    <h6>{item.via}</h6>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +67,7 @@ function InCorsoDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.powerstats.speed}</h6>
+                                    <h6>{item.descrizione}</h6>
                                 </div>
                             </div>
                         </div>
@@ -96,10 +87,10 @@ function InCorsoDetails({ match }) {
                             
                         </div>
                     </div>
-                    <Link to="/CheckOut">
-                         <button className="btn-gradient btn-dashboard">Check-Out</button>    
-                    </Link>
+                    
+                    <button className="btn-gradient btn-dashboard">Check-Out</button>    
                 </div>
+
             </div>
         </div>
     );
