@@ -29,8 +29,7 @@ function SearchItemDetails({ match }) {
         parcheggio: "",
         wifi: "",
         lavatrice: "",
-        baby_friendly: ""
-        
+        baby_friendly: ""     
     });
 
     const fetchItem = async() => {
