@@ -4,6 +4,11 @@ import Payment from './Payment';
  
 
 function SearchItemDetails({ match }) {
+
+    var data_inizio = localStorage.getItem("data1")
+    var data_fine = localStorage.getItem("data2")
+    var ospiti = localStorage.getItem("nospiti")
+
     useEffect(() => {
         console.log(item);
         fetchItem();
@@ -68,7 +73,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.STORAGE}</h6> 
+                                    <h6>{data_inizio}</h6> 
                                 </div>
                             </div>
                         </div>
@@ -80,7 +85,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.descrizione}</h6>
+                                    <h6>{data_fine}</h6>
                                 </div>
                             </div>
                         </div>
