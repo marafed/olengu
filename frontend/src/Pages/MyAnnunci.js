@@ -12,7 +12,7 @@ function MyAnnunci() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/captain'
+            '/api/getAnnunciByUserId/:id'
         );
         const items = await data.json();
         console.log(items.results);

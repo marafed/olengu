@@ -16,7 +16,6 @@ function SearchItemDetails({ match }) {
         luogo: "",  
         via: "",
         descrizione:"", 
-        indirizzo: "",
         n_ospiti: "",
         prezzo_notte: "",
         n_letti_singoli: "",
@@ -49,18 +48,22 @@ function SearchItemDetails({ match }) {
                     <img style={{maxWidth: 300 + 'px'}} src={item.image.url} />
                 </div>
                 <div className="col-md-3" style={{margin: 2 + 'em', color: "white"}}>
-                    <h1 style={{fontWeight: "bold"}}>{item.name}</h1>
-                    <h3>{item.biography["full-name"]}</h3>
-                    <p>{item.work.occupation}</p>
+                    <h1 style={{fontWeight: "bold"}}>{item.nome_annuncio}</h1>
+                    <h3>{item.luogo["full-name"]}</h3>
+                    <p>{item.descrizione}</p>
+                    <p>{item.via}</p>
                     <div>
                         <h2>Servizi e Specifiche</h2>
-                        <p>{item.powerstats.speed} Letti singoli</p>
-                        <p>{item.powerstats.speed} Letti matrimoniali</p>
-                        <p>{item.powerstats.speed} Divani letto</p>
-                        <p>{item.powerstats.speed}Camere</p> 
-                        <p>{item.powerstats.speed}Bagni</p> 
-
-                        <p>Lista filtri!!!!</p>
+                        <p>{item.prezzo_notte} prezzo notte</p>
+                        <p>{item.n_letti_matr} Letti matrimoniali</p>
+                        <p>{item.n_divano_letto} Divani letto</p>
+                        <p>{item.n_bagni} Bagni</p> 
+                        <p>{item.colazione}colazione</p> 
+                        <p>{item.AC}Aria Condizionata</p> 
+                        <p>{item.parcheggio}parcheggio</p> 
+                        <p>{item.wifi}wifi</p> 
+                        <p>{item.animali_domestici_ammessi}animali_domestici_ammessi</p> 
+                        <p>{item.baby_friendly}baby_friendly</p> 
                     </div>
                 </div>
                 <div className="col-md-4 searchitem-card">
@@ -78,7 +81,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.powerstats.speed}</h6>
+                                    <h6>{item.STORAGE}</h6> 
                                 </div>
                             </div>
                         </div>

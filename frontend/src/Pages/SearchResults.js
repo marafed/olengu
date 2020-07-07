@@ -14,7 +14,7 @@ function SearchResults() {
     
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/bat'
+            '/api/getAnnunciByLuogo/:nomeluogo'
         );
         const items = await data.json();
         console.log(items.results);
