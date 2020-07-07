@@ -6,6 +6,7 @@
     "start": "node ./server.js"
   },
   "dependencies": {
+    "@types/uuid": "^8.0.0",
     "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

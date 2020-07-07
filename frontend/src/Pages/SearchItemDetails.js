@@ -11,26 +11,30 @@ function SearchItemDetails({ match }) {
     }, []);
 
     const [item, setItem] = useState({
-        image: {
-            url: ""
-        },
-        name: "",
-        biography: {
-            "full-name": ""
-        },
-        work: {
-            occupation: ""
-        },
-        powerstats: {
-            intelligence:"",
-            strength: "",
-            speed:""
-        }
+        
+        nome_annuncio: "",
+        luogo: "",  
+        via: "",
+        descrizione:"", 
+        indirizzo: "",
+        n_ospiti: "",
+        prezzo_notte: "",
+        n_letti_singoli: "",
+        n_letti_matr: "",
+        n_divano_letto: "",
+        n_camere : "",
+        n_bagni: "",
+        colazione: "",
+        AC: "",
+        parcheggio: "",
+        wifi: "",
+        animali_domestici_ammessi: "",
+        baby_friendly: ""     
     });
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
+            `/api/updateannuncio/${match.params.id}`
         );
         const item = await fetchItem.json();
         setItem(item);
