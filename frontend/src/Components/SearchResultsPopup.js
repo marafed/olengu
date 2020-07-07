@@ -21,27 +21,6 @@ function SearchResultsPopup() {
         <div id="popup-filter" className="insertitem-box">
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">
-                        <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Info generali</h2>
-                        <label htmlFor="titolo" style={{fontWeight: 'bold'}}>Titolo</label><br />
-                        <input type="text" 
-                            placeholder="Titolo" 
-                            name="titolo"
-                            ref={register({max: 20,  min: 1, required: true})}
-                        /><br />
-                        <label htmlFor="description" style={{fontWeight: 'bold'}}>Descrizione</label><br />
-                        <textarea
-                            placeholder="Descrizione" 
-                            name="descrizione"
-                            ref={register({max: 100,  min: 1, required: true})}
-                        /><br />
-                        <label htmlFor="citta" style={{fontWeight: 'bold'}}>Città</label><br />
-                        <input type="text" 
-                            placeholder="Città" 
-                            name="citta"
-                            ref={register({max: 20,  min: 1, required: true})}
-                        />                        
-                    </div> 
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">  
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi e struttura</h2>
                         <input type="checkbox" placeholder="Wifi" name="wifi" ref={register} />

@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import Nav from './Components/Nav';
@@ -13,12 +14,17 @@ import PortaleHost from './Pages/PortaleHost';
 import SearchResults from './Pages/SearchResults';
 import SearchItemDetails from './Pages/SearchItemDetails';
 import InCorsoDetails from './Pages/InCorsoDetails';
+import ShowBooksHostDetails from "./Pages/ShowBooksHostDetails";
 import ShowBooks from './Components/ShowBooks';
 import ShowBooksHost from './Components/ShowBooksHost';
 import BooksInCorso from './Components/BooksInCorso';
+import BooksAttive from "./Components/BooksAttive"
 import MyAnnunci from './Pages/MyAnnunci';
 import WithAuth from './Utils/WithAuth';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import AttiveDetails from './Pages/AttiveDetails';
+import BooksInSospeso from './Components/BooksInSospeso';
+import InSospesoDetails from "./Pages/InSospesoDetails";
+import BooksConcluse from './Components/BooksConcluse';
 
 function App() {
   return(
@@ -35,13 +41,20 @@ function App() {
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />
           <Route path="/SearchResults/:id" component={SearchItemDetails} />
-          <Route path="/ShowBooks" component={ShowBooks} />
-          <Route path="/ShowBooksHost" exact component={ShowBooksHost} />
-          <Route path="/ShowBooksHost/:id" component={InCorsoDetails} />
           <Route path="/PortaleHost" component={PortaleHost} /> 
           <Route path="/MyAnnunci" component={MyAnnunci} />
-          <Route path="/BooksInCorso" component={BooksInCorso} />
-          <Footer />
+          <Route path="/ShowBooks" component={ShowBooks} />
+          <Route path="/ShowBooksHost" exact component={ShowBooksHost} />
+          <Route path="/ShowBooksHost/:id" component={ShowBooksHostDetails} />
+          <Route path="/BooksInCorso" exact component={BooksInCorso} />
+          <Route path="/BooksInCorso/:id" component={InCorsoDetails} />
+          <Route path="/BooksAttive" exact component={BooksAttive} />
+          <Route path="/BooksAttive/:id" component={AttiveDetails} />
+          <Route path="/BooksInSospeso" exact component={BooksInSospeso} />
+          <Route path="/BooksInSospeso/:id" component={InSospesoDetails} />
+          <Route path="/BooksConcluse" exact component={BooksConcluse} />
+          <Route path="/BooksConcluse/:id" component={ShowBooksHostDetails} />
+          <Footer /> 
         </div>
       </Switch>
     </Router>

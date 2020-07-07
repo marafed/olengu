@@ -2,7 +2,7 @@ import React, {useState, useEffect, useReducer} from 'react';
 import SearchItemBox from '../Components/SearchItemBox';
 import { Link } from 'react-router-dom';
 
-function BooksInCorso() {
+function BooksAttive() {
 
     useEffect(() => {
         fetchItems();
@@ -21,9 +21,9 @@ function BooksInCorso() {
 
     return(
         <div>
-            <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni in corso</h1>
+            <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni attive</h1>
             {items.map(item => (
-                <Link to={`/BooksInCorso/${item.id}`} >
+                <Link to={`/BooksAttive/${item.id}`} >
                     <SearchItemBox item={item} /> 
                 </Link>
             ))}
@@ -31,4 +31,4 @@ function BooksInCorso() {
     );
 }
 
-export default BooksInCorso;
+export default BooksAttive;
