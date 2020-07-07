@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt');
 
 var Dbms = require('./dbms');
 
@@ -8,7 +9,7 @@ exports.welcome = function(req, res) {
 };
 
 exports.insertAnnuncio = function(req, res) {
-  Dbms.insert_annuncio(req.params.annunciojson, function(err, result) {
+  Dbms.insert_annuncio(req.body,function(err, result) {
     if (err)
       res.send(err);
     res.json(result);
@@ -32,7 +33,7 @@ exports.getAnnunciByLuogo = function(req, res) {
 };
 
 exports.updateAnnuncio = function(req, res) {
-  Dbms.update_annuncio(req.params.annunciojson,function(err, result) {
+  Dbms.update_annuncio(req.body,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -44,23 +45,6 @@ exports.insertPrenotazione = function(req,res) {
     if(err)
       res.send(err)
     res.json(result)
-  });
-};
-/*
-exports.insertFiltri = function(req,res) {
-  console.log("qui");
-  Dbms.insert_filtri(req.params.filtrijson,function(err, result){
-    if(err)
-      res.send(err)
-    res.json(result)
-  });
-};
-*/
-exports.getAnnuncio = function(req, res) {
-  Dbms.get_annuncio(req.params.annunciojson, function(err, result) {
-    if (err)
-      res.send(err);
-    res.json(result);
   });
 };
 
@@ -78,4 +62,21 @@ exports.deletePrenotazione = function(req, res) {
       res.send(err)
     res.json(result)
   });
+};
+
+exports.login = function(req, res) {
+  Dbms.loginX(req.body, (err, res_db) => {
+    if(err) 
+      res.send(err);
+    res.send(res_db);
+   });
+};
+
+exports.register = function(req, res) {
+  console.log("siamo qui")
+  Dbms.register_user(req.body, (err, res_db) => {
+    if(err) 
+      res.send(err);
+    res.send(res_db);
+   });
 };
