@@ -1,5 +1,8 @@
 @import url('/css/bootstrap.min.css');
 
+/*.row > div{ border: 1px solid red;}*/
+
+
 body {
   background-color: #293236;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -339,9 +342,26 @@ a:hover {
   text-align: center;
   font-weight: bold;
   padding: 0.5em;
-  width: 500px;
+  max-width: 500px;
   margin:2em;
+}
+.searchitem-card {
+  background-color: grey;
+  border-radius: 3em;
+  padding: 2em;
+  margin: 2em;
 
+  }
+.bookshost-sidebar {
+  background-color: #111;
+
+}
+.link-bookshost-sidebar {
+  padding: 0.5em;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
 }
 
 #footer {

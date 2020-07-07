@@ -12,8 +12,10 @@ import InsertItem from './Pages/InsertItem';
 import PortaleHost from './Pages/PortaleHost';
 import SearchResults from './Pages/SearchResults';
 import SearchItemDetails from './Pages/SearchItemDetails';
+import InCorsoDetails from './Pages/InCorsoDetails';
 import ShowBooks from './Components/ShowBooks';
 import ShowBooksHost from './Components/ShowBooksHost';
+import BooksInCorso from './Components/BooksInCorso';
 import MyAnnunci from './Pages/MyAnnunci';
 import WithAuth from './Utils/WithAuth';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
@@ -34,9 +36,11 @@ function App() {
           <Route path="/SearchResults" exact component={SearchResults} />
           <Route path="/SearchResults/:id" component={SearchItemDetails} />
           <Route path="/ShowBooks" component={ShowBooks} />
-          <Route path="/ShowBooksHost" component={ShowBooksHost} />
+          <Route path="/ShowBooksHost" exact component={ShowBooksHost} />
+          <Route path="/ShowBooksHost/:id" component={InCorsoDetails} />
           <Route path="/PortaleHost" component={PortaleHost} /> 
           <Route path="/MyAnnunci" component={MyAnnunci} />
+          <Route path="/BooksInCorso" component={BooksInCorso} />
           <Footer />
         </div>
       </Switch>

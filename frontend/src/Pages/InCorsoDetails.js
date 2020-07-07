@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { withRouter } from 'react-router-dom';
  
 
-function SearchItemDetails({ match }) {
+function InCorsoDetails({ match }) {
 
     useEffect(() => {
         fetchItem();
@@ -47,11 +47,7 @@ function SearchItemDetails({ match }) {
                     <h1 style={{fontWeight: "bold"}}>{item.name}</h1>
                     <h3>{item.biography["full-name"]}</h3>
                     <p>{item.work.occupation}</p>
-                    <div>
-                        <h2>Servizi e Specifiche</h2>
-                        <p>Numero letti e bagni</p>
-                        <p>Lista filtri</p>
-                    </div>
+                    
                 </div>
                 <div className="col-md-4 searchitem-card">
                     <div className="row">
@@ -101,7 +97,7 @@ function SearchItemDetails({ match }) {
                         </div>
                     </div>
                     
-                    <button className="btn-gradient btn-dashboard">Prenota ora</button>    
+                    <button className="btn-gradient btn-dashboard">Check-Out</button>    
                 </div>
 
             </div>
@@ -109,4 +105,4 @@ function SearchItemDetails({ match }) {
     );
 }
 
-export default SearchItemDetails;
+export default InCorsoDetails;

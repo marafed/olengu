@@ -20,13 +20,21 @@ function ShowBooksHost() {
     };
 
     return(
-        <div>
-            <h1 style={{color: "white", margin: 1 + 'em'}}>Le tue prenotazioni</h1>
-            {items.map(item => (
-                <Link to={`/SearchResults/${item.id}`} >
-                    <SearchItemBox item={item} /> 
-                </Link>
-            ))}
+        <div className="ShowBooksHost row">
+            <div className="col-lg-2 col-md-12 bookshost-sidebar">
+                    <Link to="BooksInCorso" className="link-bookshost-sidebar">Prenotazioni in corso</Link><br />
+                    <Link to="" className="link-bookshost-sidebar">Prenotazioni attive</Link><br />
+                    <Link to="" className="link-bookshost-sidebar">Prenotazioni in sospeso</Link><br />
+                    <Link to="" className="link-bookshost-sidebar">Prenotazioni concluse</Link><br />
+            </div>
+            <div className="col-lg-10 col-md-12">
+                <h1 style={{color: "white", margin: 1 + 'em', fontWeight: "bold"}}>Le tue prenotazioni</h1>
+                {items.map(item => (
+                    <Link to={`/SearchResults/${item.id}`} >
+                        <SearchItemBox item={item} /> 
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 }
