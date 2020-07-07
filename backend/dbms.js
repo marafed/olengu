@@ -1,6 +1,6 @@
 'use strict';
 var sql = require('./db');
-var uuid = require("uuid/v4");
+var uuid = require("uuid");
 
 var Dbms = function(dbms){
     this.status = task.status;
@@ -9,24 +9,26 @@ var Dbms = function(dbms){
 
 Dbms.loginX = function (loginjson, apires) {
 
-    let statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
-    let values = [loginjson.email, loginjson.password];
+    var statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
+    var values = [loginjson.email, loginjson.password];
+    var response = [false, null];
 
-    var dbres = sql.query(statement, values, (err, res) => {
+    sql.query(statement, values, (err, res) => {
+        console.log(res); // debug
         if(err) {
-            return [false, err];
+            response = [false, err];
         }
-        if (res[0].id) {
-            return [true, res[0].id];
+        if (res.length) {
+            response = [true, res[0].id];
         }
         return [false, null];
     });
-    if (dbres[0] == false) {
+    if (response[0] == false) {
         apires.send(JSON.stringify({"status":false,"token":""}));
     }
-    if (dbres[0] == true) {
-        var token = Dbms.newToken(dbres[1]);
-        if (token[0] == false) {
+    if (response[0] == true) {
+        var token = Dbms.newToken(response[1]);
+        if (response[0] == false) {
             apires.send(JSON.stringify({"status":false,"token":""}));
         }
         if (token[0] == true) {
