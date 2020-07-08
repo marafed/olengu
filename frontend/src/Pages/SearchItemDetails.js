@@ -40,7 +40,7 @@ function SearchItemDetails({ match }) {
     return(
         <div className="containerFluid">
             <div className="row">
-                <div className="col-md-3" style={{margin: 1 + 'em'}}>                  
+                <div className="col-md-3" style={{margin: 1 + 'em'}}>
                     <img style={{maxWidth: 300 + 'px'}} src="" />
                 </div>
                 <div className="col-md-3" style={{margin: 2 + 'em', color: "white"}}>
@@ -108,8 +108,8 @@ function SearchItemDetails({ match }) {
                             </div>
                         </div>
                     </div>
-                    <Link to="/Payment" id={match.params.id}> 
-                        <button className="btn-gradient btn-dashboard">Prenota ora</button>    
+                    <Link to="/Payment" id={match.params.id}>
+                        <button className="btn-gradient btn-dashboard">Prenota ora</button>
                     </Link> 
                 </div>
             </div>

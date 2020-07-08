@@ -1,6 +1,20 @@
 import React from 'react';
 
-function BottoneTermina() {
+function BottoneTermina(props) {
+    const data = {
+        "id_annuncio":  props.id,
+        "data_inizio":  localStorage.getItem("data1"),
+        "data_fine":    localStorage.getItem("data2"),
+        "citta":        localStorage.getItem("citta"),
+        "nospiti":      localStorage.getItem("nospiti"),
+        "card": {
+            "number":   props.state.number,
+            "expiry":   props.state.expiry,
+            "name":     props.state.name,
+            "cvc":      props.state.cvc
+        }
+    };
+
     const onSubmit = async data => {
         var answer = await fetch(
             "/api/insertprenotazione", {
