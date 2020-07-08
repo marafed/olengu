@@ -1,73 +1,71 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
-import BottoneTermina from './Components/BottoneTermina' 
+import BottoneTermina from '../Components/BottoneTermina' 
 
-export default class Payment extends React.Component {
-  state = {
+function Payment({ props }) {
+  const [state, setState] = useState({
     cvc: '',
     expiry: '',
     focus: '',
     name: '',
     number: '',
-  };
+  });
 
-  handleInputFocus = (e) => {
-    this.setState({ focus: e.target.name });
+  const handleInputFocus = (e) => {
+    setState({ focus: e.target.name });
   }
   
-  handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
-    this.setState({ [name]: value });
+    setState({ [name]: value });
   }
-  
-  render() {
-    return (
-      <div id="PaymentForm row">
-              <div className="col-lg-8">
-                    <Cards
-                        cvc={this.state.cvc}
-                        expiry={this.state.expiry}
-                        focused={this.state.focus}
-                        name={this.state.name}
-                        number={this.state.number}  
-                    />
-              </div>
-            <div className="col-lg-4" style={{padding: 1 + 'em', margin: 1 + 'em'}}>
-                <form>
-                    <input
-                        type="tel"
-                        name="number"
-                        placeholder="Card Number"
-                        onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                    /><br />
-                    <input
-                        type="name"
-                        name="name"
-                        placeholder="Nome intestatario"
-                        onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                    /><br />
-                    <input
-                        type="cvc"
-                        name="cvc"
-                        placeholder="CVC"
-                        onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                    /><br />
-                    <input
-                        type="expiry"
-                        name="expiry"
-                        placeholder="Date of Expire"
-                        onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                    /><br />
-                    <button> <BottoneTermina /></button>
-                </form>
-            </div>
-        </div>
-    );
-  }
+
+  return (
+    <div id="PaymentForm row">
+      <div className="col-lg-8">
+            <Cards
+                cvc={state.cvc}
+                expiry={state.expiry}
+                focused={state.focus}
+                name={state.name}
+                number={state.number}  
+            />
+      </div>
+      <div className="col-lg-4" style={{padding: 1 + 'em', margin: 1 + 'em'}}>
+          <form>
+              <input
+                  type="tel"
+                  name="number"
+                  placeholder="Card Number"
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+              /><br />
+              <input
+                  type="name"
+                  name="name"
+                  placeholder="Nome intestatario"
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+              /><br />
+              <input
+                  type="cvc"
+                  name="cvc"
+                  placeholder="CVC"
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+              /><br />
+              <input
+                  type="expiry"
+                  name="expiry"
+                  placeholder="Date of Expire"
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+              /><br />
+              <button> <BottoneTermina /></button>
+          </form>
+      </div>
+    </div>
+  );
 }
+export default Payment;

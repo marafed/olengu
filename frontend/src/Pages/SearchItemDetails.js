@@ -104,7 +104,7 @@ function SearchItemDetails({ match }) {
                             </div>
                         </div>
                     </div>
-                    <Link to="/Payment"> 
+                    <Link to="/Payment" id={match.params.id}> 
                         <button className="btn-gradient btn-dashboard">Prenota ora</button>    
                     </Link> 
                 </div>
