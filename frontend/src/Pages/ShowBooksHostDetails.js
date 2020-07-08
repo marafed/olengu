@@ -31,7 +31,6 @@ function ShowBooksHostDetails({ match }) {
             `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
         );
         const item = await fetchItem.json();
-        setItem(item);
     }
 
     return(
