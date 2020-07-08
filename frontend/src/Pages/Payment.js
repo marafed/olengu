@@ -62,7 +62,7 @@ function Payment({ props }) {
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
               /><br />
-              <button> <BottoneTermina /></button>
+              <button> <BottoneTermina state={state} id={props.id} /></button>
           </form>
       </div>
     </div>

@@ -50,7 +50,7 @@ function InsertItem() {
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">  
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi e struttura</h2>
                         <input type="checkbox" placeholder="Wifi" name="wifi" ref={register} />
-                        <label htmlFor="wifi" style={{fontWeight: 'bold'}}>Wi-fi</label><br/>y" name="babyfriendly" ref={register} />
+                        <label htmlFor="wifi" style={{fontWeight: 'bold'}}>Wi-fi</label><br/
                         <input type="checkbox" placeholder="Aria condizionata" name="ariacondizionata" ref={register} />
                         <label htmlFor="Aria condizionata" style={{fontWeight: 'bold'}}>Aria condizionata</label><br/>
                         <input type="checkbox" placeholder="Baby friendly" name="babyfriendly" ref={register} />
@@ -77,7 +77,7 @@ function InsertItem() {
                         <div style={{padding: 2 + 'em'}}>
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Ospiti" name="nospiti" ref={register({required: true})} />
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Letti singoli" name="nlettisingoli" ref={register} />
-                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Letti matrimoniali" name="Nnlettimatrimoniali" ref={register} />
+                            <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Letti matrimoniali" name="nlettimatrimoniali" ref={register} />
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Divano letto" name="ndivanoletto" ref={register} />
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Camere" name="ncamere" ref={register} />
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Bagni" name="nbagni" ref={register} />

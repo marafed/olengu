@@ -8,7 +8,7 @@ function SearchResults() {
     const [alert, setAlertVisibility] = useState(false);
     const onClosingAlert = () => {
         setAlertVisibility(false);
-    } 
+    }
 
     var filter
     if (alert) { 
@@ -21,17 +21,9 @@ function SearchResults() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        var citta = localStorage.getItem("citta")
-        
-        console.log(citta)
-        
-        var request = "/api/getAnnunciByLuogo/" + citta
-        console.log(request)
-        const data = await fetch(
-            request
-        );
+        var citta = localStorage.getItem("citta");
+        const data = await fetch(`/api/getAnnunciByLuogo/${citta}`);
         const items = await data.json();
-        console.log(items);
         setItems(items);
     };
     

@@ -23,14 +23,12 @@ class Register extends Component {
             birthday: null,
             email: null, 
             password: null, 
-            conf_pwd: null,
             formErrors: {
                 firstname: "",
                 surname: "", 
                 birthday: "",
                 email: "", 
                 password: "", 
-                conf_pwd: "",
             }
         };
     }
@@ -46,7 +44,6 @@ class Register extends Component {
                 "birthday": this.state.birthday,
                 "email": this.state.email,
                 "password": this.state.password,
-                "conf_pwd": this.state.conf_pwd
             }
             var answer = await fetch(
                 "/api/auth/register",
@@ -89,11 +86,6 @@ class Register extends Component {
             break;
             case 'password':
                 formErrors.password = value.length < 6   
-                    ?  "Minimum 6 character required"
-                    : "";
-            break;
-            case 'conf_pwd':
-                formErrors.conf_pwd = value.length < 6   
                     ?  "Minimum 6 character required"
                     : "";
             break;
@@ -184,21 +176,7 @@ class Register extends Component {
                                         <span className="errorMessage">{formErrors.password}</span>
                                     )}
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="conf_pwd" style={{fontWeight: 'bold'}}>Conferma password</label>
-                                    <input 
-                                        type="password" 
-                                        className="form-control" 
-                                        id="conf-pwd-form" 
-                                        placeholder="Conferma password" 
-                                        name="conf_pwd" 
-                                        onChange={this.handleChange}
-                                        noValidate 
-                                    />
-                                    {formErrors.conf_pwd.length > 0 && (
-                                        <span className="errorMessage">{formErrors.conf_pwd}</span>
-                                    )}
-                                </div>
+                            
                                 <div className="text-right">
                                     <button type="submit" className="btn btn-gradient" id="register-form-btn">Registrati</button>
                                 </div>

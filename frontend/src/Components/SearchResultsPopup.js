@@ -2,8 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
-
-
 function SearchResultsPopup(props) {
     const [show, setShow] = useState(true);
     const closeAlert = () => {

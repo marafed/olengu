@@ -8,29 +8,39 @@ function ShowBooksHostDetails({ match }) {
         fetchItem();
     }, []);
 
+    
+
     const [item, setItem] = useState({
         image: {
             url: ""
         },
-        name: "",
-        biography: {
-            "full-name": ""
-        },
-        work: {
-            occupation: ""
-        },
-        powerstats: {
-            intelligence:"",
-            strength: "",
-            speed:""
-        }
+        nome_annuncio: "",
+        luogo: "",
+        via: "",
+        descrizione: "",
+        prezzoanotte: "",
+        tasseanotte:"",
+        data_inizio:"",
+        data_fine:""
     });
+
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
             `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
         );
         const item = await fetchItem.json();
+<<<<<<< HEAD
+=======
+        
+        var data_inizio = new Date(item.data_inizio) // una cosa simila 
+        var data_fine = new Date(item.data_fine)
+    
+        const diffTime = Math.abs(data_fine - data_inizio);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+        
+        setItem(item);
+>>>>>>> 4271b8e9851baa8d764c05dfe58c7653b44aeaf8
     }
 
     return(
@@ -40,9 +50,9 @@ function ShowBooksHostDetails({ match }) {
                     <img style={{maxWidth: 300 + 'px'}} src={item.image.url} />
                 </div>
                 <div className="col-md-3" style={{margin: 2 + 'em', color: "white"}}>
-                    <h1 style={{fontWeight: "bold"}}>{item.name}</h1>
-                    <h3>{item.biography["full-name"]}</h3>
-                    <p>{item.work.occupation}</p>
+                    <h1 style={{fontWeight: "bold"}}>{item.nome_annuncio}</h1>
+                    <h3>{item.luogo}</h3>
+                    <p>{item.descrizione}</p>
                     
                 </div>
                 <div className="col-md-4 searchitem-card">
@@ -60,7 +70,7 @@ function ShowBooksHostDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.powerstats.speed}</h6>
+                                    <h6>{item.data_inizio}</h6>
                                 </div>
                             </div>
                         </div>
@@ -72,20 +82,20 @@ function ShowBooksHostDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.powerstats.speed}</h6>
+                                    <h6>{item.data_fine}</h6>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col" style={{marginTop: 1 + 'em'}}>
                                 <ul>
-                                    <li>Prezzo a notte: {item.powerstats.strength} €</li>
-                                    <li>Tassa di soggiorno: {item.powerstats.intelligence} €</li>
-                                    <li>Prezzo totale per 7 notti:</li>
+                                    <li>Prezzo a notte: {item.prezzoanotte} €</li>
+                                    <li>Tassa di soggiorno: {item.tasseanotte} €</li>
+                                    <li>Prezzo totale per {diffDays} notti:</li>
                                 </ul>
                                 <div className="row">
                                     <div className="col  text-center">
-                                        <h3>{item.powerstats.strength * 7 + item.powerstats.intelligence} €</h3>
+                                        <h3>{item.prezzoanotte + item.tasseanotte * diffDays} €</h3>
                                     </div>
                                 </div>
                             </div>
