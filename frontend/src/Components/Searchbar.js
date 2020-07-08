@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import SearchResults from '../Pages/SearchResults'
-
+ 
 function Searchbar() {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
@@ -28,7 +27,6 @@ function Searchbar() {
                             className="secondary-placeholder"
                             placeholder="Inserisci destinazione"
                             name="location" 
-                        
                             ref={register({max: 100, min: 1, required: true})}
                             /> 
                         </div>

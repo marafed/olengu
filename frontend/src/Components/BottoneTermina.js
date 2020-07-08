@@ -16,7 +16,7 @@ function BottoneTermina() {
     };
  
     return(
-        <button className="btn btn-gradient btn-dashboard">Termina e paga</button>
+        <button onSubmit={onSubmit} className="btn btn-gradient btn-dashboard">Termina e paga</button> // da vedere dove mettere le variabili
     );
 }
 

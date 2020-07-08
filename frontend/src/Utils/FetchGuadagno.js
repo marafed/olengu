@@ -11,21 +11,15 @@ function FetchGuadagno() {
 
     const fetchUser = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/apocalypse'
+            'https://www.superheroapi.com/api.php/3043826855693933/search/apocalypse' // fare api
         );
         const user = await data.json();
-        console.log(user.results);
-        setUser(user.results);
+        setUser(user);
     };
 
     return(
         <div>
-            {user.map(item => (
-            <h5 key={item.id}>
-               <h2 style={{color: "#ff31ea", fontWeight: "bold"}}>{item.powerstats.intelligence}</h2>
-            </h5>
-            
-        ))}
+            <h2 style={{color: "#ff31ea", fontWeight: "bold"}}>{user.guadagno}</h2>     
         </div>
     );
 }

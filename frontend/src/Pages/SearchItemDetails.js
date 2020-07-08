@@ -5,10 +5,14 @@ import Payment from './Payment';
 
 function SearchItemDetails({ match }) {
 
-    var data_inizio = localStorage.getItem("data1")
-    var data_fine = localStorage.getItem("data2")
-    var ospiti = localStorage.getItem("nospiti")
+    var data_arrivo = new Date(localStorage.getItem(data1)) // una cosa simila 
+    var data_ritorno = new Date(localStorage.getItem(data2))
 
+    const diffTime = Math.abs(data_ritorno - data_arrivo);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+    
+    var ospiti = localStorage.getItem("nospiti")
+    
     useEffect(() => {
         console.log(item);
         fetchItem();
@@ -17,7 +21,7 @@ function SearchItemDetails({ match }) {
     const [item, setItem] = useState({
         luogo: "loading",
         n_letti_matr: "loading",
-        n_divano_letto: "loadnig",
+        n_divano_letto: "loading",
         n_bagni: "loading",
         colazione : "loading",
         AC : "loading",
@@ -94,11 +98,11 @@ function SearchItemDetails({ match }) {
                                 <ul>
                                     <li>Prezzo a notte: {item.prezzo_notte} €</li>
                                     <li>Tassa di soggiorno: {item.tassa_soggiorno} €</li>
-                                    <li>Prezzo totale per 7 notti :</li>
+                                    <li>Prezzo totale per {diffDays} notti :</li>
                                 </ul>
                                 <div className="row">
                                     <div className="col  text-center">
-                                        <h3>{item.prezzo_notte* 7 + item.tassa_soggiorno*7} €</h3>
+                                    <h3>{item.prezzo_notte + item.tassa_soggiorno * diffDays} €</h3>
                                     </div>
                                 </div>
                             </div>

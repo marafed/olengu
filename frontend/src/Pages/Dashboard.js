@@ -1,24 +1,10 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import { Link } from 'react-router-dom';
 import FetchUtente from '../Utils/FetchUtente';
-import ShowBooks from '../Components/ShowBooks';
+
 
 function Dashboard() {
 
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-    const [items, setItems] = useState([]);
-
-    const fetchItems = async() => {
-        const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/bat'
-        );
-        const items = await data.json();
-        console.log(items.results);
-        setItems(items.results);
-    };
 
     /* componentDidMount() {
         fetch('/api/secret')

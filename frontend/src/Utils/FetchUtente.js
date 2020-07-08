@@ -21,11 +21,10 @@ function FetchUtente() {
     return(
         <div>
             {user.map(item => (
-            <h5 key={item.id}>
-               <h2 style={{color: "#ff31ea", fontWeight: "bold"}}>{item.name}</h2>
-            </h5>
-            
-        ))}
+                <h5 key={item.id}>
+                    <h2 style={{color: "#ff31ea", fontWeight: "bold"}}>{item.nome}</h2>
+                </h5>
+            ))}
         </div>
     );
 }
