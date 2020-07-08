@@ -1,6 +1,7 @@
 import React from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
+import BottoneTermina from './Components/BottoneTermina' 
 
 export default class Payment extends React.Component {
   state = {
@@ -63,7 +64,7 @@ export default class Payment extends React.Component {
                         onChange={this.handleInputChange}
                         onFocus={this.handleInputFocus}
                     /><br />
-                    <button className="btn-gradient btn-dashboard">Termina e paga</button>
+                    <button> <BottoneTermina /></button>
                 </form>
             </div>
         </div>

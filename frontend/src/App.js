@@ -41,7 +41,7 @@ function App() {
 
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />
-          <Route path="/SearchResults/:id" component={SearchItemDetails} />
+          <Route path="/SearchResults/:id_ann" component={SearchItemDetails} />
           <Route path="/PortaleHost" component={PortaleHost} /> 
           <Route path="/MyAnnunci" component={MyAnnunci} />
           <Route path="/ShowBooks" component={ShowBooks} />
