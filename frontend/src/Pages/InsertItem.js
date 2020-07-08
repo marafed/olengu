@@ -50,7 +50,7 @@ function InsertItem() {
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">  
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Servizi e struttura</h2>
                         <input type="checkbox" placeholder="Wifi" name="wifi" ref={register} />
-                        <label htmlFor="wifi" style={{fontWeight: 'bold'}}>Wi-fi</label><br/>y" name="babyfriendly" ref={register} />
+                        <label htmlFor="wifi" style={{fontWeight: 'bold'}}>Wi-fi</label><br/
                         <input type="checkbox" placeholder="Aria condizionata" name="ariacondizionata" ref={register} />
                         <label htmlFor="Aria condizionata" style={{fontWeight: 'bold'}}>Aria condizionata</label><br/>
                         <input type="checkbox" placeholder="Baby friendly" name="babyfriendly" ref={register} />
