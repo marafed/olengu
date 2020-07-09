@@ -11,7 +11,7 @@ function ShowBooksHost() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`/api/getprenotazionibyuserid/${localStorage.setItem('token')}`);
+        const data = await fetch(`/api/getprenotazionihost/${localStorage.setItem('token')}`);
         const items = await data.json();
         
         //inseriamo prenotazioni in localstorage per passar

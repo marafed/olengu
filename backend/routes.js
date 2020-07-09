@@ -24,7 +24,7 @@ module.exports = function(app) {
 
   app.route('/api/deletePrenotazione/:id_prenotazione/:token').get(methods.deletePrenotazione) //cancella prenotazione (by Host)
 
-  app.route('api/getprenotazioni/:token').get(methods.getPrenotazioniByToken);
+  app.route('api/getprenotazionihost/:token').get(methods.getPrenotazioniByToken);
 
   app.route('/api/auth/login').post(methods.login) //yes
   

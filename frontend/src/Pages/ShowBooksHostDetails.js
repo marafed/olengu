@@ -28,11 +28,11 @@ function ShowBooksHostDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
+            `/api/getprenotazionehost/${match.params.id}/${localStorage.getItem('token')}`
         );
         const item = await fetchItem.json();
         
-        var data_inizio = new Date(item.data_inizio) // una cosa simila 
+        var data_inizio = new Date(item.data_inizio)
         var data_fine = new Date(item.data_fine)
     
         const diffTime = Math.abs(data_fine - data_inizio);
