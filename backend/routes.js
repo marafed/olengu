@@ -16,13 +16,17 @@ module.exports = function(app) {
 
   app.route('/api/insertprenotazione').post(methods.insertPrenotazione) // inserisci Prenotazione si FUNZIONA yes
 
+  app.route('/api/updateprenotazioneconclusa/:id_prenotazione/:token').get(methods.updatePrenotazioneConclusa);
+
   app.route('/api/updateprenotazioneincorso/:id_prenotazione/:token').get(methods.updatePrenotazioneInCorso); //cambia status prenotazione in corso yes
 
   app.route('/api/updateprenotazioneattiva/:id_prenotazione/:token').get(methods.updatePrenotazioneAttiva) // cambia status prenotazione attiva FUNZIONA yes
 
   app.route('/api/deletePrenotazione/:id_prenotazione/:token').get(methods.deletePrenotazione) //cancella prenotazione (by Host)
 
+  app.route('api/getprenotazioni/:token').get(methods.getPrenotazioniByToken);
 
   app.route('/api/auth/login').post(methods.login) //yes
+  
   app.route('/api/auth/register').post(methods.register) //yes
 };

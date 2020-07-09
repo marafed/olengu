@@ -89,6 +89,14 @@ exports.updatePrenotazioneAttiva = function(req, res) {
   });
 };
 
+exports.updatePrenotazioneConclusa = function(req, res) {
+  Dbms.update_prenotazione_conclusa(req.params.id_prenotazione, req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
 exports.deletePrenotazione = function(req, res) {
   console.log(res.params)
   Dbms.delete_prenotazione(req.params.id_prenotazione, req.params.token,function(err, result) {

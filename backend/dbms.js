@@ -254,10 +254,10 @@ Dbms.update_prenotazione_in_corso  = function (id_prenotazione, token, result) {
     });
 };
 
-Dbms.update_prenotazione_attiva  = function (id_prenotazione, token, result) {
+Dbms.update_prenotazione_conclusa  = function (id_prenotazione, token, result) {
     let statement = 'UPDATE prenotazioni SET stato = ? WHERE id_prenotazione = ? AND host = (SELECT ref_id_usr AS host FROM session WHERE token = ?)';
 
-    sql.query(statement, ["attiva", id_prenotazione, token], function (err, res) {
+    sql.query(statement, ["conclusa", id_prenotazione, token], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);
