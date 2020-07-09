@@ -25,24 +25,24 @@ function AttiveDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
+            `https://localhost/api/updateprenotazione${match.params.id}`
         );
         const item = await fetchItem.json();
 
         var data_inizio = new Date(item.data_inizio) // una cosa simila 
         var data_fine = new Date(item.data_fine)
-    
+
         const diffTime = Math.abs(data_fine - data_inizio);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;           
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
 
         setItem(item);
-        
+
     }
 
     return(
         <div className="containerFluid">
             <div className="row">
-                <div className="col-md-3" style={{margin: 1 + 'em'}}>                  
+                <div className="col-md-3" style={{margin: 1 + 'em'}}>
                     <img style={{maxWidth: 300 + 'px'}} src={item.image.url} />
                 </div>
                 <div className="col-md-3" style={{margin: 2 + 'em', color: "white"}}>
@@ -94,10 +94,10 @@ function AttiveDetails({ match }) {
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
-                    <button className="btn-gradient btn-dashboard">Check-In</button>    
+                    <button className="btn-gradient btn-dashboard">Check-In</button>
                 </div>
             </div>
         </div>

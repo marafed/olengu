@@ -24,7 +24,7 @@ function InCorsoDetails({ match }) {
     });
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
+            `https://localhost/api/updateprenotazione${match.params.id}`
         );
         const item = await fetchItem.json();
         setItem(item);

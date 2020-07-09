@@ -89,9 +89,10 @@ Dbms.get_annunci_by_id = function (id, result) {
 });
 };
 
-Dbms.insert_annuncio = function (json, result) {   
-        let statement = `INSERT INTO annunci(ref_id_usr,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,animali_domestici_ammessi,baby_friendly,tassa_soggiorno)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
-        let values = [json.ref_id_usr,json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.animali_domestici_ammessi,json.baby_friendly,json.tassa_soggiorno];
+Dbms.insert_annuncio = function (json, result) {  
+
+        let statement = `INSERT INTO annunci(host,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,animali_domestici_ammessi,baby_friendly,tassa_soggiorno)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+        let values = [json.host,json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.animali_domestici_ammessi,json.baby_friendly,json.tassa_soggiorno];
 
         sql.query(statement, values, function (err, res) {
                 if(err) {
@@ -109,8 +110,8 @@ Dbms.update_annuncio = function (json, result) {
 
     console.log(json)
 
-    let statement = 'UPDATE annunci SET nome_annuncio = ?,luogo = ?,indirizzo = ?,descrizione = ?,attrazioni = ?,is_bnb = ?,n_ospiti = ?,prezzo_notte = ?,n_letti_singoli = ?,n_letti_matr = ?,n_divano_letto = ?,n_camere = ?,n_bagni = ?,colazione = ?,AC = ?,parcheggio = ?,wifi = ?,lavatrice = ?,baby_friendly =? where id_ann = ?'
-    let values = [json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.lavatrice,json.baby_friendly,json.id_ann];
+    let statement = 'UPDATE annunci SET nome_annuncio = ?,luogo = ?,indirizzo = ?,descrizione = ?,attrazioni = ?,is_bnb = ?,n_ospiti = ?,prezzo_notte = ?,n_letti_singoli = ?,n_letti_matr = ?,n_divano_letto = ?,n_camere = ?,n_bagni = ?,colazione = ?,AC = ?,parcheggio = ?,wifi = ?,animali_domestici_ammessi= ?,baby_friendly =? where id_ann = ?'
+    let values = [json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.animali_domestici_ammessi,json.baby_friendly,json.id_ann];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -139,9 +140,9 @@ Dbms.get_annunci_by_luogo = function (luogo, result) {
 };
 
 Dbms.insert_prenotazione = function (json, result) {
-
-    var statement = `INSERT INTO prenotazioni(ref_id_usr,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno,stato,tot_pagato)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    var values = [json.ref_id_usr,json.ref_id_ann,json.check_in_giorno,json.check_in_mese,json.check_in_anno,json.check_out_giorno,json.check_out_mese,json.check_out_anno,json.stato,json.tot_pagato];
+    var insospeso = "sospeso";
+    var statement = `INSERT INTO prenotazioni(host,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno,stato,tot_pagato,guest)VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
+    var values = [json.host,json.ref_id_ann,json.check_in_giorno,json.check_in_mese,json.check_in_anno,json.check_out_giorno,json.check_out_mese,json.check_out_anno,insospeso,json.tot_pagato,json.guest];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -168,11 +169,11 @@ Dbms.get_annuncio = function (json,result) {
 });
 };
 
-Dbms.get_prenotazioni_by_user_id = function (id,result) {
+Dbms.get_prenotazioni_by_token = function (token,result) {
     
-    let statement = 'SELECT * FROM prenotazioni WHERE ref_id_usr = ?';
+    let statement = 'SELECT * FROM prenotazioni JOIN session WHERE session.token = ? and session.ref_id_usr = prenotazioni.ref_id_usr';
   
-    sql.query(statement, id, function (err, res) {
+    sql.query(statement, token, function (err, res) {
               if(err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -186,7 +187,6 @@ Dbms.get_prenotazioni_by_user_id = function (id,result) {
 
 Dbms.update_prenotazione = function (json, result) {
     
-
     console.log(json);
     var obj = JSON.parse(json);
   
@@ -220,6 +220,37 @@ Dbms.delete_prenotazione = function (id, result) {
   });
 };
 
+Dbms.update_user = function (id, result) {
+    
+    let statement = 'UPDATE user SET is_host = ? where id_usr = ?'
+    let values = [1, id];
+
+    sql.query(statement, values, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res);
+         }
+  });
+};
+
+Dbms.status_active = function (id, result) {
+    
+    let statement = 'UPDATE prenotazioni SET stato = ? where id_ann = ?'
+    let values = ["in_corso", id];
+
+    sql.query(statement, values, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res);
+         }
+  });
+};
 
 
 module.exports = Dbms;
