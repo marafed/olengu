@@ -141,7 +141,7 @@ Dbms.get_annunci_by_luogo = function (luogo, result) {
 
 Dbms.insert_prenotazione = function (json, result) {
     var insospeso = "sospeso";
-    var statement = `INSERT INTO prenotazioni(host,ref_id_ann,check_in_giorno,check_in_mese,check_in_anno,check_out_giorno,check_out_mese,check_out_anno,stato,tot_pagato,guest)VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
+    var statement = `INSERT INTO prenotazioni(host,ref_id_ann,checkin,checkout,stato,tot_pagato,guest)VALUES(?,?,?,?,?,?,?)`;
     var values = [json.host,json.ref_id_ann,json.check_in_giorno,json.check_in_mese,json.check_in_anno,json.check_out_giorno,json.check_out_mese,json.check_out_anno,insospeso,json.tot_pagato,json.guest];
 
     sql.query(statement, values, function (err, res) {
