@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   app.route('/welcome/:id').get(methods.welcome); //test
 
-  app.route('/api/getAnnunciByUserId/:id').get(methods.getAnnunciByUserId) // i miei annunci si 
+  app.route('/api/getAnnuncibybserbd/:id').get(methods.getAnnunciByUserId) // i miei annunci si 
 
   app.route('/api/getannunciobyid/:id').get(methods.getAnnunciById) //annuncio click
 
@@ -12,11 +12,11 @@ module.exports = function(app) {
 
   app.route('/api/updateannuncio').post(methods.updateAnnuncio) //modifica annuncio  si cazzo
 
-  app.route('/api/getAnnunciByLuogo/:nomeluogo').get(methods.getAnnunciByLuogo) //ricerca si cazzo
+  app.route('/api/getannuncibyLuogo/:nomeluogo').get(methods.getAnnunciByLuogo) //ricerca si cazzo
 
   app.route('/api/insertprenotazione').post(methods.insertPrenotazione) // inserisci Prenotazione si
 
-  app.route('/api/getPrenotazioniByUserId/:id').get(methods.getPrenotazioniUserId) // le mie prenotazioni si 
+  app.route('/api/getprenotazionibyuserid/:id').get(methods.getPrenotazioniUserId) // le mie prenotazioni si 
 
   app.route('/api/updateprenotazioneattiva/:id_prenotazione').get(methods.updatePrenotazioneAttiva) // cambia status prenotazione attiva
 
@@ -31,7 +31,7 @@ module.exports = function(app) {
   // vediamo un po //
   app.route('/api/updateuser/:id_usr').get(methods.updateUser); //lo fai diventare host
 
-  app.route('/api/statusactive/:active').get(methods.statusActive); //lo trasformi in attiva
+  app.route('/api/getprenotazioniattiva/:id_usr').get(methods.getPrenotazioneAttiva); // ti da le prenotazioni attive
 
   app.route('/api/')
   };

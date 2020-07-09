@@ -184,41 +184,6 @@ Dbms.get_prenotazioni_by_token = function (token,result) {
 });
 };
 
-
-Dbms.update_prenotazione_attiva = function (id, result) {
-
-    let stato ="attiva";
-    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
-    let values = [stato,id];
-
-    sql.query(statement, values, function (err, res) {
-            if(err) {
-                console.log("error: ", err);
-                result(err, null);
-            }
-            else{
-                result(null, res);
-         }
-  });
-};
-
-Dbms.update_prenotazione_attiva = function (id, result) {
-    
-    let stato ="attiva";
-    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
-    let values = [stato,id];
-
-    sql.query(statement, values, function (err, res) {
-            if(err) {
-                console.log("error: ", err);
-                result(err, null);
-            }
-            else{
-                result(null, res);
-         }
-  });
-};
-
 Dbms.delete_prenotazione = function (id, result) {
 
     let statement = 'DELETE FROM prenotazioni where id_prenotazione = ?'
@@ -250,10 +215,12 @@ Dbms.update_user = function (id, result) {
   });
 };
 
-Dbms.status_active = function (id, result) {
+
+Dbms.update_prenotazione_attiva = function (id, result) {
     
-    let statement = 'UPDATE prenotazioni SET stato = ? where id_ann = ?'
-    let values = ["in_corso", id];
+    let stato ="attiva";
+    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
+    let values = [stato,id];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -266,7 +233,7 @@ Dbms.status_active = function (id, result) {
   });
 };
 
-Dbms.status_in_corso = function (id, result) {
+Dbms.update_prenotazione_in_corso  = function (id, result) {
     
     let stato ="incorso";
     let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
@@ -283,4 +250,19 @@ Dbms.status_in_corso = function (id, result) {
   });
 };
 
+Dbms.get_prenotazioni_attiva = function(id ,result) {
+    let stato ="attiva";
+    let statement = 'SELECT * FROM prenotazioni WHERE stato = ? and host = ?';
+    let values = [stato,id];
+
+    sql.query(statement, values, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else{
+            result(null, res);
+     }
+});
+}
 module.exports = Dbms;

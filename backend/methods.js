@@ -111,8 +111,24 @@ exports.statusActive = function(req, res) {
   });
 };
 
+exports.updatePrenotazioneAttiva = function(req, res) {
+  Dbms.update_prenotazione_attiva (req.params.incorso,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
 exports.updatePrenotazioneInCorso = function(req, res) {
-  Dbms.status_in_corso(req.params.incorso,function(err, result) {
+  Dbms.update_prenotazione_in_corso (req.params.incorso,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.getPrenotazioniAttive= function(req, res) {
+  Dbms.get_prenotazioni_attiva(req.params.id,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
