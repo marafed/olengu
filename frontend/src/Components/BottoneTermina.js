@@ -1,6 +1,7 @@
 import React from 'react';
 
-function BottoneTermina() {
+function BottoneTermina({ props }) {
+    
     const onSubmit = async data => {
         var answer = await fetch(
             "/api/insertprenotazione", {
