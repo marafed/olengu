@@ -16,17 +16,24 @@ exports.insertAnnuncio = function(req, res) {
     res.json(result);
   });
 };
+exports.updateUser = function(req, res) {
+  Dbms.update_user(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
 
-exports.getAnnunciByUserId = function(req, res) {
-  Dbms.get_annunci_by_user_id(req.params.id, function(err, result) {
+exports.getAnnunciByToken = function(req, res) {
+  Dbms.get_annunci_by_token(req.params.token, function(err, result) {
     if (err)
       res.send(err);
     res.json(result);
   });
 };
 
-exports.getAnnunciById = function(req, res) {
-  Dbms.get_annunci_by_id(req.params.id, function(err, result) {
+exports.getAnnuncio = function(req, res) {
+  Dbms.get_annuncio(req.params.id_annuncio, function(err, result) {
     if (err)
       res.send(err);
     res.json(result[0]);
@@ -49,6 +56,7 @@ exports.updateAnnuncio = function(req, res) {
   });
 };
 
+
 exports.insertPrenotazione = function(req,res) {
   Dbms.insert_prenotazione(req.body,function(err, result){
     if(err)
@@ -65,9 +73,16 @@ exports.getPrenotazioniByToken= function(req, res) {
   });
 };
 
-exports.updatePrenotazioneAttiva = function(req, res) {
-  Dbms.update_prenotazione_attiva(req.params.id_pren,function(err, result) {
+exports.updatePrenotazioneInCorso = function(req, res) {
+  Dbms.update_prenotazione_in_corso (req.params.id_prenotazione, req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
 
+exports.updatePrenotazioneAttiva = function(req, res) {
+  Dbms.update_prenotazione_attiva(req.params.id_prenotazione, req.params.token,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -76,7 +91,7 @@ exports.updatePrenotazioneAttiva = function(req, res) {
 
 exports.deletePrenotazione = function(req, res) {
   console.log(res.params)
-  Dbms.delete_prenotazione(req.params.prenotazioneid,function(err, result) {
+  Dbms.delete_prenotazione(req.params.id_prenotazione, req.params.token,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -84,19 +99,8 @@ exports.deletePrenotazione = function(req, res) {
 };
 
 exports.login = function(req, res) {
-  Dbms.loginX(req.body, res);
+  Dbms.login(req.body, res);
 };
-
-
-exports.login_provvisorio = function(req, res) {
-  Dbms.login_provv(req.body,function(err, result) {
-    if(err)
-      res.send(err)
-    res.json(result)
-  });
-};
-
-
 
 exports.register = function(req, res) {
   console.log("siamo qui")
@@ -105,46 +109,4 @@ exports.register = function(req, res) {
       res.send(err);
     res.send(res_db);
    });
-};
-
-
-exports.updateUser = function(req, res) {
-  Dbms.update_user(req.params.id_usr,function(err, result) {
-    if(err)
-      res.send(err)
-    res.json(result)
-  });
-};
-
-exports.statusActive = function(req, res) {
-  Dbms.status_active(req.params.active,function(err, result) {
-    if(err)
-      res.send(err)
-    res.json(result)
-  });
-};
-
-
-exports.updatePrenotazioneInCorso = function(req, res) {
-  Dbms.update_prenotazione_in_corso (req.params.id_prenotazione,function(err, result) {
-    if(err)
-      res.send(err)
-    res.json(result)
-  });
-};
-
-exports.getPrenotazioniAttive= function(req, res) {
-  Dbms.get_prenotazioni_attiva(req.params.id,function(err, result) {
-    if(err)
-      res.send(err)
-    res.json(result)
-  });
-};
-
-exports.getPrenotazioniInCorso= function(req, res) {
-  Dbms.get_prenotazioni_in_corso(req.params.id,function(err, result) {
-    if(err)
-      res.send(err)
-      res.json(result)
-    });  
 };
