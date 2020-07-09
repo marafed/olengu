@@ -8,11 +8,11 @@ module.exports = function(app) {
 
   app.route('/api/getannunciobyid/:id').get(methods.getAnnunciById) //annuncio click
 
-  app.route('/api/insertannuncio').post(methods.insertAnnuncio) // inserisci annuncio si
+  app.route('/api/insertannuncio').post(methods.insertAnnuncio) // inserisci annuncio si cazzo
 
-  app.route('/api/updateannuncio').post(methods.updateAnnuncio) //modifica annuncio  si
+  app.route('/api/updateannuncio').post(methods.updateAnnuncio) //modifica annuncio  si cazzo
 
-  app.route('/api/getAnnunciByLuogo/:nomeluogo').get(methods.getAnnunciByLuogo) //ricerca si
+  app.route('/api/getAnnunciByLuogo/:nomeluogo').get(methods.getAnnunciByLuogo) //ricerca si cazzo
 
   app.route('/api/insertprenotazione').post(methods.insertPrenotazione) // inserisci Prenotazione si
 
@@ -26,4 +26,10 @@ module.exports = function(app) {
 
   app.route('/api/auth/register').post(methods.register)
 
+  // vediamo un po //
+  app.route('/api/updateuser/:id_usr').get(methods.updateUser); //lo fai diventare host
+
+  app.route('/api/statusactive/:active').get(methods.statusActive); //lo trasformi in attiva
+
+  app.route('/api/')
   };
