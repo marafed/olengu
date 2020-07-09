@@ -65,8 +65,32 @@ exports.insertPrenotazione = function(req,res) {
   });
 };
 
-exports.getPrenotazioniByToken= function(req, res) {
-  Dbms.get_prenotazioni_by_token(req.params.token,function(err, result) {
+exports.getPrenotazioniByHost= function(req, res) {
+  Dbms.get_prenotazioni_by_host(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.getPrenotazioniByGuest= function(req, res) {
+  Dbms.get_prenotazioni_by_guest(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.getPrenotazioneByHost= function(req, res) {
+  Dbms.get_prenotazione_by_host(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.getPrenotazioneByGuest= function(req, res) {
+  Dbms.get_prenotazione_by_guest(req.params.token,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)

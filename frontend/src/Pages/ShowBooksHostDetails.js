@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from 'react';
 
- 
-
 function ShowBooksHostDetails({ match }) {
 
     useEffect(() => {
         fetchItem();
     }, []);
-
-    
 
     const [item, setItem] = useState({
         image: {
