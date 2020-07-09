@@ -11,7 +11,7 @@ function SearchResults() {
     }
 
     var filter
-    if (alert) { 
+    if (alert) {
         filter = <SearchResultsPopup onClosing={onClosingAlert}/>
     }
     useEffect(() => {
@@ -42,7 +42,7 @@ function SearchResults() {
                     {items.map(item => (
                         <h5 key={item.id}>
                             <Link to={`/SearchResults/${item.id_ann}`} >
-                                <SearchItemBox item={item} /> 
+                                <SearchItemBox item={item} />
                             </Link>
                         </h5>
                     ))}

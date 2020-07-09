@@ -57,8 +57,8 @@ exports.insertPrenotazione = function(req,res) {
   });
 };
 
-exports.getPrenotazioniUserId= function(req, res) {
-  Dbms.get_prenotazioni_by_user_id(req.params.id,function(err, result) {
+exports.getPrenotazioniByToken= function(req, res) {
+  Dbms.get_prenotazioni_by_token(req.params.token,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -83,7 +83,7 @@ exports.deletePrenotazione = function(req, res) {
 
 exports.login = function(req, res) {
   Dbms.loginX(req.body, res);
-}
+};
 
 exports.register = function(req, res) {
   console.log("siamo qui")
@@ -133,6 +133,7 @@ exports.getPrenotazioniAttive= function(req, res) {
       res.send(err)
     res.json(result)
   });
+};
 
 exports.getPrenotazioniInCorso= function(req, res) {
   Dbms.get_prenotazioni_in_corso(req.params.id,function(err, result) {
@@ -141,4 +142,3 @@ exports.getPrenotazioniInCorso= function(req, res) {
       res.json(result)
     });  
 };
-

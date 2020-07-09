@@ -3,7 +3,6 @@ import SearchItemBox from '../Components/SearchItemBox';
 import { Link } from 'react-router-dom';
 
 function BooksInSospeso() {
-
     useEffect(() => {
         fetchItems();
     }, []);
@@ -35,8 +34,8 @@ function BooksInSospeso() {
             {items.map(item => (
                 <Link to={`/BooksInSospeso/${item.id}`} >
                     <SearchItemBox item={item} />
-                    <button onClick={accetta(`${item.id}`)}>Accetta</button>
-                    <button onClick={rifiuta(`${item.id}`)}>Rifiuta</button>
+                    <button className="btn-secondary btn-dashboard" onClick={accetta(`${item.id}`)}>Accetta</button>
+                    <button className="btn-secondary btn-dashboard" onClick={rifiuta(`${item.id}`)}>Rifiuta</button>
                 </Link>
             ))}
         </div>

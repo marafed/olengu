@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
- 
+import {Link} from 'react-router-dom';
 
 function AttiveDetails({ match }) {
 
@@ -27,7 +26,7 @@ function AttiveDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://localhost/api/updateprenotazione${match.params.id}`
+            `/api/updateprenotazione/${match.params.id}`
         );
         const item = await fetchItem.json();
 
@@ -99,7 +98,9 @@ function AttiveDetails({ match }) {
 
                         </div>
                     </div>
-                    <button className="btn-gradient btn-dashboard">Check-In</button>
+                    <Link to="/CheckIn" prenotazione={match.params.id}>
+                        <button className="btn-gradient btn-dashboard">Check-In</button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ function InCorsoDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://localhost/api/updateprenotazione${match.params.id}`
+            `/api/updateprenotazione${match.params.id}`
         );
         const item = await fetchItem.json();
         setItem(item);

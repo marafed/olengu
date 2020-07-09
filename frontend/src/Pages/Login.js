@@ -62,7 +62,7 @@ class Login extends Component {
                         alert("credenziali non valide");
                     }
                     if(json.status === true) {
-                        localStorage.setItem('session',JSON.stringify(json.token));
+                        localStorage.setItem('session', json.token);
                         this.props.history.push('/dashboard');
                     }
                 })

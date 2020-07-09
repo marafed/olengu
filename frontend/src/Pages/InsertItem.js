@@ -1,14 +1,13 @@
-import React, { Component,  useState} from 'react';
+import React, {Component,  useState} from 'react';
 import { useForm } from 'react-hook-form';
-
-// import CountersItem from './Components/CountersItem';
 
 function InsertItem() {
     
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = async data => {
-        var answer = await fetch(
-            "/api/auth/insertitem",{
+
+    const send = data => {
+        var answer = fetch(
+            "/api/insertAnnuncio",{
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -22,7 +21,7 @@ function InsertItem() {
    
     return(
         <div className="InsertItem">
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form onSubmit={handleSubmit(send)} noValidate>
                 <div className="row" id="insertitem-box">
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">
                         <h2 style={{marginTop: 0.01 + 'em', textAlign: "center"}}>Info generali</h2>
@@ -82,6 +81,7 @@ function InsertItem() {
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Camere" name="ncamere" ref={register} />
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Bagni" name="nbagni" ref={register} />
                         </div>
+                        <input style={{visibility: 'hidden'}} name="session" ref={register} value={localStorage.getItem('session')} />
                         <button type="submit" className="btn btn-gradient" id="register-host-btn">Registra appartamento</button>
                     </div>
                 </div>  
