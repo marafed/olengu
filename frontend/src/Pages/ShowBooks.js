@@ -11,7 +11,7 @@ function ShowBooks() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`/api/getPrenotazioniByToken/${localStorage.getItem('session')}`);
+        const data = await fetch(`/api/getPrenotazioniByToken/${localStorage.getItem('token')}`);
         const items = await data.json();
         setItems(items);
     };

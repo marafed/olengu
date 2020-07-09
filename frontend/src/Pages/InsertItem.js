@@ -81,7 +81,7 @@ function InsertItem() {
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Camere" name="ncamere" ref={register} />
                             <input style={{marginTop: 1 + 'em'}} type="number" placeholder="N. Bagni" name="nbagni" ref={register} />
                         </div>
-                        <input style={{visibility: 'hidden'}} name="session" ref={register} value={localStorage.getItem('session')} />
+                        <input style={{visibility: 'hidden'}} name="token" ref={register} value={localStorage.getItem('token')} />
                         <button type="submit" className="btn btn-gradient" id="register-host-btn">Registra appartamento</button>
                     </div>
                 </div>  

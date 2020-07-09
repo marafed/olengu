@@ -5,7 +5,7 @@ function CheckIn(props) {
 
     const send = () => {
         var data = {
-            "session": localStorage.getItem("session"),
+            "token": localStorage.getItem("token"),
             "prenotazione": props.prenotazione,
             "file": file
         }
