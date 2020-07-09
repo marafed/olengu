@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 function FetchUtente() {
     useEffect(() => {
-        fetchUser();
+      
     }, []);
 
     const [user, setUser] = useState([]);

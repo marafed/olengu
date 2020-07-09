@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useReducer} from 'react';
-import SearchItemBox from '../Components/SearchItemBox';
+import PrenotazioneItem from '../Components/PrenotazioneItem';
 import { Link } from 'react-router-dom';
 
 function ShowBooksHost() {
@@ -13,6 +13,11 @@ function ShowBooksHost() {
     const fetchItems = async() => {
         const data = await fetch(`/api/getprenotazionibyuserid/${localStorage.setItem('token')}`);
         const items = await data.json();
+        
+        //inseriamo prenotazioni in localstorage per passar
+        var prenotazioni_array_string_form = JSON.stringify(items);
+        localStorage.setItem("prenotazioni_string", prenotazioni_array_string_form)
+
         setItems(items);
     };
 
@@ -25,11 +30,9 @@ function ShowBooksHost() {
                     <Link to="/BooksConcluse" className="link-bookshost-sidebar">Prenotazioni concluse</Link><br />
             </div>
             <div className="col-lg-10 col-md-12">
-                <h1 style={{color: "white", margin: 1 + 'em', fontWeight: "bold"}}>Le tue prenotazioni</h1>
+                <h1 style={{color: "white", margin: 1 + 'em', fontWeight: "bold"}}>Tutte le tue prenotazioni</h1>
                 {items.map(item => (
-                    <Link to={`/ShowBooksHost/${item.id}`} >
-                        <SearchItemBox item={item} />
-                    </Link>
+                    <PrenotazioneItem item={item} />
                 ))}
             </div>
         </div>

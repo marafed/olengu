@@ -37,6 +37,42 @@ Dbms.loginX = function (loginjson, apires) {
     });
 };
 
+//query provvisoria per user_id
+Dbms.login_provv= function (loginjson, result) {
+
+    var statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
+    var values = [loginjson.email, loginjson.password];
+
+
+    sql.query(statement, values, function (err, res) {
+              if(err) {
+                console.log("error: ", err);
+                result(null, err);
+              }
+          else{
+        result(null, res[0]);
+    }
+});
+};
+
+Dbms.get_prenotazioni_by_host_id = function (hostid,result) {
+
+
+    
+    let statement = 'SELECT * FROM prenotazioni WHERE host = ?';
+  
+    sql.query(statement,hostid, function (err, res) {
+              if(err) {
+                console.log("error: ", err);
+                result(null, err);
+              }
+          else{
+        result(null, res);
+    }
+});
+};
+
+
 
 Dbms.register_user = function (registrationjson, result) {
     console.log("siamo nel dbms")
@@ -44,9 +80,7 @@ Dbms.register_user = function (registrationjson, result) {
     let statement = "INSERT INTO user (is_host, nome, cognome, data_nascita, email, pswd) VALUES(?,?,?,?,?,?)";
     let values = [0,registrationjson.firstname, registrationjson.surname, registrationjson.birthday, registrationjson.email, registrationjson.password];
     
- 
-
-sql.query(statement, values, function (err, res) {
+    sql.query(statement, values, function (err, res) {
               if(err) {
                   console.log("error: ", err);
                   result(null, err);
@@ -58,11 +92,11 @@ sql.query(statement, values, function (err, res) {
 };
 
 
-Dbms.get_annunci_by_user_id = function (user_id, result) {
+Dbms.get_annunci_by_user_id = function (host, result) {
 
-    let statement = "SELECT * FROM annunci WHERE ref_id_usr = ? "
+    let statement = "SELECT * FROM annunci WHERE host = ? "
 
-    sql.query(statement, user_id, function (err, res) {
+    sql.query(statement, host, function (err, res) {
               if(err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -217,9 +251,11 @@ Dbms.update_user = function (id, result) {
 
 
 Dbms.update_prenotazione_attiva = function (id, result) {
-    
+
+    console.log(id)
+
     let stato ="attiva";
-    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
+    let statement = 'UPDATE prenotazioni SET stato = ? WHERE id_prenotazione = ?';
     let values = [stato,id];
 
     sql.query(statement, values, function (err, res) {

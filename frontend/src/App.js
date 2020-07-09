@@ -38,7 +38,7 @@ function App() {
           <Route path="/become_host" component={HomeHost} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
-          <Route path="/dashboard" exact component={WithAuth(Dashboard)} />
+          <Route path="/dashboard" exact component={Dashboard} />
 
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />

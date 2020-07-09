@@ -50,19 +50,28 @@ class Login extends Component {
                         'Content-Type': 'application/json'
                       }
                 })
-                .then(res => {
+
+            const data = await answer.json();
+            console.log(data.id_usr)
+            localStorage.setItem("user_id",data.id_usr)
+                .then(
+                    
+                    res => {
                     if (!res.ok) {
                         const error = new Error(res.error);
                         throw error;
+                    }else{
+                        console.log("si")
+                        return res.json()
                     }
-                    return res.json()
                 })
                 .then(json => {
                     if(json.status === false) {
                         alert("credenziali non valide");
                     }
                     if(json.status === true) {
-                        localStorage.setItem('token', json.token);
+                        localStorage.setItem("user_id", json.id_usr)
+                        localStorage.setItem('session', json.token);
                         this.props.history.push('/dashboard');
                     }
                 })
@@ -141,7 +150,7 @@ class Login extends Component {
                                 <p style={{color: '#bdbdbd'}}>Non sei ancora registrato? <Link to="/Register"style={{color: '#ff31ea', fontWeight: 'bold'}}>Registrati!</Link></p>
                             </div>
                             <div className="text-right">
-                                <button type="submit" className="btn btn-gradient" id="login-form-btn">Login</button>
+                                <button onClick={this.handleLogin} className="btn btn-gradient" id="login-form-btn">Login</button>
                             </div>
                             </form>
                         </div>
