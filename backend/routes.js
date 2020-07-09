@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   app.route('/welcome/:id').get(methods.welcome); //test
 
-  app.route('/api/getAnnuncibybserbd/:id').get(methods.getAnnunciByUserId) // i miei annunci si 
+  app.route('/api/getannuncibyid/:id').get(methods.getAnnunciByUserId) // i miei annunci si 
 
   app.route('/api/getannunciobyid/:id').get(methods.getAnnunciById) //annuncio click
 
@@ -32,6 +32,8 @@ module.exports = function(app) {
   app.route('/api/updateuser/:id_usr').get(methods.updateUser); //lo fai diventare host
 
   app.route('/api/getprenotazioniattiva/:id_usr').get(methods.getPrenotazioneAttiva); // ti da le prenotazioni attive
+
+  app.route('/api/getprenotazioniincorso/:id_usr').get(methods.getPrenotazioneInCorso); // ti da le prenotazioni attive
 
   app.route('/api/')
   };

@@ -265,4 +265,20 @@ Dbms.get_prenotazioni_attiva = function(id ,result) {
      }
 });
 }
+
+Dbms.get_prenotazioni_in_corso = function(id ,result) {
+    let stato ="incorso";
+    let statement = 'SELECT * FROM prenotazioni WHERE stato = ? and host = ?';
+    let values = [stato,id];
+
+    sql.query(statement, values, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else{
+            result(null, res);
+     }
+});
+}
 module.exports = Dbms;

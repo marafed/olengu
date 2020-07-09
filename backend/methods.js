@@ -133,5 +133,12 @@ exports.getPrenotazioniAttive= function(req, res) {
       res.send(err)
     res.json(result)
   });
+
+exports.getPrenotazioniInCorso= function(req, res) {
+  Dbms.get_prenotazioni_in_corso(req.params.id,function(err, result) {
+    if(err)
+      res.send(err)
+      res.json(result)
+    });  
 };
 
