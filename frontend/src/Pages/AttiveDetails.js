@@ -23,6 +23,8 @@ function AttiveDetails({ match }) {
         data_fine:""
     });
 
+    var diffDays;
+
     const fetchItem = async() => {
         const fetchItem = await fetch(
             `https://localhost/api/updateprenotazione${match.params.id}`
@@ -33,7 +35,7 @@ function AttiveDetails({ match }) {
         var data_fine = new Date(item.data_fine)
 
         const diffTime = Math.abs(data_fine - data_inizio);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+        diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
 
         setItem(item);
 

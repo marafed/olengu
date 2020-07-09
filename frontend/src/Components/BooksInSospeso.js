@@ -12,11 +12,21 @@ function BooksInSospeso() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/ze'
+            '/api/getprenotazioniinsospeso/:id'
         );
         const items = await data.json();
         console.log(items.results);
         setItems(items.results);
+    };
+
+    const accetta = async(id) => {
+        const data = await fetch(`/api/updateprenotazioneattiva/${id}`);
+        fetchItems();
+    };
+
+    const rifiuta = async(id) => {
+        const data = await fetch(`/api/deletePrenotazione/${id}`);
+        fetchItems();
     };
 
     return(
@@ -24,7 +34,9 @@ function BooksInSospeso() {
             <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni in sospeso</h1>
             {items.map(item => (
                 <Link to={`/BooksInSospeso/${item.id}`} >
-                    <SearchItemBox item={item} /> 
+                    <SearchItemBox item={item} />
+                    <button onClick={accetta(`${item.id}`)}>Accetta</button>
+                    <button onClick={rifiuta(`${item.id}`)}>Rifiuta</button>
                 </Link>
             ))}
         </div>

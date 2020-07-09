@@ -1,9 +1,5 @@
 import React from 'react';
 
-<<<<<<< HEAD
-function BottoneTermina({ props }) {
-    
-=======
 function BottoneTermina(props) {
     const data = {
         "id_annuncio":  props.id,
@@ -19,7 +15,6 @@ function BottoneTermina(props) {
         }
     };
 
->>>>>>> daa2236ca803c9ac968863ad5de61f501d4e3512
     const onSubmit = async data => {
         var answer = await fetch(
             "/api/insertprenotazione", {

@@ -14,8 +14,8 @@ import SearchResults from './Pages/SearchResults';
 import SearchItemDetails from './Pages/SearchItemDetails';
 import InCorsoDetails from './Pages/InCorsoDetails';
 import ShowBooksHostDetails from "./Pages/ShowBooksHostDetails";
-import ShowBooks from './Components/ShowBooks';
-import ShowBooksHost from './Components/ShowBooksHost';
+import ShowBooks from './Pages/ShowBooks';
+import ShowBooksHost from './Pages/ShowBooksHost';
 import BooksInCorso from './Components/BooksInCorso';
 import BooksAttive from "./Components/BooksAttive"
 import MyAnnunci from './Pages/MyAnnunci';

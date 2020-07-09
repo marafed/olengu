@@ -12,11 +12,10 @@ function ShowBooksHost() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/bat'
+            '/api/getprenotazionibyuserid/:id'
         );
         const items = await data.json();
-        console.log(items.results);
-        setItems(items.results);
+        setItems(items);
     };
 
     return(
@@ -31,7 +30,7 @@ function ShowBooksHost() {
                 <h1 style={{color: "white", margin: 1 + 'em', fontWeight: "bold"}}>Le tue prenotazioni</h1>
                 {items.map(item => (
                     <Link to={`/ShowBooksHost/${item.id}`} >
-                        <SearchItemBox item={item} /> 
+                        <SearchItemBox item={item} />
                     </Link>
                 ))}
             </div>

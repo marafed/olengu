@@ -5,13 +5,13 @@ import Payment from './Payment';
 
 function SearchItemDetails({ match }) {
 
-    var data_arrivo = new Date(localStorage.getItem(data1)) // una cosa simila 
-    var data_ritorno = new Date(localStorage.getItem(data2))
+    var data_inizio = new Date(localStorage.getItem("data1")); // una cosa simila 
+    var data_fine = new Date(localStorage.getItem("data2"));
 
-    const diffTime = Math.abs(data_ritorno - data_arrivo);
+    const diffTime = Math.abs(data_fine - data_inizio);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
     
-    var ospiti = localStorage.getItem("nospiti")
+    var ospiti = localStorage.getItem("nospiti");
     
     useEffect(() => {
         console.log(item);

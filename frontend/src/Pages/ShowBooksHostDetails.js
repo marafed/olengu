@@ -24,23 +24,21 @@ function ShowBooksHostDetails({ match }) {
         data_fine:""
     });
 
+    var diffDays;
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
             `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
         );
         const item = await fetchItem.json();
-<<<<<<< HEAD
-=======
         
         var data_inizio = new Date(item.data_inizio) // una cosa simila 
         var data_fine = new Date(item.data_fine)
     
         const diffTime = Math.abs(data_fine - data_inizio);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+        diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
         
         setItem(item);
->>>>>>> 4271b8e9851baa8d764c05dfe58c7653b44aeaf8
     }
 
     return(
