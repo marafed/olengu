@@ -65,8 +65,8 @@ exports.getPrenotazioniUserId= function(req, res) {
   });
 };
 
-exports.updatePrenotazione = function(req, res) {
-  Dbms.update_prenotazione(req.body,function(err, result) {
+exports.updatePrenotazioneAttiva = function(req, res) {
+  Dbms.update_prenotazione_attiva(req.params.id_prenotazione,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -105,6 +105,14 @@ exports.updateUser = function(req, res) {
 
 exports.statusActive = function(req, res) {
   Dbms.status_active(req.params.active,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.updatePrenotazioneInCorso = function(req, res) {
+  Dbms.status_in_corso(req.params.incorso,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)

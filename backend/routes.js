@@ -18,7 +18,9 @@ module.exports = function(app) {
 
   app.route('/api/getPrenotazioniByUserId/:id').get(methods.getPrenotazioniUserId) // le mie prenotazioni si 
 
-  app.route('/api/updateprenotazione').post(methods.updatePrenotazione) // cambia status prenotazione
+  app.route('/api/updateprenotazioneattiva/:id_prenotazione').get(methods.updatePrenotazioneAttiva) // cambia status prenotazione attiva
+
+  app.route('/api/updateprenotazioneincorso/:id_prenotazione').get(methods.updatePrenotazioneInCorso) //cambia status prenotazione in corso
 
   app.route('/deletePrenotazione/:prenotazioneid').get(methods.deletePrenotazione) //cancella prenotazione (by Host)
 

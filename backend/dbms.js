@@ -142,7 +142,7 @@ Dbms.get_annunci_by_luogo = function (luogo, result) {
 Dbms.insert_prenotazione = function (json, result) {
     var insospeso = "sospeso";
     var statement = `INSERT INTO prenotazioni(host,ref_id_ann,checkin,checkout,stato,tot_pagato,guest)VALUES(?,?,?,?,?,?,?)`;
-    var values = [json.host,json.ref_id_ann,json.check_in_giorno,json.check_in_mese,json.check_in_anno,json.check_out_giorno,json.check_out_mese,json.check_out_anno,insospeso,json.tot_pagato,json.guest];
+    var values = [json.host,json.ref_id_ann,json.checkin,json.checkout,insospeso,json.tot_pagato,json.guest];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -185,14 +185,28 @@ Dbms.get_prenotazioni_by_token = function (token,result) {
 };
 
 
-Dbms.update_prenotazione = function (json, result) {
-    
-    console.log(json);
-    var obj = JSON.parse(json);
-  
+Dbms.update_prenotazione_attiva = function (id, result) {
 
-    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?'
-    let values = [obj.stato, obj.id_prenotazione];
+    let stato ="attiva";
+    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
+    let values = [stato,id];
+
+    sql.query(statement, values, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res);
+         }
+  });
+};
+
+Dbms.update_prenotazione_attiva = function (id, result) {
+    
+    let stato ="attiva";
+    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
+    let values = [stato,id];
 
     sql.query(statement, values, function (err, res) {
             if(err) {
@@ -252,5 +266,21 @@ Dbms.status_active = function (id, result) {
   });
 };
 
+Dbms.status_in_corso = function (id, result) {
+    
+    let stato ="incorso";
+    let statement = 'UPDATE prenotazioni SET stato = ? where id_prenotazione = ?';
+    let values = [stato,id];
+
+    sql.query(statement, values, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res);
+         }
+  });
+};
 
 module.exports = Dbms;
