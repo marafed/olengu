@@ -26,7 +26,7 @@ function AttiveDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `/api/updateprenotazione/${match.params.id}`
+            `/api/getprenotazione/${match.params.id}`
         );
         const item = await fetchItem.json();
 

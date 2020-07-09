@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import HomeHost from './Pages/HomeHost';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import Logout from './Pages/Logout';
 import Dashboard from './Pages/Dashboard';
 import InsertItem from './Pages/InsertItem';
 import PortaleHost from './Pages/PortaleHost';
@@ -36,8 +37,9 @@ function App() {
           <Nav />
           <Route path="/" exact component={Home} />
           <Route path="/become_host" component={HomeHost} />
-          <Route path="/Login" component={Login} />
-          <Route path="/Register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/legister" component={Register} />
+          <Route path="/logout" component={Logout} />
           <Route path="/dashboard" exact component={Dashboard} />
 
           <Route path="/InsertItem" component={InsertItem} />
