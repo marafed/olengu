@@ -42,20 +42,20 @@ function App() {
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />
-          <Route path="/SearchResults/:id_ann" component={SearchItemDetails} />
+          <Route path="/SearchResults/:id_annuncio" component={SearchItemDetails} />
           <Route path="/PortaleHost" component={PortaleHost} /> 
           <Route path="/MyAnnunci" component={MyAnnunci} />
           <Route path="/ShowBooks" component={ShowBooks} />
           <Route path="/ShowBooksHost" exact component={ShowBooksHost} />
-          <Route path="/ShowBooksHost/:id" component={ShowBooksHostDetails} />
+          <Route path="/ShowBooksHost/:id_annuncio" component={ShowBooksHostDetails} />
           <Route path="/BooksInCorso" exact component={BooksInCorso} />
-          <Route path="/BooksInCorso/:id" component={InCorsoDetails} />
+          <Route path="/BooksInCorso/:id_annuncio" component={InCorsoDetails} />
           <Route path="/BooksAttive" exact component={BooksAttive} />
-          <Route path="/BooksAttive/:id" component={AttiveDetails} />
+          <Route path="/BooksAttive/:id_annuncio" component={AttiveDetails} />
           <Route path="/BooksInSospeso" exact component={BooksInSospeso} />
-          <Route path="/BooksInSospeso/:id" component={InSospesoDetails} />
+          <Route path="/BooksInSospeso/:id_annuncio" component={InSospesoDetails} />
           <Route path="/BooksConcluse" exact component={BooksConcluse} />
-          <Route path="/BooksConcluse/:id" component={ShowBooksHostDetails} />
+          <Route path="/BooksConcluse/:id_annuncio" component={ShowBooksHostDetails} />
           <Route path="/Payment" component={Payment} />
           <Route path="/CheckOut" component={CheckOut} />
           <Route path="/CheckIn" component={CheckIn} />
