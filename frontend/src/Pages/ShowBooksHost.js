@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useReducer} from 'react';
-import PrenotazioneItem from '../Components/PrenotazioneItem';
 import { Link } from 'react-router-dom';
 import SearchItemBox from '../Components/SearchItemBox';
 
