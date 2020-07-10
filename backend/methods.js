@@ -97,6 +97,34 @@ exports.getPrenotazioneByGuest= function(req, res) {
   });
 };
 
+exports.getPrenotazioniAttive= function(req, res) {
+  Dbms.get_prenotazione_attive(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+
+exports.getPrenotazioniInCorso= function(req, res) {
+  Dbms.get_prenotazione_in_corso(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+exports.getPrenotazioniConcluse= function(req, res) {
+  Dbms.get_prenotazione_concluse(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
+
+
+
+
 exports.updatePrenotazioneInCorso = function(req, res) {
   Dbms.update_prenotazione_in_corso (req.params.id_prenotazione, req.params.token,function(err, result) {
     if(err)

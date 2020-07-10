@@ -24,13 +24,24 @@ module.exports = function(app) {
 
   app.route('/api/deletePrenotazione/:id_prenotazione/:token').get(methods.deletePrenotazione) //cancella prenotazione (by Host)
 
-  app.route('/api/getprenotazionihost/:token').get(methods.getPrenotazioniByHost);
+  app.route('/api/getprenotazionihost/:token').get(methods.getPrenotazioniByHost); //si
 
-  app.route('/api/getprenotazionehost/:token').get(methods.getPrenotazioneByHost);
+  app.route('/api/getprenotazionehost/:id_prenotazione/:token').get(methods.getPrenotazioneByHost);
 
-  app.route('/api/getprenotazioniguest/:token').get(methods.getPrenotazioniByGuest);
+  app.route('/api/getprenotazioniguest/:token').get(methods.getPrenotazioniByGuest); //si
 
-  app.route('/api/getprenotazioneguest/:token').get(methods.getPrenotazioneByGuest);
+  app.route('/api/getprenotazioneguest/:id_prenotazione/:token').get(methods.getPrenotazioneByGuest);
+
+  app.route('/api/getprenotazioniattive/:token').get(methods.getPrenotazioniAttive); 
+
+  app.route('/api/getprenotazioneincorso/:token').get(methods.getPrenotazioniInCorso); 
+
+  app.route('/api/getprenotazioneconcluse/:token').get(methods.getPrenotazioniConcluse); 
+
+  
+
+
+
 
   app.route('/api/auth/login').post(methods.login) //yes
 

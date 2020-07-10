@@ -220,22 +220,60 @@ Dbms.get_prenotazioni_by_guest = function (token,result) {
             console.log("error: ", err);
             result(null, err);
         } else {
-            result(null, res[0]);
+            result(null, res);
         }
     });
 };
 
-Dbms.get_prenotazione_by_host = function (token,result) {
+Dbms.get_prenotazione_by_host = function (id,result) {
     let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host';
     sql.query(statement, token, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
         } else {
-            result(null, res[0]);
+            result(null, res);
         }
     });
 };
+
+Dbms.get_prenotazione_attive = function (token,result) {
+    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host and p.stato = ? ';
+    sql.query(statement, token,"attiva",function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+Dbms.get_prenotazione_in_corso = function (token,result) {
+    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host and p.stato = ? ';
+    sql.query(statement, token,"incorso",function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+Dbms.get_prenotazione_concluse = function (token,result) {
+    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host and p.stato = ? ';
+    sql.query(statement, token,"conclusa",function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+
 
 Dbms.get_prenotazione_by_guest = function (token,result) {
     let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.guest';
