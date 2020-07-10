@@ -28,7 +28,7 @@ Per questo progetto è disponibile la documentazione relativa all'architettura i
 
 [Legg il PDF](./doc/documentazione.pdf)
 
-# Deploy
+# Infrastruttura
 
 ## Note sull'architettura
 
@@ -63,34 +63,34 @@ In caso di mancata configurazione di un certificato ssl valido, un certificato s
     NOTA: il container del database potrebbe richiedere diversi minuti durante il primo avvio per essere inizializzato e diiventare utilizzabile dal backend. Il sito potrebbe non essere operativo durante questo periodo.
 
 
-## Installazione
+# Installazione
 
 Le seguenti istruzioni sono disponibili per il deploy dell'applicativo su un server debian.
 
 Altre piattaforme sono supportate purchè abbiano **docker**, **docker-compose**, **git** e **make**
 
 
-### Installare e dipendenze
+## Installare e dipendenze
 
 ```bash
     sudo apt update
     sudo apt -y install docker.io docker-compose git make
 ```
 
-### Clonare il repository sul branch production
+## Clonare il repository sul branch production
 
 ```bash
     git clone -b prod https://github.com/marafed/olengu olengu
 ```
 
-### Inizializzare e avviare il progetto
+## Inizializzare e avviare il progetto
 
 ```bash
     cd olengu
     make start
 ```
 
-### Altri comandi utili
+## Altri comandi utili
 
 **make start**
     avvia tutti i servizi
