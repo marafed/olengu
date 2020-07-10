@@ -59,7 +59,7 @@ class Register extends Component {
                 }
             );
             if((await answer.json()).affectedRows == 1) {
-                this.props.history.push('/login');
+                window.location.href = '/Login';
             }
         } else {
             console.error('FORM INVALID - ERROR');

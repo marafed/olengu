@@ -13,6 +13,7 @@ function Logout(props) {
             localStorage.removeItem("token");
             localStorage.removeItem("user_id");
             localStorage.removeItem("ishost");
+            window.location.href = '/';
         }
     }
     
