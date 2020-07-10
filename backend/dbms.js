@@ -87,6 +87,9 @@ Dbms.get_annunci_by_token = function (token, result) {
 
 
 Dbms.get_annuncio = function (annuncio, result) {
+
+    console.log("hereeee");
+    console.log(annuncio);
     let statement = "SELECT * FROM annunci WHERE id_ann = ? "
 
     sql.query(statement, annuncio, function (err, res) {
@@ -94,7 +97,7 @@ Dbms.get_annuncio = function (annuncio, result) {
             console.log("error: ", err);
             result(null, err);
         } else {
-            result(null, res);
+            result(null, res[0]);
         }
     });
 };
@@ -195,19 +198,6 @@ Dbms.insert_prenotazione = function (json, result) {
     });
 };
 
-Dbms.get_annuncio = function (json,result) {
-    var json = JSON.parse(JSON)
-    let statement = 'SELECT * FROM annunci WHERE id_ann = ?';
-    let values = [json.id_ann]
-    sql.query(statement, luogo, function (err, res) {
-        if(err) {
-            console.log("error: ", err);
-            result(null, err);
-        } else {
-            result(null, res[0]);
-        }
-    });
-};
 
 Dbms.get_prenotazioni_by_host = function (token,result) {
     let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host';
@@ -347,5 +337,19 @@ Dbms.update_prenotazione_conclusa  = function (id_prenotazione, token, checkout,
         }
     });
 };
+
+Dbms.guadagno_host = function (token,result) {
+    let statement = 'SELECT sum(tot_pagato) FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host';
+    sql.query(statement,token,function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res[0]);
+        }
+    });
+};
+
+
 
 module.exports = Dbms;

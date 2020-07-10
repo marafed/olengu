@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
  
 
 function SearchItemDetails({ match }) {
+    useEffect(() => {
+        console.log(item);
+        fetchItem();
+    }, []);
 
     var data_inizio = new Date(localStorage.getItem("data1")); // una cosa simila 
     var data_fine = new Date(localStorage.getItem("data2"));
@@ -11,11 +15,6 @@ function SearchItemDetails({ match }) {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
     
     var ospiti = localStorage.getItem("nospiti");
-    
-    useEffect(() => {
-        console.log(item);
-        fetchItem();
-    }, []);
 
     const [item, setItem] = useState({
         luogo: "loading",
@@ -107,7 +106,7 @@ function SearchItemDetails({ match }) {
                             </div>
                         </div>
                     </div>
-                    <Link to="/Payment" id={match.params.id}>
+                    <Link to="/Payment" id={match.params.id_ann}>
                         <button className="btn-gradient btn-dashboard">Prenota ora</button>
                     </Link> 
                 </div>

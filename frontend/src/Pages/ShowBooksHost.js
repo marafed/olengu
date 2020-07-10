@@ -11,13 +11,17 @@ function ShowBooksHost() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`/api/getprenotazionihost/${localStorage.setItem('token')}`);
+        const data = await fetch(`/api/getprenotazionihost/${localStorage.getItem('token')}`);
         const items = await data.json();
         
-        //inseriamo prenotazioni in localstorage per passar
-        var prenotazioni_array_string_form = JSON.stringify(items);
-        localStorage.setItem("prenotazioni_string", prenotazioni_array_string_form)
+        var totale_pagato = 0;
 
+        for(var i in items) {   
+            var obj = items[i];
+         
+            totale_pagato = totale_pagato + obj.totale_pagato;
+        }
+        console.log(totale_pagato);
         setItems(items);
     };
 

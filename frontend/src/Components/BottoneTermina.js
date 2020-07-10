@@ -2,9 +2,9 @@ import React from 'react';
 
 function BottoneTermina(props) {
     const data = {
-        "id_annuncio":  props.id,
-        "data_inizio":  localStorage.getItem("data1"),
-        "data_fine":    localStorage.getItem("data2"),
+        "id_ann":  props.id,
+        "checkin":  localStorage.getItem("data1"),
+        "checkout":    localStorage.getItem("data2"),
         "citta":        localStorage.getItem("citta"),
         "nospiti":      localStorage.getItem("nospiti"),
         "card": {

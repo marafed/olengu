@@ -33,10 +33,14 @@ exports.getAnnunciByToken = function(req, res) {
 };
 
 exports.getAnnuncio = function(req, res) {
+
+  console.log("hereeee");
+  console.log(req.params.id_annuncio);
+
   Dbms.get_annuncio(req.params.id_annuncio, function(err, result) {
     if (err)
       res.send(err);
-    res.json(result[0]);
+    res.json(result);
   });
 };
 
@@ -172,4 +176,12 @@ exports.register = function(req, res) {
       res.send(err);
     res.send(res_db);
    });
+};
+
+exports.guadagnoHost = function(req, res) {
+  Dbms.guadagno_host(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
 };
