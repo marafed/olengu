@@ -28,7 +28,10 @@ Questo programma è condiviso sotto licenza GNU Affero Public License versione 3
 
 Per questo progetto è disponibile la documentazione relativa all'architettura in formato PDF
 
-[Legg il PDF](./doc/documentazione.pdf)
+[Requirements](./doc/documentazione.pdf)
+[RAD](./doc/RAD.pdf)
+[ODD](./doc/ODD.pdf)
+[SDD](./doc/SDD.pdf)
 
 # Infrastruttura
 
