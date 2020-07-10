@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
@@ -61,7 +60,6 @@ class Login extends Component {
                         const error = new Error(res.error);
                         throw error;
                     }else{
-                        console.log("si")
                         return res.json()
                     }
                 })
@@ -72,7 +70,7 @@ class Login extends Component {
                     if(json.status === true) {
                         localStorage.setItem("user_id", json.id_usr)
                         localStorage.setItem('token', json.token);
-                        if (json.ishost == 1) {
+                        if (json.ishost === 1) {
                             localStorage.setitem('ishost', 2);
                         } else {
                             localStorage.setItem('ishost', 1);

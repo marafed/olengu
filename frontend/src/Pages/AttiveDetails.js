@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-function AttiveDetails({ match }) {
+function AttiveDetails(match) {
 
     useEffect(() => {
         fetchItem();

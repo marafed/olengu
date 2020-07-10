@@ -40,7 +40,6 @@ function App() {
           <Route path="/legister" component={Register} />
           <Route path="/logout" component={Logout} />
           <Route path="/dashboard" exact component={Dashboard} />
-
           <Route path="/InsertItem" component={InsertItem} />
           <Route path="/SearchResults" exact component={SearchResults} />
           <Route path="/SearchResults/:id_ann" component={SearchItemDetails} />

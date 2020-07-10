@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useReducer} from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchItemBox from '../Components/SearchItemBox';
 import { Link } from 'react-router-dom';
 

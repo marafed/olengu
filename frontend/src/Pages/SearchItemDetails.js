@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import Payment from './Payment';
  
 
 function SearchItemDetails({ match }) {
