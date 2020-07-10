@@ -11,7 +11,7 @@ function MyAnnunci() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`/api/getAnnunciByUserId/${localStorage.setItem('token')}`);
+        const data = await fetch(`/api/getannunci/${localStorage.setItem('token')}`);
         const items = await data.json();
         console.log(items.results);
         setItems(items.results);

@@ -10,7 +10,7 @@ const formValid = ({ formErrors }) => {
     // se la lunghezza non è maggiore di zero non è validato 
     Object.values(formErrors).forEach(val => { 
         val.length > 0 && (valid = false);
-        val === null && (valid = false);                                
+        val === null && (valid = false);
     });
 
     return valid;
@@ -71,7 +71,7 @@ class Login extends Component {
                     }
                     if(json.status === true) {
                         localStorage.setItem("user_id", json.id_usr)
-                        localStorage.setItem('session', json.token);
+                        localStorage.setItem('token', json.token);
                         this.props.history.push('/dashboard');
                     }
                 })

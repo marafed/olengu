@@ -4,22 +4,6 @@ import FetchGuadagno from '../Utils/FetchGuadagno';
 import ShowBooksHost from './ShowBooksHost';
 
 function PortaleHost() {
-
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-    const [items, setItems] = useState([]);
-
-    const fetchItems = async() => {
-        const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/bat'
-        );
-        const items = await data.json();
-        console.log(items.results);
-        setItems(items.results);
-    };
-
     return(
         <div>
            <div className="containerFluid">
