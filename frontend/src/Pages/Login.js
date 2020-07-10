@@ -72,6 +72,11 @@ class Login extends Component {
                     if(json.status === true) {
                         localStorage.setItem("user_id", json.id_usr)
                         localStorage.setItem('token', json.token);
+                        if (json.ishost == 1) {
+                            localStorage.setitem('ishost', 2);
+                        } else {
+                            localStorage.setItem('ishost', 1);
+                        }
                         this.props.history.push('/dashboard');
                     }
                 })

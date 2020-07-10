@@ -2,8 +2,14 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 function Nav() {
-
   const [status, setStatus] = useState(0);
+  if(!localStorage.getItem('ishost')) {
+    setStatus(0);
+  } else if (localStorage.getItem('ishost') == 0) {
+    setStatus(1);
+  } else if (localStorage.getItem('ishost') == 1) {
+    setStatus(2);
+  }
 
   const becomehost = () => {
     return(
