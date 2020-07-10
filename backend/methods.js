@@ -150,7 +150,6 @@ exports.updatePrenotazioneConclusa = function(req, res) {
 };
 
 exports.deletePrenotazione = function(req, res) {
-  console.log(res.params)
   Dbms.delete_prenotazione(req.params.id_prenotazione, req.params.token,function(err, result) {
     if(err)
       res.send(err)
@@ -160,6 +159,10 @@ exports.deletePrenotazione = function(req, res) {
 
 exports.login = function(req, res) {
   Dbms.login(req.body, res);
+};
+
+exports.logout = function(req, res) {
+  Dbms.logout(req.params.token, res);
 };
 
 exports.register = function(req, res) {
