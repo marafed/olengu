@@ -2,7 +2,7 @@ import React from 'react';
 
 function BottoneTermina(props) {
     const data = {
-        "id_ann":  props.id,
+        "id_ann":  props.state.id,
         "checkin":  localStorage.getItem("data1"),
         "checkout":    localStorage.getItem("data2"),
         "citta":        localStorage.getItem("citta"),

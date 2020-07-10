@@ -10,6 +10,7 @@ function Payment({ props }) {
     focus: '',
     name: '',
     number: '',
+    id: props.id
   });
 
   const handleInputFocus = (e) => {
@@ -20,6 +21,7 @@ function Payment({ props }) {
     const { name, value } = e.target;
     setState({ [name]: value });
   }
+
 
   return (
     <div id="PaymentForm row">
@@ -62,7 +64,9 @@ function Payment({ props }) {
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
               /><br />
-              <button> <BottoneTermina state={state} id={props.id} /></button>
+              <button>
+                <BottoneTermina state={state} />
+              </button>
           </form>
       </div>
     </div>
