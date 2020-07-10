@@ -88,8 +88,6 @@ Dbms.get_annunci_by_token = function (token, result) {
 
 Dbms.get_annuncio = function (annuncio, result) {
 
-    console.log("hereeee");
-    console.log(annuncio);
     let statement = "SELECT * FROM annunci WHERE id_ann = ? "
 
     sql.query(statement, annuncio, function (err, res) {
