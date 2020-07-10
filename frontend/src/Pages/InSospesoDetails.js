@@ -25,7 +25,7 @@ function InSospesoDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `https://www.superheroapi.com/api.php/3043826855693933/${match.params.id}`
+            `/api/getprenotazionehost/${match.params.id_prenotazione}/${localStorage.getItem("token")}`
         );
         const item = await fetchItem.json();
         

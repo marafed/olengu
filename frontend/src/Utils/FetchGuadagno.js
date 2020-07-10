@@ -11,7 +11,7 @@ function FetchGuadagno() {
 
     const fetchUser = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/apocalypse' // fare api
+            '' // fare api
         );
         const user = await data.json();
         setUser(user);
