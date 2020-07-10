@@ -2,6 +2,8 @@
 
 Portale di prenotazione per case vacanza.
 
+![olengu](./doc/home.png)
+
 
 # Licenza
 

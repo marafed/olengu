@@ -3,7 +3,7 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import BottoneTermina from '../Components/BottoneTermina' 
 
-function Payment({ props }) {
+function Payment(props) {
   const [state, setState] = useState({
     cvc: '',
     expiry: '',
