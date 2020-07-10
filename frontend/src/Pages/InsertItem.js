@@ -16,8 +16,10 @@ function InsertItem() {
                 body: JSON.stringify(data)
             }
         )
-        console.log(data);
-        localStorage.setItem('ishost', 1);
+        if(answer.json().affectedRows == 1) {
+            localStorage.setItem('ishost', 1);
+            this.props.history.push('/MyAnnunci');
+        }
     };
    
     return(
@@ -68,9 +70,9 @@ function InsertItem() {
                             <label htmlFor="Tasse" style={{fontWeight: 'bold'}}>€
                                 A notte
                             </label><br/>
-                            <input style={{marginTop: 1 + 'em'}} name="is_bnb" type="radio" value="Intero appartamento" ref={register({ required: true })}/>
+                            <input style={{marginTop: 1 + 'em'}} name="is_bnb" type="radio" value="0" ref={register({ required: true })}/>
                             <label htmlFor="Intero appartamento" style={{fontWeight: 'bold'}}>Intero appartamento</label><br />
-                            <input name="is_bnb" type="radio" value="Stanza privata in B&B" ref={register({ required: true })}/>
+                            <input name="is_bnb" type="radio" value="1" ref={register({ required: true })}/>
                             <label htmlFor="Stanza privata in B&B" style={{fontWeight: 'bold'}}>Stanza privata in B&B</label>
                     </div>
                     <div className="col-lg-3 col-md-6 col-sm-12 checklist-box-col">   
