@@ -14,12 +14,16 @@ function Payment(props) {
   });
 
   const handleInputFocus = (e) => {
-    setState({ focus: e.target.name });
+    let temp = state;
+    temp.focus = e.target.name
+    setState({ temp });
   }
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setState({ [name]: value });
+    let temp = state;
+    temp[name] = value;
+    setState({ temp });
   }
 
 
