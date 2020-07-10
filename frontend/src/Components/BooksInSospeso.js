@@ -11,7 +11,7 @@ function BooksInSospeso() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            '/api/getprenotazioniinsospeso/:id'
+            `/api/getprenotazioniinsospeso${localStorage.getItem("token")}`
         );
         const items = await data.json();
         console.log(items.results);
@@ -32,10 +32,10 @@ function BooksInSospeso() {
         <div>
             <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni in sospeso</h1>
             {items.map(item => (
-                <Link to={`/BooksInSospeso/${item.id}`} >
+                <Link to={`/BooksInSospeso/${item.id_prenotazione}`} >
                     <SearchItemBox item={item} />
-                    <button className="btn-secondary btn-dashboard" onClick={accetta(`${item.id}`)}>Accetta</button>
-                    <button className="btn-secondary btn-dashboard" onClick={rifiuta(`${item.id}`)}>Rifiuta</button>
+                    <button className="btn-secondary btn-dashboard" onClick={accetta(`${item.id_prenotazione}`)}>Accetta</button>
+                    <button className="btn-secondary btn-dashboard" onClick={rifiuta(`${item.id_prenotazione}`)}>Rifiuta</button>
                 </Link>
             ))}
         </div>

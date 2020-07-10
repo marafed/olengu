@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import SearchItemBox from '../Components/SearchItemBox';
 import { Link } from 'react-router-dom';
-import PrenotazioneItem from './PrenotazioneItem';
 
 function BooksInCorso() {
 
@@ -12,25 +11,21 @@ function BooksInCorso() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        var json_string_form = localStorage.getItem("prenotazioni_string")
-        var json = JSON.parse(json_string_form)
-        var in_corso_array = []        
-        console.log(typeof(json))
-        for(var i=0; i<json.length; i++){
-            var obj = json[i]
-            if(obj.stato == "incorso"){
-                in_corso_array.push(obj)
-            }
-        }
-        console.log(in_corso_array)
-        setItems(items);
+        const data = await fetch(
+            `/api/getprenotazioniincorso${localStorage.getItem("token")}`
+        );
+        const items = await data.json();
+        console.log(items.results);
+        setItems(items.results);
     };
 
     return(
         <div>
             <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni in corso</h1>
             {items.map(item => (
-                <SearchItemBox item={item} /> 
+                <Link to={`/BooksInCorso/${item.id_prenotazione}`}>
+                    <SearchItemBox item={item} /> 
+                </Link>      
             ))}
         </div>
     );
