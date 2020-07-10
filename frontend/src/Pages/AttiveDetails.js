@@ -31,7 +31,7 @@ function AttiveDetails(match) {
         const item = await fetchItem.json();
 
         var data_inizio = new Date(item.checkin) // una cosa simila 
-        var data_fine = new Date(checkout)
+        var data_fine = new Date(item.checkout)
 
         const diffTime = Math.abs(data_fine - data_inizio);
         diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
