@@ -33,10 +33,14 @@ exports.getAnnunciByToken = function(req, res) {
 };
 
 exports.getAnnuncio = function(req, res) {
+
+  console.log("hereeee");
+  console.log(req.params.id_annuncio);
+
   Dbms.get_annuncio(req.params.id_annuncio, function(err, result) {
     if (err)
       res.send(err);
-    res.json(result[0]);
+    res.json(result);
   });
 };
 
