@@ -17,10 +17,10 @@ function InCorsoDetails({ match }) {
         luogo: "",
         via: "",
         descrizione: "",
-        prezzoanotte: "",
-        tasseanotte:"",
-        data_inizio:"",
-        data_fine:""
+        prezzo_notte: "",
+        tassa_soggiorno:"",
+        checkin:"",
+        checkout:""
     });
     
     var diffDays;
@@ -32,8 +32,8 @@ function InCorsoDetails({ match }) {
         const item = await fetchItem.json();
         setItem(item);
 
-        var data_inizio = new Date(item.data_inizio) // una cosa simila 
-        var data_fine = new Date(item.data_fine)
+        var data_inizio = new Date(item.checkin) // una cosa simila 
+        var data_fine = new Date(item.checkout)
     
         const diffTime = Math.abs(data_fine - data_inizio);
         diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
@@ -66,7 +66,7 @@ function InCorsoDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.data_inizio}</h6>
+                                    <h6>{item.checkin}</h6>
                                 </div>
                             </div>
                         </div>
@@ -78,20 +78,20 @@ function InCorsoDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{item.data_fine}</h6>
+                                    <h6>{item.checkout}</h6>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col" style={{marginTop: 1 + 'em'}}>
                                 <ul>
-                                    <li>Prezzo a notte: {item.prezzoanotte} €</li>
-                                    <li>Tassa di soggiorno: {item.tasseanotte} €</li>
+                                    <li>Prezzo a notte: {item.prezzo_notte} €</li>
+                                    <li>Tassa di soggiorno: {item.tassa_soggiorno} €</li>
                                     <li>Prezzo totale per {diffDays} notti:</li>
                                 </ul>
                                 <div className="row">
                                     <div className="col  text-center">
-                                        <h3>{item.prezzoanotte + item.tasseanotte * diffDays} €</h3>
+                                        <h3>{item.prezzo_notte + item.tassa_soggiorno * diffDays} €</h3>
                                     </div>
                                 </div>
                             </div>

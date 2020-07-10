@@ -17,6 +17,7 @@ Dbms.login = function (loginjson, apires) {
         }
         else if (res.length) {
             if (res[0].id_usr) {
+                var ishost = res[0].is_host;
                 console.log("res[0].id_usr: "+res[0].id_usr);
                 let token = uuidv4();
                 return sql.query("insert into session(ref_id_usr, token) values(?, ?);", [res[0].id_usr, token], (err, res) => {
@@ -26,7 +27,7 @@ Dbms.login = function (loginjson, apires) {
                         apires.send(JSON.stringify({"status":false,"token":""}));
                     }
                     else {
-                        apires.send(JSON.stringify({"status": true, "token": token}));
+                        apires.send(JSON.stringify({"status": true, "token": token, "ishost": ishost}));
                     }
                 });
             }
@@ -327,10 +328,10 @@ Dbms.update_prenotazione_in_corso  = function (id_prenotazione, token, result) {
     });
 };
 
-Dbms.update_prenotazione_conclusa  = function (id_prenotazione, token, result) {
-    let statement = 'UPDATE prenotazioni SET stato = ? WHERE id_prenotazione = ? AND host = (SELECT ref_id_usr AS host FROM session WHERE token = ?)';
+Dbms.update_prenotazione_conclusa  = function (id_prenotazione, token, checkout, result) {
+    let statement = 'UPDATE prenotazioni SET stato = ? ,checkout = ? WHERE id_prenotazione = ? AND host = (SELECT ref_id_usr AS host FROM session WHERE token = ?)';
 
-    sql.query(statement, ["conclusa", id_prenotazione, token], function (err, res) {
+    sql.query(statement, ["conclusa", id_prenotazione, token,checkout], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);

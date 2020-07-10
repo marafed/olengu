@@ -19,6 +19,9 @@ function MyAnnunci() {
 
     return(
         <div>
+            <Link to="/InsertItem">
+                <button className="btn-gradient searchresults-filter">Crea nuovo annuncio</button>
+            </Link>
             <h1 style={{color: "white", margin: 1 + 'em'}}>I tuoi annunci</h1>
             {items.map(item => (
                 <Link to={`/SearchResults/${item.id}`} >

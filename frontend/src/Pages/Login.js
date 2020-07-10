@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
@@ -50,10 +49,6 @@ class Login extends Component {
                         'Content-Type': 'application/json'
                       }
                 })
-
-            const data = await answer.json();
-            console.log(data.id_usr)
-            localStorage.setItem("user_id",data.id_usr)
                 .then(
                     
                     res => {
@@ -61,18 +56,17 @@ class Login extends Component {
                         const error = new Error(res.error);
                         throw error;
                     }else{
-                        console.log("si")
                         return res.json()
                     }
                 })
                 .then(json => {
-                    if(json.status === false) {
-                        alert("credenziali non valide");
-                    }
+                    console.log(json);
                     if(json.status === true) {
-                        localStorage.setItem("user_id", json.id_usr)
                         localStorage.setItem('token', json.token);
+                        localStorage.setItem('ishost', json.ishost);
                         this.props.history.push('/dashboard');
+                    } else {
+                        alert("credenziali non valide");
                     }
                 })
                 .catch(err => {
@@ -147,7 +141,7 @@ class Login extends Component {
                                 )}
                             </div>
                             <div className="text-center">
-                                <p style={{color: '#bdbdbd'}}>Non sei ancora registrato? <Link to="/Register"style={{color: '#ff31ea', fontWeight: 'bold'}}>Registrati!</Link></p>
+                                <p style={{color: '#bdbdbd'}}>Non sei ancora registrato? <Link to="/Register" style={{color: '#ff31ea', fontWeight: 'bold'}}>Registrati!</Link></p>
                             </div>
                             <div className="text-right">
                                 <button onClick={this.handleLogin} className="btn btn-gradient" id="login-form-btn">Login</button>

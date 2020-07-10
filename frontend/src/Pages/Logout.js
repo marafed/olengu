@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 function Logout(props) {
     useEffect(() => {
@@ -9,9 +9,10 @@ function Logout(props) {
         var token = localStorage.getItem("token");
         var data = await fetch(`/api/auth/logout/${token}`);
         data = await data.json();
-        if (data == "ok") {
+        if (data === "ok") {
             localStorage.removeItem("token");
             localStorage.removeItem("user_id");
+            localStorage.removeItem("ishost");
             props.history.push('/');
         }
     }
