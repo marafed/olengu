@@ -7,6 +7,12 @@ var Dbms = function(dbms){
     this.created_at = new Date();
 };
 
+Dbms.logout = function (token, apires) {
+    sql.query("DELETE FROM session WHERE token = ? ", token, (err, res) => {
+        apires.send("ok");
+    });
+};
+
 Dbms.login = function (loginjson, apires) {
     var statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
     var values = [loginjson.email, loginjson.password];
@@ -94,24 +100,25 @@ Dbms.get_annuncio = function (annuncio, result) {
 };
 
 Dbms.insert_annuncio = function (json, result) { 
-    sql.query("SELECT ref_id_usr AS id FROM session WHERE token = ?", json.token, (err, res) => {
+    sql.query("SELECT * FROM session WHERE token = ?", json.token, (err, res) => {
+        console.log(res);
         if(err) {
             result(err, res);
         } else {
-            if (res.length) {
-                if(res[0].id) {
-                    var id_usr = res[0].id
-                    let statement = `INSERT INTO annunci(host,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,animali_domestici_ammessi,baby_friendly,tassa_soggiorno)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
-                    let values = [id_usr,json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.animali_domestici_ammessi,json.baby_friendly,json.tassa_soggiorno];
-                    sql.query(statement, values, function (err, res) {
-                        if(err) {
-                            result(err, res);
-                        } else {
-                            sql.query("UPDATE user SET is_host = 1 WHERE id_usr = ?", id_usr);
-                            result(null, res);
-                        }
-                    });
-                };
+            if( res.length && res[0].ref_id_usr) {
+                var id_usr = res[0].ref_id_usr
+                let statement = `INSERT INTO annunci(host,nome_annuncio,luogo,indirizzo,descrizione,attrazioni,is_bnb,n_ospiti,prezzo_notte,n_letti_singoli,n_letti_matr,n_divano_letto,n_camere,n_bagni,colazione,AC,parcheggio,wifi,animali_domestici_ammessi,baby_friendly,tassa_soggiorno)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+                let values = [id_usr,json.nome_annuncio,json.luogo,json.indirizzo,json.descrizione,json.attrazioni,json.is_bnb,json.n_ospiti,json.prezzo_notte,json.n_letti_singoli,json.n_letti_matr,json.n_divano_letto,json.n_camere,json.n_bagni,json.colazione,json.AC,json.parcheggio,json.wifi,json.animali_domestici_ammessi,json.baby_friendly,json.tassa_soggiorno];
+                sql.query(statement, values, function (err, res) {
+                    if(err) {
+                        result(err, res);
+                    } else {
+                        sql.query("UPDATE user SET is_host = 1 WHERE id_usr = ?", id_usr);
+                        result(null, res);
+                    }
+                });
+            } else {
+                result(null, res);
             }
         }
     });

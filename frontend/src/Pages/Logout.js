@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {Redirect} from 'react-router-dom';
 
 function Logout(props) {
     useEffect(() => {
@@ -8,17 +9,15 @@ function Logout(props) {
     const sendLogout = async () => {
         var token = localStorage.getItem("token");
         var data = await fetch(`/api/auth/logout/${token}`);
-        data = await data.json();
-        if (data === "ok") {
+        if (data == "ok") {
             localStorage.removeItem("token");
             localStorage.removeItem("user_id");
             localStorage.removeItem("ishost");
-            props.history.push('/');
         }
     }
     
     return(
-        <h1>Log Out</h1>
+        <Redirect to="/" />
     );
 }
 

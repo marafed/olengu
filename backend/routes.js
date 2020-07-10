@@ -48,4 +48,6 @@ module.exports = function(app) {
   app.route('/api/auth/login').post(methods.login) //yes
 
   app.route('/api/auth/register').post(methods.register) //yes
+
+  app.route('/api/auth/logout/:token').get(methods.logout)
 };
