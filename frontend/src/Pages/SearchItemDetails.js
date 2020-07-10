@@ -30,7 +30,7 @@ function SearchItemDetails({ match }) {
     });
 
     const fetchItem = async() => {
-        const result = await fetch(`/api/getannuncio/${match.params.id_annuncio}`);
+        const result = await fetch(`/api/getannuncio/${match.params.id_ann}`);
         setItem(await result.json());
         console.log(item);
     }
