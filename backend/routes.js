@@ -40,8 +40,10 @@ module.exports = function(app) {
 
   
 
+  app.route('/api/getprenotazionehost/:token/:id_prenotazione').get(methods.getPrenotazioneByHost);
 
 
+  app.route('/api/getprenotazioneguest/:token/:id_prenotazione').get(methods.getPrenotazioneByGuest);
 
   app.route('/api/auth/login').post(methods.login) //yes
 
