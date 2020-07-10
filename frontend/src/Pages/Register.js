@@ -58,12 +58,13 @@ class Register extends Component {
                       }
                 }
             );
+            if((await answer.json()).affectedRows == 1) {
+                this.props.history.push('/login');
+            }
         } else {
             console.error('FORM INVALID - ERROR');
         }
-        if((await answer.json()).affectedRows == 1) {
-            this.props.history.push('/login');
-        }
+        
     };   
 
     handleChange = e => {

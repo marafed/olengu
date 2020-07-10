@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-function InsertItem() {
+function InsertItem({ props }) {
     
     const { register, handleSubmit, errors } = useForm();
 
-    const send = data => {
-        var answer = fetch(
+    const send = async (data) => {
+        var answer = await fetch(
             "/api/insertannuncio",{
                 method: "POST", 
                 headers: {
@@ -16,9 +16,9 @@ function InsertItem() {
                 body: JSON.stringify(data)
             }
         )
-        if(answer.json().affectedRows == 1) {
+        if((await answer.json()).affectedRows == 1) {
             localStorage.setItem('ishost', 1);
-            this.props.history.push('/MyAnnunci');
+            window.location.href = '/MyAnnunci';
         }
     };
    
