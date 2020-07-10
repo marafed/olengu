@@ -196,10 +196,8 @@ Dbms.insert_prenotazione = function (json, result) {
 };
 
 Dbms.get_annuncio = function (json,result) {
-    var json = JSON.parse(JSON)
     let statement = 'SELECT * FROM annunci WHERE id_ann = ?';
-    let values = [json.id_ann]
-    sql.query(statement, luogo, function (err, res) {
+    sql.query(statement, json, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
