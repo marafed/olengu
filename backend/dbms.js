@@ -17,6 +17,7 @@ Dbms.login = function (loginjson, apires) {
         }
         else if (res.length) {
             if (res[0].id_usr) {
+                var ishost = res[0].is_host;
                 console.log("res[0].id_usr: "+res[0].id_usr);
                 let token = uuidv4();
                 return sql.query("insert into session(ref_id_usr, token) values(?, ?);", [res[0].id_usr, token], (err, res) => {
@@ -26,7 +27,7 @@ Dbms.login = function (loginjson, apires) {
                         apires.send(JSON.stringify({"status":false,"token":""}));
                     }
                     else {
-                        apires.send(JSON.stringify({"status": true, "token": token}));
+                        apires.send(JSON.stringify({"status": true, "token": token, "ishost": ishost}));
                     }
                 });
             }
