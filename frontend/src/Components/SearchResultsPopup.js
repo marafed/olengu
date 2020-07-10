@@ -12,7 +12,7 @@ function SearchResultsPopup(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            "/api/auth/insertitem",{
+            "/api/updateannuncio",{
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

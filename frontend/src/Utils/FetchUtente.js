@@ -11,7 +11,7 @@ function FetchUtente() {
 
     const fetchUser = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/apocalypse'
+            ''
         );
         const user = await data.json();
         console.log(user.results);

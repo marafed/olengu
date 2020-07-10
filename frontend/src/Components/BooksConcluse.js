@@ -12,7 +12,7 @@ function BooksConcluse() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/bl'
+            `/api/getprenotazioniconcluse${localStorage.getItem("token")}`
         );
         const items = await data.json();
         console.log(items.results);
@@ -23,7 +23,7 @@ function BooksConcluse() {
         <div>
             <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni concluse</h1>
             {items.map(item => (
-                <Link to={`/BooksConcluse/${item.id}`} >
+                <Link to={`/BooksConcluse/${item.id_prenotazione}`} >
                     <SearchItemBox item={item} /> 
                 </Link>
             ))}

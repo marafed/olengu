@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import PrenotazioneItem from '../Components/PrenotazioneItem';
 import { Link } from 'react-router-dom';
+import SearchItemBox from '../Components/SearchItemBox';
 
 function ShowBooksHost() {
 
@@ -32,7 +33,7 @@ function ShowBooksHost() {
             <div className="col-lg-10 col-md-12">
                 <h1 style={{color: "white", margin: 1 + 'em', fontWeight: "bold"}}>Tutte le tue prenotazioni</h1>
                 {items.map(item => (
-                    <PrenotazioneItem item={item} />
+                    <SearchItemBox item={item} />
                 ))}
             </div>
         </div>

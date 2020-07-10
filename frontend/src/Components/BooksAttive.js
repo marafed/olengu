@@ -12,7 +12,7 @@ function BooksAttive() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            'https://www.superheroapi.com/api.php/3043826855693933/search/captain'
+            `/api/getprenotazioniattive/${localStorage.getItem("token")}`
         );
         const items = await data.json();
         console.log(items.results);
@@ -23,7 +23,7 @@ function BooksAttive() {
         <div>
             <h1 style={{color: "white", margin: 1 + 'em'}}>Prenotazioni attive</h1>
             {items.map(item => (
-                <Link to={`/BooksAttive/${item.id}`} >
+                <Link to={`/BooksAttive/${item.id_prenotazione}`} >
                     <SearchItemBox item={item} /> 
                 </Link>
             ))}

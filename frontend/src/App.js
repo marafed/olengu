@@ -20,7 +20,6 @@ import ShowBooksHost from './Pages/ShowBooksHost';
 import BooksInCorso from './Components/BooksInCorso';
 import BooksAttive from "./Components/BooksAttive"
 import MyAnnunci from './Pages/MyAnnunci';
-import WithAuth from './Utils/WithAuth';
 import AttiveDetails from './Pages/AttiveDetails';
 import BooksInSospeso from './Components/BooksInSospeso';
 import InSospesoDetails from "./Pages/InSospesoDetails";

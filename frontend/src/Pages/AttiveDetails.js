@@ -26,7 +26,7 @@ function AttiveDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `/api/getprenotazione/${match.params.id}`
+            `/api/getprenotazionehost/${match.params.id_prenotazione}/${localStorage.getItem("token")}`
         );
         const item = await fetchItem.json();
 
