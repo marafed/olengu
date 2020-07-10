@@ -17,6 +17,7 @@ function InsertItem() {
             }
         );
         console.log(data);
+        localStorage.setItem('ishost', 1);
     };
    
     return(
