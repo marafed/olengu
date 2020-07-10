@@ -31,7 +31,9 @@ function SearchItemDetails({ match }) {
 
     const fetchItem = async() => {
         const result = await fetch(`/api/getannuncio/${match.params.id_annuncio}`);
-        setItem(await result.json());
+        var data = await result.json();
+        setItem(data);
+        console.log(data);
         console.log(item);
     }
 
@@ -75,7 +77,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{data_inizio}</h6> 
+                                    <h6>{""+data_inizio}</h6> 
                                 </div>
                             </div>
                         </div>
@@ -87,7 +89,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{data_fine}</h6>
+                                    <h6>{""+data_fine}</h6>
                                 </div>
                             </div>
                         </div>
