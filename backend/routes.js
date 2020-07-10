@@ -6,7 +6,7 @@ module.exports = function(app) {
 
   app.route('/api/getannunci/:token').get(methods.getAnnunciByToken); // 
 
-  app.route('/api/getannuncio/:id_annuncio').get(methods.getAnnuncio); //
+  app.route('/api/getannuncio/:id_ann').get(methods.getAnnuncio); //
 
   app.route('/api/insertannuncio').post(methods.insertAnnuncio) 
 
