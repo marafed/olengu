@@ -41,7 +41,7 @@ function SearchResults() {
                     {filter}
                     {items.map(item => (
                         <h5 key={item.id}>
-                            <Link to={`/SearchResults/${item.id_annuncio}`} >
+                            <Link to={`/SearchResults/${item.id_ann}`} >
                                 <SearchItemBox item={item} />
                             </Link>
                         </h5>
