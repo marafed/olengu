@@ -4,6 +4,7 @@ services:
   backend:
     container_name: olengu_backend
     build: ./backend
+    restart: unless-stopped
     depends_on:
       - db
     ports:
@@ -22,6 +23,7 @@ services:
   frontend:
     container_name: olengu_frontend
     build: ./frontend
+    restart: on-failure
     volumes:
       - ./frontend:/frontend
     environment:
@@ -33,6 +35,7 @@ services:
   gateway:
     container_name: olengu_gateway
     build: ./gateway
+    restart: unless-stopped
     depends_on:
       - frontend
       - backend
@@ -48,6 +51,7 @@ services:
 
   db:
     image: mariadb
+    restart: unless-stopped
     volumes:
       - ./data/db:/var/lib/mysql
     ports:
