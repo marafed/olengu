@@ -37,7 +37,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/become_host" component={HomeHost} />
           <Route path="/login" component={Login} />
-          <Route path="/legister" component={Register} />
+          <Route path="/register" component={Register} />
           <Route path="/logout" component={Logout} />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/InsertItem" component={InsertItem} />

@@ -1,26 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
 function Nav() {
-  if(!localStorage.getItem('ishost')) {
-    return(
-      <div className="contaid-block w-100" id="topbar">
-        <div className="row">
-          <div className="col-sm-4" id="topbar1">
-            <Link to="/">
-              <img id="logo" src="/img/logo.png" />
-            </Link>
-          </div>
-          <div className="col-sm-8" id="topbar2">
-            <Link to="/login">
-              <button className="btn btn-gradient">Login</button>
-           </Link>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (localStorage.getItem('ishost') === 0) {
+  if (localStorage.getItem('ishost') === 0) {
     return(
       <div className="contaid-block w-100" id="topbar">
         <div className="row">
@@ -45,7 +28,8 @@ function Nav() {
         </div>
       </div>
     );
-  } else if (localStorage.getItem('ishost') === 1) {
+  }
+  if (localStorage.getItem('ishost') === 1) {
     return(
       <div className="contaid-block w-100" id="topbar">
         <div className="row">
@@ -72,8 +56,19 @@ function Nav() {
     );
   }
   return(
-    <div>
-      henlo
+    <div className="contaid-block w-100" id="topbar">
+      <div className="row">
+        <div className="col-sm-4" id="topbar1">
+          <Link to="/">
+            <img id="logo" src="/img/logo.png" />
+          </Link>
+        </div>
+        <div className="col-sm-8" id="topbar2">
+          <Link to="/login">
+            <button className="btn btn-gradient">Login</button>
+         </Link>
+        </div>
+      </div>
     </div>
   );
 }
