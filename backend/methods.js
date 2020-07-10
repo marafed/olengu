@@ -109,7 +109,7 @@ exports.getPrenotazioniByGuest= function(req, res) {
 };
 
 exports.getPrenotazioneByHost= function(req, res) {
-  Dbms.get_prenotazione_by_host(req.params.token,function(err, result) {
+  Dbms.get_prenotazione_by_host(req.params.id_prenotazione, req.params.token,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)
@@ -117,7 +117,7 @@ exports.getPrenotazioneByHost= function(req, res) {
 };
 
 exports.getPrenotazioneByGuest= function(req, res) {
-  Dbms.get_prenotazione_by_guest(req.params.token,function(err, result) {
+  Dbms.get_prenotazione_by_guest(req.params.id_prenotazione, req.params.token,function(err, result) {
     if(err)
       res.send(err)
     res.json(result)

@@ -220,27 +220,18 @@ Dbms.get_prenotazioni_by_guest = function (token,result) {
             console.log("error: ", err);
             result(null, err);
         } else {
-<<<<<<< HEAD
             result(null, res);
-=======
-            result(null, res[0]);
->>>>>>> 18fa40a6eb15c4afd585674346f52366456bc4aa
         }
     });
 };
 
-<<<<<<< HEAD
-Dbms.get_prenotazione_by_host = function (id,result) {
-=======
-Dbms.get_prenotazione_by_host = function (token,result) {
->>>>>>> 18fa40a6eb15c4afd585674346f52366456bc4aa
-    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host';
-    sql.query(statement, token, function (err, res) {
+Dbms.get_prenotazione_by_host = function (id_prenotazione, token, result) {
+    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? AND s.ref_id_usr = p.host AND p.id_prenotazione = ?';
+    sql.query(statement, [token, id_prenotazione], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
         } else {
-<<<<<<< HEAD
             result(null, res);
         }
     });
@@ -248,7 +239,7 @@ Dbms.get_prenotazione_by_host = function (token,result) {
 
 Dbms.get_prenotazione_attive = function (token,result) {
     let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host and p.stato = ? ';
-    sql.query(statement, token,"attiva",function (err, res) {
+    sql.query(statement, [token,"attiva"],function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -260,7 +251,7 @@ Dbms.get_prenotazione_attive = function (token,result) {
 
 Dbms.get_prenotazione_in_corso = function (token,result) {
     let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host and p.stato = ? ';
-    sql.query(statement, token,"incorso",function (err, res) {
+    sql.query(statement, [token,"incorso"],function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -272,27 +263,19 @@ Dbms.get_prenotazione_in_corso = function (token,result) {
 
 Dbms.get_prenotazione_concluse = function (token,result) {
     let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host and p.stato = ? ';
-    sql.query(statement, token,"conclusa",function (err, res) {
+    sql.query(statement, [token,"conclusa"],function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
         } else {
             result(null, res);
-=======
-            result(null, res[0]);
->>>>>>> 18fa40a6eb15c4afd585674346f52366456bc4aa
         }
     });
 };
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 18fa40a6eb15c4afd585674346f52366456bc4aa
-Dbms.get_prenotazione_by_guest = function (token,result) {
-    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.guest';
-    sql.query(statement, token, function (err, res) {
+Dbms.get_prenotazione_by_guest = function (id_prenotazione, token,result) {
+    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.guest AND p.id_prenotazione';
+    sql.query(statement, [token, id_prenotazione], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
