@@ -34,6 +34,8 @@ Per questo progetto è disponibile la documentazione relativa all'architettura i
 
 Questo progetto è gestito mediante docker-compose, che si occupa di creare e orchestrare i container nei quali vengono avviati i singoli componenti del progetto.
 
+![infra](./doc/infra.png)
+
 ### Frontend
 
 Il container frontend ha l'unico scopo di compilare il progetto React.js e consegnare una versione statica completa al container gateway
