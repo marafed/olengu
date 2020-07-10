@@ -348,4 +348,18 @@ Dbms.update_prenotazione_conclusa  = function (id_prenotazione, token, checkout,
     });
 };
 
+Dbms.guadagno_host = function (token,result) {
+    let statement = 'SELECT sum(tot_pagato) FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.host';
+    sql.query(statement,token,function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res[0]);
+        }
+    });
+};
+
+
+
 module.exports = Dbms;

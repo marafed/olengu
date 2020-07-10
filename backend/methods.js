@@ -173,3 +173,11 @@ exports.register = function(req, res) {
     res.send(res_db);
    });
 };
+
+exports.guadagnoHost = function(req, res) {
+  Dbms.guadagno_host(req.params.token,function(err, result) {
+    if(err)
+      res.send(err)
+    res.json(result)
+  });
+};
