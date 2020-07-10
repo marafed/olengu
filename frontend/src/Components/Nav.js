@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 
 function Nav() {
-  if (localStorage.getItem('ishost') === 0) {
+  console.log(localStorage.getItem("ishost"));
+  console.log(localStorage.getItem("ishost") == 0);
+  console.log(localStorage.getItem("ishost") == 1);
+  if (localStorage.getItem('ishost') == 0) {
     return(
       <div className="contaid-block w-100" id="topbar">
         <div className="row">
@@ -29,7 +32,7 @@ function Nav() {
       </div>
     );
   }
-  if (localStorage.getItem('ishost') === 1) {
+  if (localStorage.getItem('ishost') == 1) {
     return(
       <div className="contaid-block w-100" id="topbar">
         <div className="row">
