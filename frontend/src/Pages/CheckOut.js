@@ -6,7 +6,7 @@ function CheckOut(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            `http://localhost:3500/updateprenotazioneconclusa/${props.id_ann}/${localStorage.getItem("token")}`,{ 
+            `/updateprenotazioneconclusa/${props.id_ann}/${localStorage.getItem("token")}`,{ 
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

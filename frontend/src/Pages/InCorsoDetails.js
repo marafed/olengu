@@ -27,7 +27,7 @@ function InCorsoDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `http://localhost:3500/api/getprenotazionehost/${match.params.id_prenotazione}/${localStorage.getItem("token")}`
+            `/api/getprenotazionehost/${match.params.id_prenotazione}/${localStorage.getItem("token")}`
         );
         const item = await fetchItem.json();
         setItem(item);

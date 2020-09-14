@@ -12,9 +12,9 @@ function Dashboard() {
     }, [])
 
     const fetchUser = async () => {
-        const route = "http://localhost:3500/api/getdatibyuserid/";
+        const route = "/api/getdatibyuserid/";
         const id_usr = localStorage.getItem("user")
-        await axios.get(route + id_usr, {"Access-Control-Allow-Origin":"http://localhost:3500"})
+        await axios.get(route + id_usr, {"Access-Control-Allow-Origin":"*"})
         .then(function (response) {
           const name = response.data.nome.charAt(0).toUpperCase() + response.data.nome.substring(1).toLowerCase();
           const surname = response.data.cognome.charAt(0).toUpperCase() + response.data.cognome.substring(1).toLowerCase();

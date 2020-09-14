@@ -26,14 +26,14 @@ function SearchItemDetails({ match }) {
     localStorage.setItem('id_annuncio',match.params.id_ann);
 
     const fetchItem = async () => {
-        const result = await fetch(`http://localhost:3500/api/getannuncio/${match.params.id_ann}`)
+        const result = await fetch(`/api/getannuncio/${match.params.id_ann}`)
         .then(function(response) {
             return response.json();
         }).then(function(data) {
             setItem(data);
         })
 
-        const hostQuery = await fetch(`http://localhost:3500/api/gethostbyannuncioid/${localStorage.getItem("id_annuncio")}`)
+        const hostQuery = await fetch(`/api/gethostbyannuncioid/${localStorage.getItem("id_annuncio")}`)
         .then(function(response) {
             return response.json();
         }).then(function(data) {
@@ -50,7 +50,7 @@ function SearchItemDetails({ match }) {
         if(localStorage.getItem("token") == null) {
             alert("Devi aver effettuato il login per effettuare una prenotazione")
         }
-        const result = await fetch(`http://localhost:3500/api/getidusr/${localStorage.getItem('email')}`);
+        const result = await fetch(`/api/getidusr/${localStorage.getItem('email')}`);
         const item = await result.json();
         localStorage.setItem('id_usr',item.id_usr);
         var payload = {
@@ -63,7 +63,7 @@ function SearchItemDetails({ match }) {
             "host": localStorage.getItem("id_host")
         }
         const query = await fetch(
-            `http://localhost:3500/api/insertprenotazione/`,
+            `/api/insertprenotazione/`,
             {
                 method: "POST",
                 body: JSON.stringify(payload),

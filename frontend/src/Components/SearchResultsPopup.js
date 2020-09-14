@@ -12,7 +12,7 @@ function SearchResultsPopup(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            "http://localhost:3500/api/updateannuncio",{
+            "/api/updateannuncio",{
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

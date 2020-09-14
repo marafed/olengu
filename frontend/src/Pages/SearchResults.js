@@ -23,7 +23,7 @@ function SearchResults() {
 
     const fetchItems = async() => {
         var citta = localStorage.getItem("citta");
-        const data = await fetch(`http://localhost:3500/api/getAnnunciByLuogo/${citta}`);
+        const data = await fetch(`/api/getAnnunciByLuogo/${citta}`);
         const items = await data.json();
         setItems(items);
     };

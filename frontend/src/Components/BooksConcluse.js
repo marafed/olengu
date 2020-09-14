@@ -12,7 +12,7 @@ function BooksConcluse() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            `http://localhost:3500/api/getprenotazioniconcluse${localStorage.getItem("token")}`
+            `/api/getprenotazioniconcluse${localStorage.getItem("token")}`
         );
         const items = await data.json();
         console.log(items.results);

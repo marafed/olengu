@@ -46,7 +46,7 @@ class Register extends Component {
                 "password": this.state.password,
             }
             var answer = await fetch(
-                "http://localhost:3500/api/auth/register/",
+                "/api/auth/register/",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),

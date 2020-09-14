@@ -101,10 +101,10 @@ function InsertItem() {
 
         console.log(JSON.stringify(data));  
 
-        var answer = "http://localhost:3500/api/insertannuncio"
+        var answer = "/api/insertannuncio"
         var body = JSON.stringify(data)
 
-        axios.post(answer, body, {"Access-Control-Allow-Origin":"http://localhost:3500"})
+        axios.post(answer, body, {"Access-Control-Allow-Origin":"*"})
         .then(function (response) {
             if(response.status == 200){
                 alert("Annuncio inserito")

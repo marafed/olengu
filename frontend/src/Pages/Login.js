@@ -38,7 +38,7 @@ class Login extends Component {
                 "password": this.state.password
             }
             var answer = await fetch(
-                "http://localhost:3500/api/auth/login/",
+                "/api/auth/login/",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),

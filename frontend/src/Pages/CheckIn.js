@@ -10,7 +10,7 @@ function CheckIn(props) {
             "file": file
         }
         fetch(
-            `http://localhost:3500/updateprenotazioneincorso/${props.id_ann}/${localStorage.getItem("token")}`,{
+            `/updateprenotazioneincorso/${props.id_ann}/${localStorage.getItem("token")}`,{
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

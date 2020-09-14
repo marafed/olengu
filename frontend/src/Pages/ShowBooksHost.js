@@ -12,7 +12,7 @@ function ShowBooksHost() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`http://localhost:3500/api/getprenotazionihost/${localStorage.getItem('token')}`);
+        const data = await fetch(`/api/getprenotazionihost/${localStorage.getItem('token')}`);
         const items = await data.json();
         console.log(items);
         

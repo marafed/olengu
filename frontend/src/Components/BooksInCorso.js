@@ -12,7 +12,7 @@ function BooksInCorso() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            `http://localhost:3500/api/getprenotazioniincorso${localStorage.getItem("token")}`
+            `/api/getprenotazioniincorso${localStorage.getItem("token")}`
         );
         const items = await data.json();
         console.log(items.results);

@@ -15,8 +15,8 @@ function ShowBooks() {
     const fetchItems = async() => {
 
         const id = localStorage.getItem("id_usr")
-        const query = 'http://localhost:3500/api/getprenotazioniguest/'
-        await axios.get(query + id, {"Access-Control-Allow-Origin":"http://localhost:3500"})
+        const query = '/api/getprenotazioniguest/'
+        await axios.get(query + id, {"Access-Control-Allow-Origin":"*"})
         .then(function (response) {
             console.log(response)
             setItems(response.data)

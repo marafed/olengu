@@ -11,7 +11,7 @@ function BooksInSospeso() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            `http://localhost:3500/api/getprenotazioniinsospeso${localStorage.getItem("token")}` 
+            `/api/getprenotazioniinsospeso${localStorage.getItem("token")}` 
         );
         const items = await data.json();
         console.log(items.results);
@@ -19,7 +19,7 @@ function BooksInSospeso() {
     };
 
     const accetta = async(id) => {
-        const data = await fetch(`http://localhost:3500/api/updateprenotazioneattiva/${id}`);
+        const data = await fetch(`/api/updateprenotazioneattiva/${id}`);
         fetchItems();
     };
 

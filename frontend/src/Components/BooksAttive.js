@@ -12,7 +12,7 @@ function BooksAttive() {
 
     const fetchItems = async() => {
         const data = await fetch(
-            `http://localhost:3500/api/getprenotazioniattive/${localStorage.getItem("token")}`
+            `/api/getprenotazioniattive/${localStorage.getItem("token")}`
         );
         const items = await data.json();
         console.log(items.results);

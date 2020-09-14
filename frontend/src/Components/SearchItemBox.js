@@ -12,9 +12,9 @@ function SearchItemBox({ item }) {
     }, []);
 
     const fetchAnnuncio = async () => {
-        const query = 'http://localhost:3500/api/getannuncio/';
+        const query = '/api/getannuncio/';
         const id_annuncio = item.ref_id_ann;
-        await axios.get(query + id_annuncio, {"Access-Control-Allow-Origin":"http://localhost:3500"})
+        await axios.get(query + id_annuncio, {"Access-Control-Allow-Origin":"*"})
         .then(function (response) {
             setNomeAnnuncio(response.data.nome_annuncio)
             setLuogo(response.data.luogo)
