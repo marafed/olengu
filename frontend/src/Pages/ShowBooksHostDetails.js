@@ -24,7 +24,7 @@ function ShowBooksHostDetails({ match }) {
 
     const fetchItem = async() => {
         const fetchItem = await fetch(
-            `/api/getprenotazionehost/${match.params.id}/${localStorage.getItem('token')}`
+            `http://localhost:3500/api/getprenotazionehost/${match.params.id}/${localStorage.getItem('token')}`
         );
         const item = await fetchItem.json();
         

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import SearchItemBox from '../Components/SearchItemBox';
 import SearchResultsPopup from '../Components/SearchResultsPopup';
+import SearchItemPage from './SearchItemPage';
 
 function SearchResults() {
 
@@ -22,7 +23,7 @@ function SearchResults() {
 
     const fetchItems = async() => {
         var citta = localStorage.getItem("citta");
-        const data = await fetch(`/api/getAnnunciByLuogo/${citta}`);
+        const data = await fetch(`http://localhost:3500/api/getAnnunciByLuogo/${citta}`);
         const items = await data.json();
         setItems(items);
     };
@@ -42,7 +43,7 @@ function SearchResults() {
                     {items.map(item => (
                         <h5 key={item.id}>
                             <Link to={`/SearchResults/${item.id_ann}`} >
-                                <SearchItemBox item={item} />
+                                <SearchItemPage item={item} />
                             </Link>
                         </h5>
                     ))}

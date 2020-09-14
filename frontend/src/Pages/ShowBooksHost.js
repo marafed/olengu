@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import { Link } from 'react-router-dom';
 import SearchItemBox from '../Components/SearchItemBox';
+import SearchItemBooksHost from '../Components/SearchItemBooksHost';
 
 function ShowBooksHost() {
 
@@ -11,8 +12,9 @@ function ShowBooksHost() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`/api/getprenotazionihost/${localStorage.getItem('token')}`);
+        const data = await fetch(`http://localhost:3500/api/getprenotazionihost/${localStorage.getItem('token')}`);
         const items = await data.json();
+        console.log(items);
         
         var totale_pagato = 0;
 
@@ -36,7 +38,7 @@ function ShowBooksHost() {
             <div className="col-lg-10 col-md-12">
                 <h1 style={{color: "white", margin: 1 + 'em', fontWeight: "bold"}}>Tutte le tue prenotazioni</h1>
                 {items.map(item => (
-                    <SearchItemBox item={item} />
+                    <SearchItemBooksHost item={item} />
                 ))}
             </div>
         </div>

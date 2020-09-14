@@ -13,8 +13,20 @@ Dbms.logout = function (token, apires) {
     });
 };
 
+Dbms.get_id = function (json,result){
+    var statement = "SELECT id_usr FROM usr WHERE email = ?";
+    sql.query(statement, json, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res[0]);
+        }
+    });
+};
+
 Dbms.login = function (loginjson, apires) {
-    var statement = "SELECT * FROM user WHERE email = ? AND pswd = ?";
+    var statement = "SELECT * FROM usr WHERE email = ? AND pswd = ?";
     var values = [loginjson.email, loginjson.password];
 
     sql.query(statement, values, function(err, res) {
@@ -26,6 +38,7 @@ Dbms.login = function (loginjson, apires) {
                 var ishost = res[0].is_host;
                 console.log("res[0].id_usr: "+res[0].id_usr);
                 let token = uuidv4();
+                let id_usr = res[0].id_usr;
                 return sql.query("insert into session(ref_id_usr, token) values(?, ?);", [res[0].id_usr, token], (err, res) => {
                     if (err) {
                         console.log("unable to generate token for uid: ", id);
@@ -33,7 +46,7 @@ Dbms.login = function (loginjson, apires) {
                         apires.send(JSON.stringify({"status":false,"token":""}));
                     }
                     else {
-                        apires.send(JSON.stringify({"status": true, "token": token, "ishost": ishost}));
+                        apires.send(JSON.stringify({"status": true, "token": token, "ishost": ishost,"id_usr":id_usr}));
                     }
                 });
             }
@@ -45,8 +58,8 @@ Dbms.login = function (loginjson, apires) {
 };
 
 Dbms.register_user = function (registrationjson, result) {   
-    let statement = "INSERT INTO user (is_host, nome, cognome, data_nascita, email, pswd) VALUES(?,?,?,?,?,?)";
-    let values = [0,registrationjson.firstname, registrationjson.surname, registrationjson.birthday, registrationjson.email, registrationjson.password];
+    let statement = "INSERT INTO usr (nome, cognome, data_nascita, email, pswd) VALUES(?,?,?,?,?)";
+    let values = [registrationjson.firstname, registrationjson.surname, registrationjson.birthday, registrationjson.email, registrationjson.password];
     
     sql.query(statement, values, function (err, res) {
         if(err) {
@@ -58,10 +71,10 @@ Dbms.register_user = function (registrationjson, result) {
     });
 };
 
-Dbms.get_prenotazioni_by_token = function (token, result) {
-    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE p.host = s.ref_id_usr AND s.token = ?';
+Dbms.get_prenotazioni_by_user_id = function (user_id, result) {
+    let statement = 'SELECT * FROM prenotazioni as p, usr as u WHERE p.guest = u.id_usr AND u.id_usr = ?';
   
-    sql.query(statement, token, function (err, res) {
+    sql.query(statement, user_id, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -88,7 +101,7 @@ Dbms.get_annunci_by_token = function (token, result) {
 
 Dbms.get_annuncio = function (annuncio, result) {
 
-    let statement = "SELECT * FROM annunci WHERE id_ann = ? "
+    let statement = "SELECT * FROM annunci WHERE id_ann = ?"
 
     sql.query(statement, annuncio, function (err, res) {
         if(err) {
@@ -114,8 +127,7 @@ Dbms.insert_annuncio = function (json, result) {
                     if(err) {
                         result(err, res);
                     } else {
-                        sql.query("UPDATE user SET is_host = 1 WHERE id_usr = ?", id_usr);
-                        result(null, res);
+                        result(null, res);  
                     }
                 });
             } else {
@@ -167,33 +179,16 @@ Dbms.get_annunci_by_luogo = function (luogo, result) {
 };
 
 Dbms.insert_prenotazione = function (json, result) {
-    sql.query("SELECT ref_id_usr AS id FROM session WHERE token = ?", json.token, (err, res) => {
-        if(err) {
-            result(err, res);
+
+    var statement = `INSERT INTO prenotazioni(ref_id_ann,checkin,checkout,stato,tot_pagato,guest,host)VALUES(?,?,?,?,?,?,?)`;
+    var values = [json.ref_id_ann,json.checkin,json.checkout,json.stato,json.tot_pagato,json.id_usr,json.host];
+    sql.query(statement, values, function (err, res) {
+        if(err) {   
+            result(err, null);
         } else {
-            if (res.length) {
-                var id_usr = res[0].id;
-                sql.query("SELECT host FROM annunci WHERE id_ann = ?", id_usr, (err,res) => {
-                    if(err) {
-                        result(err, null);
-                    } else {
-                        if (res.length) {
-                            var host = res[0].host;
-                            var statement = `INSERT INTO prenotazioni(ref_id_ann,checkin,checkout,stato,tot_pagato,guest,host)VALUES(?,?,?,?,?,?,?)`;
-                            var values = [json.ref_id_ann,json.checkin,json.checkout,"sospeso",json.tot_pagato,id_usr,host];
-                            sql.query(statement, values, function (err, res) {
-                                if(err) {
-                                    result(err, null);
-                                } else {
-                                    result(null, res);
-                                }
-                            });
-                        }
-                    }
-                });
-            }
+            result(null, res);
         }
-    });
+    }); 
 };
 
 
@@ -209,9 +204,34 @@ Dbms.get_prenotazioni_by_host = function (token,result) {
     });
 };
 
-Dbms.get_prenotazioni_by_guest = function (token,result) {
-    let statement = 'SELECT * FROM prenotazioni as p, session as s WHERE s.token = ? and s.ref_id_usr = p.guest';
-    sql.query(statement, token, function (err, res) {
+Dbms.get_dati_by_user_id= function(id_user, result) {
+    let statement = 'SELECT nome,cognome FROM usr WHERE id_usr=?';
+    sql.query(statement, id_user, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log(id_user)
+            result(null, res[0]);
+        }
+    });
+};
+
+Dbms.get_host_by_annuncio_id = function(id_annuncio, result) {
+    let statement = 'SELECT host FROM annunci WHERE id_ann = ?';
+    sql.query(statement, id_annuncio, function(err,res) {
+        if(err) {
+            console.log("ops", err);
+            result(null, err);
+        } else {
+            result(null, res[0]);
+        }
+    });
+};
+
+Dbms.get_prenotazioni_by_user_id = function (id_usr,result) {
+    let statement = 'SELECT * FROM prenotazioni INNER JOIN usr ON prenotazioni.guest = usr.id_usr WHERE usr.id_usr = ?';
+    sql.query(statement, id_usr, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);

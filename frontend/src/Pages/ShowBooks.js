@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import SearchItemBox from '../Components/SearchItemBox';
+import SearchItemBoxGuest from '../Components/SearchItemBoxGuest';
 import { Link } from 'react-router-dom';
+import axios from 'axios';  
 
 function ShowBooks() {
 
@@ -11,21 +13,29 @@ function ShowBooks() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch(`/api/getprenotazioni/${localStorage.getItem('token')}`);
-        const items = await data.json();
-        setItems(items);
+
+        const id = localStorage.getItem("id_usr")
+        const query = 'http://localhost:3500/api/getprenotazioniguest/'
+        await axios.get(query + id, {"Access-Control-Allow-Origin":"http://localhost:3500"})
+        .then(function (response) {
+            console.log(response)
+            setItems(response.data)
+          }
+        ).catch(function (error) {
+          alert(error);
+      });
     };
 
     return(
         <div>
             <h1 style={{color: "white", margin: 1 + 'em'}}>Le tue prenotazioni</h1>
             {items.map(item => (
-                <Link to={`/SearchResults/${item.id}`} >
-                    <SearchItemBox item={item} /> 
-                </Link>
-            ))}
+                <SearchItemBoxGuest item={item} />))}
         </div>
     );
 }
 
 export default ShowBooks;
+
+/*
+*/

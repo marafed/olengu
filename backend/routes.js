@@ -28,7 +28,7 @@ module.exports = function(app) {
 
   app.route('/api/getprenotazionehost/:id_prenotazione/:token').get(methods.getPrenotazioneByHost);
 
-  app.route('/api/getprenotazioniguest/:token').get(methods.getPrenotazioniByGuest); //si
+  app.route('/api/getprenotazioniguest/:id_usr').get(methods.getPrenotazioniByGuest); //si
 
   app.route('/api/getprenotazioneguest/:id_prenotazione/:token').get(methods.getPrenotazioneByGuest);
 
@@ -41,12 +41,18 @@ module.exports = function(app) {
   app.route('api/guadagnohost/:token').get(methods.guadagnoHost);  
 
   app.route('/api/getprenotazionehost/:token/:id_prenotazione').get(methods.getPrenotazioneByHost);
-
+   
   app.route('/api/getprenotazioneguest/:token/:id_prenotazione').get(methods.getPrenotazioneByGuest);
 
   app.route('/api/auth/login').post(methods.login) //yes
 
   app.route('/api/auth/register').post(methods.register) //yes
 
-  app.route('/api/auth/logout/:token').get(methods.logout)
+  app.route('/api/auth/logout/:token').get(methods.logout);
+
+  app.route('/api/getidusr/:email').get(methods.getId);
+
+  app.route('/api/getdatibyuserid/:id_usr').get(methods.getDatiByUserId);
+
+  app.route('/api/gethostbyannuncioid/:idannuncio').get(methods.getHostByAnnuncioId);
 };

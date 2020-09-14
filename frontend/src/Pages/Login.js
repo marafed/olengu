@@ -38,7 +38,7 @@ class Login extends Component {
                 "password": this.state.password
             }
             var answer = await fetch(
-                "/api/auth/login",
+                "http://localhost:3500/api/auth/login/",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),
@@ -63,8 +63,9 @@ class Login extends Component {
                     console.log(json);
                     if(json.status === true) {
                         localStorage.setItem('token', json.token);
-                        localStorage.setItem('ishost', json.ishost);
+                        localStorage.setItem("user",json.id_usr)
                         this.props.history.push('/dashboard');
+                        window.location.reload(false);
                     } else {
                         alert("credenziali non valide");
                     }
@@ -99,7 +100,10 @@ class Login extends Component {
             break;
         }
         this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+        localStorage.setItem('email',this.state.email);
     };
+
+
 
 
     render() {

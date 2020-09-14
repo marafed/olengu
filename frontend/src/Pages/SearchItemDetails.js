@@ -1,40 +1,104 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
- 
+import { Link  } from 'react-router-dom';
+import  { Redirect } from 'react-router-dom' 
+import { type } from 'jquery';
 
 function SearchItemDetails({ match }) {
+
+    const [item, setItem] = useState({});
+    const [host, setHost] = useState("")
+
     useEffect(() => {
-        console.log(item);
         fetchItem();
     }, []);
 
-    var data_inizio = new Date(localStorage.getItem("data1")); // una cosa simila 
-    var data_fine = new Date(localStorage.getItem("data2"));
+    var data_inizio = localStorage.getItem("data1");
+    var data_fine = localStorage.getItem("data2");
 
-    const diffTime = Math.abs(data_fine - data_inizio);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+    var date = Date.parse(data_inizio);
+    var dateF = Date.parse(data_fine);
+
+    const diffTime = Math.abs(date - dateF);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     
     var ospiti = localStorage.getItem("nospiti");
 
-    const [item, setItem] = useState({
-        luogo: "loading",
-        n_letti_matr: "loading",
-        n_divano_letto: "loading",
-        n_bagni: "loading",
-        colazione : "loading",
-        AC : "loading",
-        parcheggio: "loading",
-        wifi : "loading",
-        animali_domestici_ammessi: "loading", 
-        baby_friendly: "loading"
-    });
+    localStorage.setItem('id_annuncio',match.params.id_ann);
 
-    const fetchItem = async() => {
-        const result = await fetch(`/api/getannuncio/${match.params.id_ann}`);
-        var data = await result.json();
-        setItem(data);
-        console.log(data);
-        console.log(item);
+    const fetchItem = async () => {
+        const result = await fetch(`http://localhost:3500/api/getannuncio/${match.params.id_ann}`)
+        .then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            setItem(data);
+        })
+
+        const hostQuery = await fetch(`http://localhost:3500/api/gethostbyannuncioid/${localStorage.getItem("id_annuncio")}`)
+        .then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            setHost(data);
+            localStorage.setItem("id_host",data.host);
+        })
+
+    }
+
+    var totale = (item.prezzo_notte + item.tassa_soggiorno) * diffDays;
+    localStorage.setItem('totale_pagato',totale);
+
+    const fetchUserId = async () => {
+        if(localStorage.getItem("token") == null) {
+            alert("Devi aver effettuato il login per effettuare una prenotazione")
+        }
+        const result = await fetch(`http://localhost:3500/api/getidusr/${localStorage.getItem('email')}`);
+        const item = await result.json();
+        localStorage.setItem('id_usr',item.id_usr);
+        var payload = {
+            "ref_id_ann": localStorage.getItem("id_annuncio"),
+            "checkin": localStorage.getItem("data1"),
+            "checkout": localStorage.getItem("data2"),
+            "stato": "sospeso",
+            "tot_pagato": localStorage.getItem("totale_pagato"),
+            "id_usr": localStorage.getItem("id_usr"),
+            "host": localStorage.getItem("id_host")
+        }
+        const query = await fetch(
+            `http://localhost:3500/api/insertprenotazione/`,
+            {
+                method: "POST",
+                body: JSON.stringify(payload),
+                mode:'cors',
+                cache: 'no-cache',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json' 
+                }
+            })
+            .then(
+                    
+                res => {
+                if (!res.ok) {
+                    const error = new Error(res.error);
+                    throw error;
+                }else{
+                    return res.json()
+                }
+            })
+            .then(json => {
+                console.log(json);
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Prenotazione effettuata")
+                alert('Errore: per favore riprova');
+            });
+    }
+
+    var notte
+    if(diffDays > 1) {
+        notte = "notti"
+    } else {
+        notte = "notte"
     }
 
     return(
@@ -54,12 +118,12 @@ function SearchItemDetails({ match }) {
                         <p>{item.n_letti_matr} Letti matrimoniali</p>
                         <p>{item.n_divano_letto} Divani letto</p>
                         <p>{item.n_bagni} Bagni</p> 
-                        <p>{item.colazione}Colazione</p> 
-                        <p>{item.AC}Aria Condizionata</p> 
-                        <p>{item.parcheggio}Parcheggio</p> 
-                        <p>{item.wifi}Wifi</p> 
-                        <p>{item.animali_domestici_ammessi}Animali domestici ammessi</p> 
-                        <p>{item.baby_friendly}Baby-friendly</p> 
+                        <p>{item.colazione} Colazione</p> 
+                        <p>{item.AC} Aria Condizionata</p> 
+                        <p>{item.parcheggio} Parcheggio</p> 
+                        <p>{item.wifi} Wifi</p> 
+                        <p>{item.animali_domestici_ammessi} Animali domestici ammessi</p> 
+                        <p>{item.baby_friendly} Baby-friendly</p> 
                     </div>
                 </div>
                 <div className="col-md-4 searchitem-card">
@@ -77,7 +141,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{""+data_inizio}</h6> 
+                                    <strong>{""+data_inizio}</strong> 
                                 </div>
                             </div>
                         </div>
@@ -89,7 +153,7 @@ function SearchItemDetails({ match }) {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h6>{""+data_fine}</h6>
+                                    <strong>{""+data_fine}</strong>
                                 </div>
                             </div>
                         </div>
@@ -98,18 +162,18 @@ function SearchItemDetails({ match }) {
                                 <ul>
                                     <li>Prezzo a notte: {item.prezzo_notte} €</li>
                                     <li>Tassa di soggiorno: {item.tassa_soggiorno} €</li>
-                                    <li>Prezzo totale per {diffDays} notti :</li>
+                                    <li>Prezzo totale per {diffDays} {notte}: <strong>{(item.prezzo_notte + item.tassa_soggiorno) * diffDays}€</strong></li>
                                 </ul>
                                 <div className="row">
                                     <div className="col  text-center">
-                                    <h3>{item.prezzo_notte + item.tassa_soggiorno * diffDays} €</h3>
+                                    
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <Link to="/Payment" id={match.params.id_ann}>
-                        <button className="btn-gradient btn-dashboard">Prenota ora</button>
+                        <button className="btn-gradient btn-dashboard" onClick={fetchUserId}>Prenota ora</button>
                     </Link> 
                 </div>
             </div>

@@ -17,7 +17,7 @@ function BottoneTermina(props) {
 
     const onSubmit = async data => {
         var answer = await fetch(
-            "/api/insertprenotazione", {
+            "http://localhost:3500/api/insertprenotazione", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',

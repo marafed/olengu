@@ -1,35 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
-import BottoneTermina from '../Components/BottoneTermina' 
+import {Link} from 'react-router-dom'
+import { contains } from 'jquery';
 
-function Payment(props) {
+function Payment() {
   const [state, setState] = useState({
     cvc: '',
     expiry: '',
     focus: '',
     name: '',
-    number: '',
-    id: props.id
+    number: ''
   });
-
-  const handleInputFocus = (e) => {
-    let temp = state;
-    temp.focus = e.target.name
-    setState({ temp });
-  }
   
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target.value;
     let temp = state;
     temp[name] = value;
     setState({ temp });
   }
 
+  const handleSubmit =  () => {
+    alert("Prenotazione effettuata")
+  }
 
   return (
     <div id="PaymentForm row">
-      <div className="col-lg-8">
+      <div className="col-lg-12 mt-5">
             <Cards
                 cvc={state.cvc}
                 expiry={state.expiry}
@@ -38,39 +35,39 @@ function Payment(props) {
                 number={state.number}  
             />
       </div>
-      <div className="col-lg-4" style={{padding: 1 + 'em', margin: 1 + 'em'}}>
-          <form>
+      <div className="col-lg-12 text-center mt-4">
+          <form >
               <input
                   type="tel"
                   name="number"
+                  class="btn btn-secondary mt-3"
                   placeholder="Card Number"
                   onChange={handleInputChange}
-                  onFocus={handleInputFocus}
               /><br />
               <input
                   type="name"
                   name="name"
+                  class="btn btn-secondary mt-3"
                   placeholder="Nome intestatario"
                   onChange={handleInputChange}
-                  onFocus={handleInputFocus}
               /><br />
               <input
                   type="cvc"
                   name="cvc"
+                  class="btn btn-secondary mt-3"
                   placeholder="CVC"
                   onChange={handleInputChange}
-                  onFocus={handleInputFocus}
               /><br />
               <input
                   type="expiry"
                   name="expiry"
+                  class="btn btn-secondary my-3"
                   placeholder="Date of Expire"
                   onChange={handleInputChange}
-                  onFocus={handleInputFocus}
               /><br />
-              <button>
-                <BottoneTermina state={state} />
-              </button>
+              <Link to = "/Dashboard">
+                  <button type = "submit"  onClick={handleSubmit} className="btn btn-gradient btn-dashboard">Termina e paga</button>
+              </Link>
           </form>
       </div>
     </div>

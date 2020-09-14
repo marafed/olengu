@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-function CheckOut() {
+function CheckOut(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = async data => {
         var answer = await fetch(
-            "/api/auth/search",{ //questo è
+            `http://localhost:3500/updateprenotazioneconclusa/${props.id_ann}/${localStorage.getItem("token")}`,{ 
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

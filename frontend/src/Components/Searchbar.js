@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
  
 function Searchbar() {
+
+    const [city, setCity] = useState("");
+    const [checkin, setCheckin] = useState("");
+    const [checkout, setCheckout] = useState("");
+    const [nOspiti, setNOspiti] = useState("");
+
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = async data => {
+    const fetchItems = async data => {
         var citta = document.getElementById("lochescion").value
+        setCity(citta)
         localStorage.setItem("citta", citta)
         var data1 = document.getElementById("data1").value
+        setCheckin(data1)
         localStorage.setItem("data1", data1)
+        console.log(data1);
         var data2 = document.getElementById("data2").value
+        setCheckout(data2)
         localStorage.setItem("data2", data2)
+        console.log(data1);
         var nospiti = document.getElementById("nospiti").value
+        setNOspiti(nospiti)
         localStorage.setItem("nospiti", nospiti)
     };
+
+    
     
     return(
         <form>
@@ -62,7 +76,7 @@ function Searchbar() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12" id="cerca">
                     <Link to="/SearchResults/">
-                        <button onClick={onSubmit} id="search-button" className="btn btn-gradient" style={{fontSize: 1.5 + 'em'}}>
+                        <button onClick = {fetchItems} id="search-button" className="btn btn-gradient" style={{fontSize: 1.5 + 'em'}}>
                             Cerca
                             <img width="25em" src="img/shapes-and-symbols.svg" style={{marginLeft: 1 + 'em'}} />
                         </button>
@@ -75,3 +89,10 @@ function Searchbar() {
 
 
 export default Searchbar;
+
+
+
+/*                        <button onClick={onSubmit} id="search-button" className="btn btn-gradient" style={{fontSize: 1.5 + 'em'}}>
+                            Cerca
+                            <img width="25em" src="img/shapes-and-symbols.svg" style={{marginLeft: 1 + 'em'}} />
+                        </button>*/

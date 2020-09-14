@@ -2,10 +2,19 @@
 const bcrypt = require('bcrypt');
 
 var Dbms = require('./dbms');
+const { ContextHandlerImpl } = require('express-validator/src/chain');
 
 exports.welcome = function(req, res) {
     var par = req.params.id
     return res.send('welcome' + par.toString());
+};
+
+exports.getId = function(req, res) {
+  Dbms.get_id(req.params.email, function(err, result) {
+    if (err)
+      res.send(err);
+    res.json(result);
+  });
 };
 
 exports.insertAnnuncio = function(req, res) {
@@ -32,8 +41,7 @@ exports.getAnnunciByToken = function(req, res) {
   });
 };
 
-exports.getAnnuncio = function(req, res) {
-
+exports.getAnnuncio = function(req, res) {  
   Dbms.get_annuncio(req.params.id_ann, function(err, result) {
     if (err)
       res.send(err);
@@ -43,6 +51,14 @@ exports.getAnnuncio = function(req, res) {
 
 exports.getAnnunciByLuogo = function(req, res) {
   Dbms.get_annunci_by_luogo(req.params.nomeluogo, function(err, result) {
+    if (err)
+      res.send(err);
+    res.json(result);
+  });
+};
+
+exports.getHostByAnnuncioId = function(req, res) {
+  Dbms.get_host_by_annuncio_id(req.params.idannuncio, function(err, result) {
     if (err)
       res.send(err);
     res.json(result);
@@ -75,9 +91,10 @@ exports.getPrenotazioniByHost= function(req, res) {
 };
 
 exports.getPrenotazioniByGuest= function(req, res) {
-  Dbms.get_prenotazioni_by_guest(req.params.token,function(err, result) {
+  Dbms.get_prenotazioni_by_user_id(req.params.id_usr,function(err, result) {
     if(err)
       res.send(err)
+    console.log(result)
     res.json(result)
   });
 };
@@ -158,6 +175,16 @@ exports.deletePrenotazione = function(req, res) {
   });
 };
 
+exports.getDatiByUserId = function(req, res) {
+  Dbms.get_dati_by_user_id(req.params.id_usr, function(err, result) {
+    if(err)
+      res.send(err)
+    console.log(result)
+    res.json(result)
+  });
+};
+
+
 exports.login = function(req, res) {
   Dbms.login(req.body, res);
 };
@@ -167,7 +194,7 @@ exports.logout = function(req, res) {
 };
 
 exports.register = function(req, res) {
-  console.log("siamo qui")
+  console.log("utente registrato")
   Dbms.register_user(req.body, (err, res_db) => {
     if(err) 
       res.send(err);

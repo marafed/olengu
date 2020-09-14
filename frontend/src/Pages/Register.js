@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+        import React, { Component, useState } from 'react';
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/); // RegEx per l'email 
 
@@ -46,7 +46,7 @@ class Register extends Component {
                 "password": this.state.password,
             }
             var answer = await fetch(
-                "/api/auth/register",
+                "http://localhost:3500/api/auth/register/",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),
